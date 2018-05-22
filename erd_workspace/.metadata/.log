@@ -118,6 +118,7 @@ Command-line arguments:  -os win32 -ws win32 -arch x86
 
 !ENTRY org.eclipse.osgi 2 1 2018-05-21 10:38:35.871
 !MESSAGE NLS unused message: ToggleColumnVisibilityHandler_5 in: com.tomato.exerd.handler.messages
+<<<<<<< HEAD
 !SESSION 2018-05-21 12:49:28.884 -----------------------------------------------
 eclipse.buildId=M20090211-1700
 java.version=1.8.0_60
@@ -325,3 +326,5 @@ Command-line arguments:  -os win32 -ws win32 -arch x86
 
 !ENTRY org.eclipse.osgi 2 1 2018-05-22 14:12:24.255
 !MESSAGE NLS unused message: ToggleColumnVisibilityHandler_5 in: com.tomato.exerd.handler.messages
+=======
+>>>>>>> master
