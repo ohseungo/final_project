@@ -1,0 +1,11 @@
+package com.scsa.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class UserController {
+	
+	public boolean login(String id, String pw) {
+		return false;
+	}
+}
