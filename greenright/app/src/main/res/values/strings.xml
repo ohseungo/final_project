@@ -15,5 +15,6 @@
     <string name="register_email">이메일</string>
     <string name="registerBtn">회원가입</string>
     <string name="register_phone">핸드폰번호</string>
+    <string name="register_car">소유차량 (있는 경우)</string>
 
 </resources>
