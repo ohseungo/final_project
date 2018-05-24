@@ -1,0 +1,11 @@
+package com.scsa.model.dao;
+
+import com.scsa.model.vo.User;
+
+public interface UserDAO {
+	
+	User createUser(User user);
+	User selectUser(String userId);
+	User selectUser(String userId, String password);
+	
+}

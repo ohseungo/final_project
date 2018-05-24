@@ -1,0 +1,9 @@
+package com.scsa.model.vo;
+
+public class Company {
+	private String compId;
+	private String compName;
+	private String compType;
+	
+	
+}

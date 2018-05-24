@@ -1,0 +1,20 @@
+package snippet;
+
+public class Snippet {
+	select deptno,extract(month from hiredate),
+	decode(extract(month from hiredate),1,sal) jan,
+	decode(extract(month from hiredate),2,sal) feb,
+	decode(extract(month from hiredate),3,sal) mar,
+	decode(extract(month from hiredate),4,sal) apr,
+	decode(extract(month from hiredate),5,sal) may,
+	decode(extract(month from hiredate),6,sal) jun,
+	decode(extract(month from hiredate),7,sal) jul,
+	decode(extract(month from hiredate),8,sal) aug,
+	decode(extract(month from hiredate),9,sal) sep,
+	decode(extract(month from hiredate),10,sal) oct,
+	decode(extract(month from hiredate),11,sal) nov,
+	decode(extract(month from hiredate),12,sal) DEC,
+	sal
+	from emp
+}
+

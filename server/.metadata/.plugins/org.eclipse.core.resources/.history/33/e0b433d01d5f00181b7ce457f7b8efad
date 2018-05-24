@@ -1,0 +1,6 @@
+package com.scsa.model.vo;
+
+public class GreenPoint {
+	public String greenPointId;
+	
+}
