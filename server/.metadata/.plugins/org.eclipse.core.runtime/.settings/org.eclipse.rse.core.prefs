@@ -1,3 +1,7 @@
 activeuserprofiles=M9048;Team
 eclipse.preferences.version=1
 org.eclipse.rse.systemtype.local.systemType.defaultUserId=student
+<<<<<<< HEAD
+=======
+useridperkey=M9048.Local\=student;
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178

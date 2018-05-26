@@ -1,7 +1,11 @@
 {
   "version": "v1",
   "title": "Spring IDE",
+<<<<<<< HEAD
   "timestamp": 1527041965220,
+=======
+  "timestamp": 1527155498166,
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178
   "ttl": 10080,
   "helpUrl": "https://aer.ctrlflow.com/spring-ide/help",
   "feedbackUrl": "https://www.codetrails.com/error-analytics/",

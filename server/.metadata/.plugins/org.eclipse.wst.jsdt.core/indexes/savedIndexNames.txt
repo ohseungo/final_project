@@ -1,2 +1,10 @@
 INDEX VERSION 1.4+C:\Users\SCSA\final_project\server\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 1356777784.index
+<<<<<<< HEAD
+=======
+1505446085.index
+1594251765.index
+2549295833.index
+3503738010.index
+1649993141.index
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178

@@ -1,0 +1,30 @@
+package com.scsa.model.dao;
+
+import org.apache.ibatis.session.SqlSession;
+
+import com.scsa.model.vo.User;
+
+public class UserDAOImol implements UserDAO {
+
+	private SqlSession sqlSession;
+	
+	
+	@Override
+	public User addUser(User user) {
+	
+		return null;
+	}
+
+	@Override
+	public User searchUser(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User searchUser(String userId, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

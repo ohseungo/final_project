@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2018-05-23 11:19:12,992 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
 2018-05-23 11:21:05,859 [Worker-15] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.springframework.samples:GreenRightServer:0.0.1-SNAPSHOT @ C:\Users\SCSA\final_project\server\GreenRightServer\pom.xml.
 2018-05-23 11:21:05,859 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: org.springframework.samples:GreenRightServer:0.0.1-SNAPSHOT @ C:\Users\SCSA\final_project\server\GreenRightServer\pom.xml.
@@ -273,3 +274,35 @@
 2018-05-23 15:03:51,153 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
 2018-05-23 15:03:51,154 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2018-05-23 15:03:51,155 [Worker-100] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+=======
+2018-05-24 18:51:32,434 [Worker-6] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2018-05-24 19:21:16,164 [Worker-23] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: greenRight_server:greenRight_server:0.0.1-SNAPSHOT @ C:\Users\SCSA\final_project\server\greenRight_server\pom.xml.
+2018-05-24 19:21:17,217 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:21:17,217 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
+2018-05-24 19:21:17,441 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:21:17,441 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+2018-05-24 19:21:17,442 [Worker-21] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: greenRight_server:greenRight_server:0.0.1-SNAPSHOT @ C:\Users\SCSA\final_project\server\greenRight_server\pom.xml.
+2018-05-24 19:21:31,522 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:21:31,523 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
+2018-05-24 19:21:31,523 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:21:31,523 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+2018-05-24 19:36:31,128 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:36:31,128 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
+2018-05-24 19:36:31,129 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:36:31,129 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+2018-05-24 19:39:39,033 [Worker-3] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-05-24 19:39:50,018 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:39:50,019 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
+2018-05-24 19:39:50,020 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:39:50,020 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+2018-05-24 19:51:44,938 [Worker-0] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-05-24 19:51:49,947 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:51:49,947 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
+2018-05-24 19:51:49,949 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:51:49,949 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+2018-05-24 19:52:17,753 [Worker-3] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-05-24 19:52:28,963 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:52:28,963 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
+2018-05-24 19:52:28,965 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-24 19:52:28,965 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178

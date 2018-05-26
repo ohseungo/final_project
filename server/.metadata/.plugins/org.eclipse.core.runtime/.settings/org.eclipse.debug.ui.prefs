@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
 org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
+<<<<<<< HEAD
 org.eclipse.debug.ui.save_dirty_editors_before_launch=never
 preferredTargets=default\:default|default,org.eclipse.wst.jsdt.chromium.debug.ui.toggleTargetId\:default|
+=======
+preferredTargets=default\:default|
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178

@@ -1,0 +1,11 @@
+package com.scsa.model.vo;
+
+public class GreenPoint {
+	public String greenPointId;
+	public int greenPointValue;
+	public int greenPointType; //1이면 취득 -1이면 사용
+	public String grrenPointDate;
+	
+	public String userId;
+	public String compId;
+}

@@ -1,0 +1,5 @@
+package com.scsa.model.vo;
+
+public class Company {
+
+}

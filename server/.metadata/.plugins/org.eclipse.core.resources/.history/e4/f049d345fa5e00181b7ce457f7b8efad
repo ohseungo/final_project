@@ -1,0 +1,9 @@
+package com.scsa.model.service;
+
+import com.scsa.model.vo.User;
+
+public interface UserService {
+	User addUser(User user);
+	User searchUser(String userId);
+	User loginUser(String userId, String password);
+}

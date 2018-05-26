@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         session = new SessionManager(getApplicationContext());
 
+
         if (session.isLoggedIn()) {
 
             Intent intent = new Intent(this, MainActivity.class);
@@ -53,14 +54,24 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
+        idTv.requestFocus();
     }
 
+    /**
+     * 로그인 버튼 온클릭이벤트
+     * @param view
+     */
     public void loginBtn(View view) {
         String userId = idTv.getText().toString().trim();
         String password = pwTv.getText().toString().trim();
 
-        if (userId.isEmpty() || password.isEmpty()) {
+        if (userId.isEmpty()) {
             Toast.makeText(getApplicationContext(), "빈 칸을 채워주세요", Toast.LENGTH_SHORT).show();
+            idTv.requestFocus();
+            return;
+        }if (password.isEmpty()){
+            Toast.makeText(getApplicationContext(), "빈 칸을 채워주세요", Toast.LENGTH_SHORT).show();
+            pwTv.requestFocus();
             return;
         }else {
             login(userId, password);
@@ -70,6 +81,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+    /**
+     * 로그인 구현 메서드
+     * @param userId
+     * @param password
+     */
     private void login(final String userId, final String password) {
         pDialog.setMessage("로그인 중입니다");
         showDialog();
@@ -92,7 +109,11 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         }else{
                             //로그인 틀렸을때
-
+                            Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show();
+                            idTv.setText("");
+                            pwTv.setText("");
+                            idTv.requestFocus();
+                            return;
                         }
                     }
                 },
@@ -106,8 +127,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
-                params.put("id", userId);
-                params.put("pw", password);
+                params.put("userId", userId);
+                params.put("password", password);
                 return params;
             }
         };
@@ -117,18 +138,28 @@ public class LoginActivity extends AppCompatActivity {
                 addToRequestQueue(stringRequest);
     }
 
+    /**
+     * 로그인 다이얼로그 표시
+     */
     private void showDialog() {
         if (!pDialog.isShowing()){
             pDialog.show();
         }
     }
 
+    /**
+     * 로그인 다이얼로그 끝냄
+     */
     private void hideDialog() {
         if (pDialog.isShowing()){
             pDialog.dismiss();
         }
     }
 
+    /**
+     * 회원가입 버튼 온클릭 이벤트
+     * @param view
+     */
     public void goToRegister(View view) {
         //회원가입 하러 가자
         Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);

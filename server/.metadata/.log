@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 !SESSION 2018-05-23 11:16:59.263 -----------------------------------------------
+=======
+!SESSION 2018-05-24 18:51:22.236 -----------------------------------------------
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178
 eclipse.buildId=4.7.2.M20171130-0510
 java.version=1.8.0_111
 java.vendor=Oracle Corporation
@@ -6,6 +10,7 @@ BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
 Framework arguments:  -product org.eclipse.epp.package.jee.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.ui 2 0 2018-05-23 11:18:53.979
 !MESSAGE Warnings while parsing the images from the 'org.eclipse.ui.commandImages' extension point.
 !SUBENTRY 1 org.eclipse.ui 2 0 2018-05-23 11:18:53.979
@@ -14,12 +19,26 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.e
 !ENTRY org.eclipse.jface 2 0 2018-05-23 11:19:02.259
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2018-05-23 11:19:02.259
+=======
+!ENTRY org.eclipse.ui 2 0 2018-05-24 18:51:28.114
+!MESSAGE Warnings while parsing the images from the 'org.eclipse.ui.commandImages' extension point.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-05-24 18:51:28.115
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.lsp4e', id='org.eclipse.lsp4e.togglehighlight'
+
+!ENTRY org.eclipse.jface 2 0 2018-05-24 18:51:29.304
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-05-24 18:51:29.304
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178
 !MESSAGE A conflict occurred for CTRL+SHIFT+T:
 Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
 		Open a type in a Java editor,
 		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+<<<<<<< HEAD
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@61a369cf,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@d2ca3a9,
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
@@ -27,11 +46,16 @@ Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
 		,
 		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+<<<<<<< HEAD
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2ce7ec5f,
+=======
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2b26d289,
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.jface.text 2 0 2018-05-23 11:19:05.978
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
 
@@ -39,12 +63,22 @@ Binding(CTRL+SHIFT+T,
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
 
 !ENTRY org.eclipse.egit.ui 2 0 2018-05-23 11:19:14.070
+=======
+!ENTRY org.eclipse.jface.text 2 0 2018-05-24 18:51:30.563
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-05-24 18:51:30.564
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-05-24 18:51:32.666
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\student'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2018-05-23 11:25:38.414
 !MESSAGE Connection to http://www.pramati.com/downloads/eclipse/updates/p2.index failed on Connection timed out: connect. Retry attempt 0 started
 !STACK 0
@@ -653,6 +687,66 @@ org.eclipse.core.runtime.OperationCanceledException
 	at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
 	at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2560)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3815)
+=======
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2018-05-24 19:05:53.065
+!MESSAGE No repository found at http://www.pramati.com/downloads/eclipse/updates/.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2018-05-24 19:07:36.698
+!MESSAGE No repository found at http://www.apache.org/dist/geronimo/eclipse/updates/.
+
+!ENTRY org.eclipse.wst.server.discovery 1 0 2018-05-24 19:34:59.160
+!MESSAGE already installed: org.eclipse.jst.server.generic.jonas4
+!SESSION 2018-05-24 19:39:28.161 -----------------------------------------------
+eclipse.buildId=4.7.2.M20171130-0510
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.ui 2 0 2018-05-24 19:39:32.928
+!MESSAGE Warnings while parsing the images from the 'org.eclipse.ui.commandImages' extension point.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-05-24 19:39:32.928
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.lsp4e', id='org.eclipse.lsp4e.togglehighlight'
+
+!ENTRY org.eclipse.jface 2 0 2018-05-24 19:39:34.123
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-05-24 19:39:34.123
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@587df3e4,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@64abb917,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-05-24 19:39:40.332
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\student'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springsource.ide.eclipse.commons.browser 4 0 2018-05-24 19:39:43.969
+!MESSAGE Could not call browser function extension: addHtml
+!STACK 0
+org.eclipse.core.commands.ExecutionException: Problems executing script: 'window.addHtml("gettingStarted", "<a class=\"ide_widget btn btn-black uppercase\" href=\"\" onclick=\"return ide.call('org.springframework.openGuideWizard','Getting Started Guide')\">Import Getting Started Guide</a>\n<a class=\"ide_widget btn btn-black uppercase\" href=\"\" onclick=\"return ide.call('org.springframework.openGuideWizard','Reference App')\">Import Reference App</a>\n")'
+	at org.springsource.ide.eclipse.commons.browser.swt.StsBrowserManager.lambda$0(StsBrowserManager.java:148)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:37)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4213)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3820)
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1150)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1039)
@@ -675,6 +769,7 @@ org.eclipse.core.runtime.OperationCanceledException
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
 
+<<<<<<< HEAD
 !ENTRY org.eclipse.wst.server.discovery 1 0 2018-05-23 12:57:52.457
 !MESSAGE already installed: org.eclipse.jst.server.generic.jonas4
 
@@ -837,6 +932,17 @@ java.lang.RuntimeException
 	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1079)
 	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4238)
 	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3817)
+=======
+!ENTRY org.springsource.ide.eclipse.commons.browser 4 0 2018-05-24 19:39:43.974
+!MESSAGE Could not call browser function extension: addHtml
+!STACK 0
+org.eclipse.core.commands.ExecutionException: Problems executing script: 'window.addHtml("projectWizards", "<a class=\"ide_widget btn btn-black uppercase\" href=\"\" onclick=\"return ide.call('openWizard', 'org.eclipse.jdt.ui.wizards.JavaProjectWizard')\">Create Java Project</a><a class=\"ide_widget btn btn-black uppercase\" href=\"\" onclick=\"return ide.call('openWizard', 'org.springsource.ide.eclipse.commons.gettingstarted.wizard.boot.NewSpringBootWizard')\">Create Spring Starter Project</a>")'
+	at org.springsource.ide.eclipse.commons.browser.swt.StsBrowserManager.lambda$0(StsBrowserManager.java:148)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:37)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4213)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3820)
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1150)
 	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1039)
@@ -858,6 +964,7 @@ java.lang.RuntimeException
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+<<<<<<< HEAD
 
 !ENTRY org.eclipse.wst.server.core 4 0 2018-05-23 13:09:29.506
 !MESSAGE Server Tomcat v8.5 Server at localhost failed to start.
@@ -1125,3 +1232,85 @@ java.lang.StringIndexOutOfBoundsException: String index out of range: 28
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+=======
+!SESSION 2018-05-24 19:51:34.535 -----------------------------------------------
+eclipse.buildId=4.7.2.M20171130-0510
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.ui 2 0 2018-05-24 19:51:38.645
+!MESSAGE Warnings while parsing the images from the 'org.eclipse.ui.commandImages' extension point.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-05-24 19:51:38.645
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.lsp4e', id='org.eclipse.lsp4e.togglehighlight'
+
+!ENTRY org.eclipse.jface 2 0 2018-05-24 19:51:39.957
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-05-24 19:51:39.957
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@24032706,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3e455d01,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-05-24 19:51:46.078
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\student'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2018-05-24 19:52:08.793 -----------------------------------------------
+eclipse.buildId=4.7.2.M20171130-0510
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.ui 2 0 2018-05-24 19:52:12.595
+!MESSAGE Warnings while parsing the images from the 'org.eclipse.ui.commandImages' extension point.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-05-24 19:52:12.595
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.lsp4e', id='org.eclipse.lsp4e.togglehighlight'
+
+!ENTRY org.eclipse.jface 2 0 2018-05-24 19:52:13.919
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2018-05-24 19:52:13.919
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@66d62c59,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@f1b006b,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-05-24 19:52:19.098
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\student'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+>>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178

@@ -1,0 +1,4 @@
+decorator_filetext_decoration={dirty\:\u2665} {name}
+decorator_foldertext_decoration={dirty\:\u2661} {name}
+decorator_projecttext_decoration={dirty\:\u2661} {name} [{repository }{branch}{ branch_status}]
+eclipse.preferences.version=1
