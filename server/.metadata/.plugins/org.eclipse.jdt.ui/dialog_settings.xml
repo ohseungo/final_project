@@ -12,6 +12,9 @@
 >>>>>>> 9e8bb35b08e0faa72e0aa6a0baeddf1dcd863178
 	<section name="quick_assist_proposal_size">
 	</section>
+	<section name="BuildPathsPropertyPage">
+		<item value="3" key="pageIndex"/>
+	</section>
 	<section name="completion_proposal_size">
 	</section>
 	<section name="JavaElementSearchActions">
