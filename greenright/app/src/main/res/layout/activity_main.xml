@@ -4,49 +4,133 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
     tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/contentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true">
+        android:layout_height="465dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#f4f7f8">
 
-        <LinearLayout
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="206dp"
-                android:layout_height="270dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
-                app:srcCompat="@drawable/ecology"
-                android:background="@drawable/frame"/>
 
-            <TextView
-                android:id="@+id/mainTv1"
+            <!--<TextView
+                android:padding="5dp"
+                android:id="@+id/maintv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#000000"
                 android:textSize="20dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/mainText" />
+                android:textColor="#313131"
+                android:fontFamily="@font/clemente_bold"
+                android:text="@string/maintv" />-->
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/maintv"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/point_shape"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:text="@string/maintv"
+                android:textColor="#ffffff"
+                android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/mainPointTv"
-                android:layout_width="match_parent"
-                android:layout_height="91dp"
-                android:layout_margin="20dp"
-                android:background="@drawable/rounded"
-                android:gravity="center"
-                android:text="@string/mainPointTv"
+                android:id="@+id/textView5"
+                android:layout_width="260dp"
+                android:layout_height="106dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/maintv"
+                android:height="150dp"
+                android:background="@drawable/point_shape2" />
+
+            <TextView
+                android:id="@+id/mainshopTv"
+                android:layout_marginTop="10dp"
+                android:layout_width="75dp"
+                android:layout_height="186dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/point_shape3"
+                android:paddingLeft="32dp"
+                android:paddingTop="15dp"
+                android:text="@string/mainshoptv"
+                android:textColor="#ffffff"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/pointTv"
+                android:layout_width="260dp"
+                android:layout_height="41dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView5"
+                android:height="30dp"
+                android:background="#e7e7e7"
+                android:paddingLeft="15dp"
+                android:paddingTop="9dp"
+                android:text="@string/pointTv"
                 android:textSize="20dp" />
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/mainnewsTv"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="216dp"
+                android:background="@drawable/point_shape"
+                android:paddingLeft="15dp"
+                android:paddingTop="7dp"
+                android:text="@string/mainnews"
+                android:textColor="#ffffff"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="213dp"
+            android:layout_gravity="bottom">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="200dip"
+                    android:layout_height="190dip"
+                    android:gravity="center"
+                    app:srcCompat="@drawable/polarbear" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="200dip"
+                    android:layout_height="190dip"
+                    android:gravity="center"
+                    app:srcCompat="@drawable/polarbear" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="200dip"
+                    android:layout_height="190dip"
+                    android:gravity="center"
+                    app:srcCompat="@drawable/polarbear" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
 
     </FrameLayout>
 
@@ -56,6 +140,7 @@
            android:layout_height="60dp"
            android:layout_alignParentBottom="true"
            app:bb_tabXmlResource="@xml/bottombar_tabs_color_changing"
+           android:background="#ffffff"
            app:bb_behavior="shifting|underNavbar"/>
 
 </RelativeLayout>

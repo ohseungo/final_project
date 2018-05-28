@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity">
+<<<<<<< HEAD
         </activity>
         <activity
             android:name=".MainActivity"
@@ -44,7 +45,24 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+=======
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+>>>>>>> feature/new_view
+
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".IntroLoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

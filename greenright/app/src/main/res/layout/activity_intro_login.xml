@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/greenmain"
+    tools:context=".IntroLoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:layout_above="@+id/logoTv"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/worldwide" />
+
+    <TextView
+        android:id="@+id/logoTv"
+        android:layout_width="255dp"
+        android:layout_height="73dp"
+        android:layout_above="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/yoon360"
+        android:gravity="center"
+        android:text="@string/logoTv"
+        android:textColor="#ffffff"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/yoon320"
+        android:gravity="center"
+        android:text="Save the Earth"
+        android:textColor="#ffffff"
+        android:textSize="10dp" />
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="98dp"
+        android:background="#ffffff"
+        android:text="@string/registerBtn"
+        android:textColor="#313131" />
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#f27340"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="28dp"
+
+        android:text="@string/loginBtn" />
+
+
+</RelativeLayout>

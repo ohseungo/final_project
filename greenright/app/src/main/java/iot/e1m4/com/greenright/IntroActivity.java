@@ -35,7 +35,7 @@ public class IntroActivity extends AppCompatActivity {
         btnIntroSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(IntroActivity.this, MainActivity.class);
+                Intent intent=new Intent(IntroActivity.this, IntroLoginActivity.class);
                 startActivity(intent);
 
             }
