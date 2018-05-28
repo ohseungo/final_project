@@ -1,44 +1,47 @@
 package iot.e1m4.com.greenright;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.support.annotation.IdRes;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 
-import info.addon.SessionManager;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabSelectListener;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tv;
-    private SessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv = findViewById(R.id.mainText);
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        actionBar.setCustomView(R.layout.custom_bar);
+        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFa3c9c7));
+        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
 
-        session = new SessionManager(getApplicationContext());
+        //각 버튼 눌렀을 때 이동하는 페이지
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+             switch (tabId){
+                   case R.id.tab_co2:
+                       break;
+                   case R.id.tab_cup:
+                       break;
+                 case R.id.tab_barcode:
+                     break;
+                   case R.id.tab_green_market:
+                       break;
+                   case R.id.tab_setting:
+                       break;
+               }
 
-        if (!session.isLoggedIn()){
-            logoutUser();
-        }
 
-        tv.setText("Hello " + session.getUserId());
+            }
+        });
+
     }
-
-    public void logoutBtn(View view) {
-        logoutUser();
-    }
-
-    public void logoutUser() {
-        session.setLogin(false, null);
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-
-
 }

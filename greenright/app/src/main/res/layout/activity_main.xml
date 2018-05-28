@@ -1,26 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/mainText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="30dp"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="221dp" />
+    <FrameLayout
+        android:id="@+id/contentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:onClick="logoutBtn"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="340dp" />
-</android.support.constraint.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="206dp"
+                android:layout_height="270dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                app:srcCompat="@drawable/ecology"
+                android:background="@drawable/frame"/>
+
+            <TextView
+                android:id="@+id/mainTv1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/mainText" />
+
+            <TextView
+                android:id="@+id/mainPointTv"
+                android:layout_width="match_parent"
+                android:layout_height="91dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/rounded"
+                android:gravity="center"
+                android:text="@string/mainPointTv"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+       <com.roughike.bottombar.BottomBar
+           android:id="@+id/bottomBar"
+           android:layout_width="match_parent"
+           android:layout_height="60dp"
+           android:layout_alignParentBottom="true"
+           app:bb_tabXmlResource="@xml/bottombar_tabs_color_changing"
+           app:bb_behavior="shifting|underNavbar"/>
+
+</RelativeLayout>
