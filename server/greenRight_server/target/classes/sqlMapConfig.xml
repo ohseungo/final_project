@@ -5,11 +5,13 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.scsa.model.vo.User" alias="User"/>
+		<typeAlias type="com.scsa.model.vo.GreenPoint" 
+										alias="GreenPoint"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/User.xml"/>
+		<mapper resource="mapper/GreenPoint.xml"/>
 	</mappers>
 	
 </configuration>
-  
