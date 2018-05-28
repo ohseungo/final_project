@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:android="http://schemas.android.com/apk/res/android">
+    <tab
+        android:id="@+id/tab_co2"
+        android:icon="@drawable/ic_co2"
+        android:title="탄소줄이기"
+        barColorWhenSelected="#ff5a5f" />
+    <tab
+        android:id="@+id/tab_cup"
+        android:icon="@drawable/ic_coffee"
+        android:title="컵수거함"
+        barColorWhenSelected="#ffb400" />
+    <tab
+        android:id="@+id/tab_barcode"
+        android:icon="@drawable/ic_product_barcode"
+        android:title="적립"
+        barColorWhenSelected="#accecd" />
+    <tab
+        android:id="@+id/tab_green_market"
+        android:icon="@drawable/ic_shopping_cart"
+        android:title="그린마켓"
+        barColorWhenSelected="#b4a76c" />
+    <tab
+        android:id="@+id/tab_setting"
+        android:icon="@drawable/ic_assignment_ind"
+        android:title="내정보"
+        barColorWhenSelected="#007a87" />
+</tabs>
