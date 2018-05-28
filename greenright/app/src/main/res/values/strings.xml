@@ -27,4 +27,6 @@
     <string name="introText1">미세먼지, 쓰레기로\n가득찬 세상 속에서\n살고 계신가요?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="intro_text">Join</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="map_update_cup">컵수거함</string>
 </resources>

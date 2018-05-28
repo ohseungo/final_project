@@ -7,11 +7,14 @@
 		<typeAlias type="com.scsa.model.vo.User" alias="User"/>
 		<typeAlias type="com.scsa.model.vo.GreenPoint" 
 										alias="GreenPoint"/>
+		<typeAlias type="com.scsa.model.vo.Store" 
+										alias="Store"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/User.xml"/>
 		<mapper resource="mapper/GreenPoint.xml"/>
+		<mapper resource="mapper/Store.xml"/>
 	</mappers>
 	
 </configuration>

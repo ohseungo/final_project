@@ -20,11 +20,21 @@
 		
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
 		c:sqlSessionFactory-ref="sqlSessionFactory"/>
-		
+	
 	<bean id="userDao" class="com.scsa.model.dao.UserDAOImpl"
 		p:sqlSession-ref="sqlSession"/>
 	<bean id="userService" class="com.scsa.model.service.UserServiceImpl"
 		p:userDao-ref="userDao"/>
+		
+	<bean id="greenPointDao" class="com.scsa.model.dao.GreenPointDAOImpl"
+		p:sqlSession-ref="sqlSession"/>
+	<bean id="greenPointService" class="com.scsa.model.service.GreenPointServiceImpl"
+		p:greenPointDao-ref="greenPointDao"/>
+		
+	<bean id="storeDao" class="com.scsa.model.dao.StoreDAOImpl"
+		p:sqlSession-ref="sqlSession"/>
+	<bean id="storeService" class="com.scsa.model.service.StoreServiceImpl"
+		p:storeDao-ref="storeDao"/>
 		
 
 </beans>

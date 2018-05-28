@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=greenRight_server/src&lt;com.scsa.model.dao{GreenPointDAO.java[GreenPointDAO" modifiers="513" timestamp="1527470754283"/>
-<typeInfo handle="=greenRight_server/src&lt;com.scsa.model.service{GreenPointService.java[GreenPointService" modifiers="513" timestamp="1527471391403"/>
+<typeInfo handle="=greenRight_server/src&lt;com.scsa.model.dao{GreenPointDAO.java[GreenPointDAO" modifiers="513" timestamp="1527479902385"/>
+<typeInfo handle="=greenRight_server/src&lt;com.scsa.model.service{GreenPointService.java[GreenPointService" modifiers="513" timestamp="1527479902391"/>
+<typeInfo handle="=greenRight_server/src&lt;com.scsa.model.dao{StoreDAO.java[StoreDAO" modifiers="513" timestamp="1527500813414"/>
+<typeInfo handle="=greenRight_server/src&lt;com.scsa.model.service{StoreService.java[StoreService" modifiers="513" timestamp="1527500961627"/>
 </typeInfoHistroy>
