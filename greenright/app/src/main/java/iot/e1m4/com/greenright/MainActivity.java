@@ -1,4 +1,4 @@
-package iot.e1m4.com.greenright;
+﻿package iot.e1m4.com.greenright;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -28,28 +28,13 @@ public class MainActivity extends AppCompatActivity {
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
-<<<<<<< HEAD
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-             switch (tabId){
-                    case R.id.tab_co2:
-                       break;
-                   case R.id.tab_cup:
-                        transaction.replace(R.id.contentContainer, new MapsFragment()).commit();
-                       break;
-                 case R.id.tab_barcode:
-                     break;
-                   case R.id.tab_green_market:
-                       break;
-                   case R.id.tab_setting:
-                       break;
-               }
-=======
+
 
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
                 if(tabId==R.id.tab_barcode){
                     transaction.replace(R.id.contentContainer, new FragmentIntro1()).commit();
                 }
->>>>>>> feature/new_view
+
 
 
             }

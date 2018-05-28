@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <tabs xmlns:android="http://schemas.android.com/apk/res/android">
     <tab
-<<<<<<< HEAD
-        id="@+id/tab_co2"
-        icon="@drawable/ic_co2"
-        title="탄소줄이기"
-        barColorWhenSelected="#ff5a5f" />
-    <tab
-        id="@+id/tab_cup"
-        icon="@drawable/ic_coffee"
-        title="컵수거함"
-        barColorWhenSelected="#ffb400" />
-    <tab
-        id="@+id/tab_barcode"
-        icon="@drawable/ic_product_barcode"
-        title="적립"
-        barColorWhenSelected="#accecd" />
-    <tab
-        id="@+id/tab_green_market"
-        icon="@drawable/ic_shopping_cart"
-        title="그린마켓"
-        barColorWhenSelected="#b4a76c" />
-    <tab
-       id="@+id/tab_setting"
-        icon="@drawable/ic_assignment_ind"
-        title="내정보"
-        barColorWhenSelected="#007a87" />
-=======
         id="@+id/tab_main"
         icon="@drawable/ic_home"
         title="메인"
@@ -57,5 +31,4 @@
         inActiveColor="#313131"
         activeColor="#f27340"/>
 
->>>>>>> feature/new_view
 </tabs>
