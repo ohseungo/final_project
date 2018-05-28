@@ -12,11 +12,11 @@
     <string name="register_pw_check">패스워드 체크</string>
     <string name="register_name">이름</string>
     <string name="register_email">이메일</string>
-    <string name="registerBtn">회원가입</string>
+    <string name="registerBtn">C R E A T E   A C C O U N T</string>
     <string name="register_phone">핸드폰번호</string>
     <string name="register_car">소유차량 (있는 경우)</string>
 
-    <string name="app_name">Green Right</string>
+    <string name="app_name">GREEN RIGHT</string>
     <string name="mainText">김예솔님의 환경 지수는 새싹입니다</string>
     <string name="mainPointTv">현재 보유 포인트: 5600 Point</string>
 
@@ -27,4 +27,10 @@
     <string name="introText1">미세먼지, 쓰레기로\n가득찬 세상 속에서\n살고 계신가요?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="intro_text">Join</string>
+    <string name="maintv">GREEN MEMBERSHIP</string>
+    <string name="mainshoptv">G\nO\nT\nO\nS\nH\nO\nP</string>
+    <string name="pointTv">P  56,200</string>
+    <string name="mainnews">GREEN NEWS</string>
+    <string name="logoTv">G R E E N R I G H T</string>
+    <string name="loginBtn">L O G I N</string>
 </resources>
