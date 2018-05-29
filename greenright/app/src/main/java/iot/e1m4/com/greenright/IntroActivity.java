@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 import android.content.Intent;
+import android.media.MediaCas;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,16 +13,26 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import info.addon.SessionManager;
+
 public class IntroActivity extends AppCompatActivity {
 
     private static final int TOTAL_PAGES = 3;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
+    private SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro1);
 
+        sessionManager = new SessionManager(getApplicationContext());
+        if (sessionManager.isFirstOn()) {
+            Intent intent=new Intent(IntroActivity.this, IntroLoginActivity.class);
+            sessionManager.setFirstOn();
+            startActivity(intent);
+            finish();
+        }
         mPager = (ViewPager) findViewById(R.id.intro_pager);
         mPager.setPageTransformer(true, new DepthPageTransformer());
         mPagerAdapter = new IntroPagerAdapter(getSupportFragmentManager());
@@ -36,8 +47,10 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(IntroActivity.this, IntroLoginActivity.class);
+                sessionManager.setFirstOn();
                 startActivity(intent);
-
+                finish();
+                return;
             }
         });
 

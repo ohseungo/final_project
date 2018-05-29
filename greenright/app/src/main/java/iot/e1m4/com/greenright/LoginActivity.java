@@ -46,13 +46,11 @@ public class LoginActivity extends AppCompatActivity {
 
         session = new SessionManager(getApplicationContext());
 
-
-        if (session.isLoggedIn()) {
-
+      /*  if (session.isLoggedIn()) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
-        }
+        }*/
 
         idTv.requestFocus();
     }
@@ -102,11 +100,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (response.equals("true")){
                             //로그인 성공했을때
                             session.setLogin(true, userId);
-
-
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
                             finish();
+                            return;
                         }else{
                             //로그인 틀렸을때
                             Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show();
@@ -136,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         //서버로 보낸다
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
+
     }
 
     /**

@@ -10,23 +10,25 @@ public class SessionManager {
 
     // Shared Preferences
     SharedPreferences pref;
-
     SharedPreferences.Editor editor;
+
     Context _context;
 
     // Shared pref mode
     int PRIVATE_MODE = 0;
 
     // Shared preferences file name
-    private static final String PREF_LOGIN = "greenRightLogin";
+    private static final String PREF = "greenRight";
 
     private static final String KEY_LOGGEDIN = "isLoggedIn";
 
     private static final String KEY_USERID = "userId";
 
+    private static final String KEY_SHOWN = "firstOn";
+
     public SessionManager(Context context) {
         this._context = context;
-        pref = _context.getSharedPreferences(PREF_LOGIN, PRIVATE_MODE);
+        pref = _context.getSharedPreferences(PREF, PRIVATE_MODE);
         editor = pref.edit();
     }
 
@@ -40,14 +42,21 @@ public class SessionManager {
         // commit changes
         editor.commit();
 
-        Log.d(TAG, "User login session modified!");
+      //  Log.d(TAG, "User login session modified!");
     }
+
+    public void setFirstOn() {
+        editor.putBoolean(KEY_SHOWN, true);
+        editor.commit();
+    }
+
 
     public boolean isLoggedIn(){
         return pref.getBoolean(KEY_LOGGEDIN, false);
     }
-
     public String getUserId(){
         return pref.getString(KEY_USERID, null);
     }
+
+    public boolean isFirstOn() {return pref.getBoolean(KEY_SHOWN, false);}
 }

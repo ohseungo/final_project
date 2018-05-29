@@ -1,4 +1,4 @@
-﻿package iot.e1m4.com.greenright;
+package iot.e1m4.com.greenright;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -24,15 +24,13 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFffffff));
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
 
-        //각 버튼 눌렀을 때 이동하는 페이지
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
-
-
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
                 if(tabId==R.id.tab_barcode){
                     transaction.replace(R.id.contentContainer, new FragmentIntro1()).commit();
+                    return;
                 }
 
 
@@ -42,3 +40,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+

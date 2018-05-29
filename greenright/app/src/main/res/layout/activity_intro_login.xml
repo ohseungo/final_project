@@ -47,6 +47,7 @@
         android:layout_marginBottom="98dp"
         android:background="#ffffff"
         android:text="@string/registerBtn"
+        android:onClick="btnRegister"
         android:textColor="#313131" />
     <Button
         android:id="@+id/loginBtn"
@@ -57,7 +58,7 @@
         android:background="#f27340"
         android:textColor="#ffffff"
         android:layout_marginBottom="28dp"
-
+        android:onClick="btnLogin"
         android:text="@string/loginBtn" />
 
 
