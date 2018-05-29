@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WalkFragment"
+    android:background="#f4f7f8">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="198dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#ffffff"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <TextView
+            android:id="@+id/walkTv1"
+            android:layout_width="130dp"
+            android:layout_height="58dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="19dp"
+            android:layout_marginStart="15dp"
+            android:gravity="center"
+            android:text="@string/walkTv1"
+            android:fontFamily="@font/yoon330"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/walkTv2"
+            android:layout_width="130dp"
+            android:layout_height="73dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/walkTv1"
+            android:fontFamily="@font/yoon360"
+            android:gravity="center"
+            android:layout_marginStart="15dp"
+            android:text="@string/walkTv2"
+            android:textColor="#f27340"
+            android:textSize="40dp" />
+
+        <TextView
+            android:id="@+id/walkTv3"
+            android:layout_width="130dp"
+            android:layout_height="58dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/walkTv1"
+            android:layout_marginEnd="15dp"
+            android:text="@string/walkTv3"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:fontFamily="@font/yoon330"/>
+
+        <TextView
+            android:id="@+id/walkTv4"
+            android:layout_width="130dp"
+            android:layout_height="73dp"
+            android:layout_alignStart="@+id/walkTv3"
+            android:layout_below="@+id/walkTv1"
+            android:text="@string/walkTv4"
+            android:textColor="#71a0cd"
+            android:textSize="40dp"
+            android:layout_marginEnd="15dp"
+            android:fontFamily="@font/yoon360"
+            android:gravity="center"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="242dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/relative1"
+        android:layout_margin="20dp"
+        android:background="#ffffff">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+</RelativeLayout>

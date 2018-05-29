@@ -1,52 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/greenmain"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:layout_above="@+id/logoTv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-187dp"
+        app:srcCompat="@drawable/worldwide" />
+
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="id" />
+        android:id="@+id/logoTv"
+        android:layout_width="255dp"
+        android:layout_height="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="187dp"
+        android:fontFamily="@font/yoon360"
+        android:gravity="center"
+        android:text="@string/logoTv"
+        android:textColor="#ffffff"
+        android:textSize="25dp" />
 
     <EditText
         android:id="@+id/userid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="260dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="241dp"
+        android:background="@drawable/id_shape"
+        android:drawablePadding="15dp"
+        android:drawableStart="@drawable/ic_account_circle"
         android:ems="10"
-        android:inputType="textPersonName"/>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="pw" />
+        android:hint="@string/useridHint"
+        android:inputType="textPersonName"
+        android:paddingStart="15dp"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="257dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="192dp"
+        android:background="@drawable/id_shape"
+        android:drawablePadding="15dp"
+        android:drawableStart="@drawable/ic_lock_outline"
         android:ems="10"
-        android:inputType="textPassword"/>
+        android:hint="@string/pwHint"
+        android:inputType="textPassword"
+        android:paddingStart="15dp"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/loginButton"
+        android:layout_width="257dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_marginBottom="110dp"
+        android:background="@drawable/point_shape3"
+        android:textColor="#ffffff"
         android:onClick="loginBtn"
-        android:text="@string/userLogin"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="273dp" />
+        android:text="@string/loginBtn" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/userRegister"
-        android:onClick="goToRegister"/>
+        android:id="@+id/registerButton"
+        android:layout_width="257dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="63dp"
+        android:background="#ffffff"
+        android:onClick="goToRegister"
+        android:text="@string/register"
+        android:textColor="#313131" />
 
-</android.widget.LinearLayout>
+
+</RelativeLayout>
