@@ -36,5 +36,14 @@
 	<bean id="storeService" class="com.scsa.model.service.StoreServiceImpl"
 		p:storeDao-ref="storeDao"/>
 		
-
+	<bean id="recycleBoxDao" class="com.scsa.model.dao.RecycleBoxDAOImpl"
+		p:sqlSession-ref="sqlSession"/>
+	<bean id="recycleBoxService" class="com.scsa.model.service.RecycleBoxServiceImpl"
+		p:recycleBoxDao-ref="recycleBoxDao"/>
+		
+	<bean id="stepDao" class="com.scsa.model.dao.StepDAOImpl"
+		p:sqlSession-ref="sqlSession"/>
+	<bean id="stepSerivce" class="com.scsa.model.service.StepServiceImpl"
+		p:stepDao-ref="stepDao"/>
+		
 </beans>

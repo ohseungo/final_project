@@ -18,8 +18,8 @@ public class IntroLoginActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onResume() {
+        super.onResume();
         if (new SessionManager(getApplicationContext()).isLoggedIn()){
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);

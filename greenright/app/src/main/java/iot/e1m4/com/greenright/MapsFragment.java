@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -38,13 +37,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -55,8 +51,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Map;
-
 import info.app.AppConfig;
 import info.app.AppController;
 
@@ -64,6 +58,7 @@ import info.app.AppController;
 public class MapsFragment extends Fragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
+        GoogleMap.OnMarkerClickListener,
         LocationListener {
     private static final LatLng DEFAULT_LOCATION = new LatLng(37.56, 126.97);
     private static final String TAG = "googlemap_example";
@@ -118,12 +113,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     private CameraPosition mCameraPosition;
     private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
     private void getDeviceLocation(float cameraZoom) {
-        /*
-         * Before getting the device location, you must check location
-         * permission, as described earlier in the tutorial. Then:
-         * Get the best and most recent location of the device, which may be
-         * null in rare cases when a location is not available.
-         */
+
         if (mLocationPermissionGranted) {
             if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
@@ -151,10 +141,10 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
-    Button listViewBtn;
+    Button storeListViewBtn;
+    Button cupListViewBtn;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -162,25 +152,64 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
         mapView = (MapView)layout.findViewById(R.id.map);
         mapView.getMapAsync(this);
-        listViewBtn = (Button) layout.findViewById(R.id.listViewButton);
-        listViewBtn.setOnClickListener(new View.OnClickListener() {
+        storeListViewBtn = (Button) layout.findViewById(R.id.storeListViewButton);
+        storeListViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mMap == null) return;
                 //////////////////////////가맹점 리스트 받아오기
-
-                ////////////////////////////
                 viewStoreListMarker();
-
-
-
+            }
+        });
+        cupListViewBtn = (Button) layout.findViewById(R.id.cupListViewButton);
+        cupListViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mMap == null) return;
+                //////////////////////////가맹점 리스트 받아오기
+                viewCupListMarker();
             }
         });
         return layout;
     }
 
+    static StringRequest stringRequest;
+    private void viewCupListMarker() {
+        stringRequest = new StringRequest(Request.Method.GET, AppConfig.URL_BOX_LIST,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        mMap.clear();
+
+                        try {
+                            JSONArray jArray = new JSONArray(response);
+                            JSONObject jObject;
+                            LatLng storeLatLng;
+                            for (int i=0; i <jArray.length(); i++){
+                                jObject =jArray.getJSONObject(i);
+                                storeLatLng = new LatLng(jObject.getDouble("recycleBoxLat"),
+                                        jObject.getDouble("recycleBoxLong"));
+                                mMap.addMarker(new MarkerOptions().position(storeLatLng)
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                ///리스트 가져오기 실패
+                Toast.makeText(getContext(), "실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+    }
+
     private void viewStoreListMarker() {
-        StringRequest stringRequest;
         stringRequest = new StringRequest(Request.Method.GET, AppConfig.URL_STORE_LIST,
                 new Response.Listener<String>() {
                     @Override
@@ -191,7 +220,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                             JSONArray jArray = new JSONArray(response);
                             JSONObject jObject;
                             LatLng storeLatLng;
-                            Toast.makeText(getContext(), "길이" + jArray.length(), Toast.LENGTH_SHORT).show();
                             for (int i=0; i <jArray.length(); i++){
                                 jObject =jArray.getJSONObject(i);
                                 storeLatLng = new LatLng(jObject.getDouble("storeLat"), jObject.getDouble("storeLong"));
@@ -225,7 +253,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     public void onStop() {
         super.onStop();
         mapView.onStop();
-
         if ( googleApiClient != null && googleApiClient.isConnected())
             googleApiClient.disconnect();
     }
@@ -329,6 +356,12 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
     }
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
+
+
     private void buildGoogleApiClient() {
         googleApiClient = new GoogleApiClient.Builder(getActivity())
                 .addConnectionCallbacks(this)
@@ -422,6 +455,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
         //Toast.makeText(getActivity(), "위치변경", Toast.LENGTH_SHORT).show();
 
     }
+
 
 
 }

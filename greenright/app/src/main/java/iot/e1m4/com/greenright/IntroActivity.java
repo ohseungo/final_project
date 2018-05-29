@@ -32,6 +32,7 @@ public class IntroActivity extends AppCompatActivity {
             sessionManager.setFirstOn();
             startActivity(intent);
             finish();
+            return;
         }
         mPager = (ViewPager) findViewById(R.id.intro_pager);
         mPager.setPageTransformer(true, new DepthPageTransformer());

@@ -12,11 +12,17 @@
         android:layout_weight="1"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/listViewButton"
+            android:id="@+id/storeListViewButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/map_update_cup"
+            android:text="@string/map_update_store"
             />
+        <Button
+            android:id="@+id/cupListViewButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/map_update_cup" />
     </LinearLayout>
 
 

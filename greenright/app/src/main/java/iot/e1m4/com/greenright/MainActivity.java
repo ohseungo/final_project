@@ -1,5 +1,6 @@
 package iot.e1m4.com.greenright;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -31,12 +32,18 @@ public class MainActivity extends AppCompatActivity {
                 if(tabId==R.id.tab_barcode){
                     transaction.replace(R.id.contentContainer, new FragmentIntro1()).commit();
                     return;
+                }else if(tabId==R.id.tab_cup){
+                    transaction.replace(R.id.contentContainer, new MapsFragment()).commit();
+                    return;
                 }
 
 
 
             }
         });
+
+        Intent intent = new Intent(this, BeaconListenerService.class);
+        startService(intent);
 
     }
 }

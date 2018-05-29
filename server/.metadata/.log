@@ -4723,3 +4723,24 @@ org.eclipse.core.runtime.CoreException: Cannot determine URI for '/greenRight_se
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
 !SUBENTRY 2 org.eclipse.core.filebuffers 4 0 2018-05-29 09:28:36.005
 !MESSAGE Cannot determine URI for '/greenRight_server/src/com/scsa/controller/StoreController.java'.
+
+!ENTRY org.eclipse.jface.text 2 0 2018-05-29 15:20:10.672
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-05-29 15:20:10.674
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-05-29 15:22:51.350
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-05-29 15:22:51.352
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-05-29 15:25:22.955
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-05-29 15:25:22.956
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.wst.server.discovery 1 0 2018-05-29 19:38:14.760
+!MESSAGE already installed: org.eclipse.jst.server.generic.jonas4
