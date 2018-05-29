@@ -40,4 +40,5 @@ public class IntroLoginActivity extends AppCompatActivity {
         startActivity(intent);
         return;
     }
+
 }

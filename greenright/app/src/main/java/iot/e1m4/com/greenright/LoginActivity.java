@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        tv = findViewById(R.id.textView);
+        //tv = findViewById(R.id.textView);
         idTv = findViewById(R.id.userid);
         pwTv = findViewById(R.id.password);
 

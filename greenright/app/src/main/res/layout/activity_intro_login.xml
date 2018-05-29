@@ -11,32 +11,34 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="61dp"
-        android:layout_above="@+id/logoTv"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
         app:srcCompat="@drawable/worldwide" />
 
     <TextView
         android:id="@+id/logoTv"
         android:layout_width="255dp"
         android:layout_height="73dp"
-        android:layout_above="@+id/textView4"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="185dp"
         android:fontFamily="@font/yoon360"
         android:gravity="center"
         android:text="@string/logoTv"
         android:textColor="#ffffff"
-        android:textSize="20dp" />
+        android:textSize="25dp" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="255dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/introLogo"
+        android:layout_width="306dp"
+        android:layout_height="63dp"
         android:layout_centerInParent="true"
-        android:fontFamily="@font/yoon320"
+        android:fontFamily="@font/yoon330"
         android:gravity="center"
-        android:text="Save the Earth"
+        android:text="@string/introLogo"
         android:textColor="#ffffff"
-        android:textSize="10dp" />
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/register_btn"
@@ -44,22 +46,26 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="98dp"
+        android:layout_marginBottom="131dp"
         android:background="#ffffff"
-        android:text="@string/registerBtn"
         android:onClick="btnRegister"
+
+        android:text="@string/registerBtn"
+
         android:textColor="#313131" />
+
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
+        android:layout_marginBottom="60dp"
         android:background="#f27340"
-        android:textColor="#ffffff"
-        android:layout_marginBottom="28dp"
         android:onClick="btnLogin"
-        android:text="@string/loginBtn" />
+        android:text="@string/loginBtn"
+
+        android:textColor="#ffffff" />
 
 
 </RelativeLayout>

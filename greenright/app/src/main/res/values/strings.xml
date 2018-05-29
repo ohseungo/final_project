@@ -12,7 +12,7 @@
     <string name="register_pw_check">패스워드 체크</string>
     <string name="register_name">이름</string>
     <string name="register_email">이메일</string>
-    <string name="registerBtn">C R E A T E   A C C O U N T</string>
+    <string name="registerBtn">C R E A T E  &#160; &#160;A C C O U N T</string>
     <string name="register_phone">핸드폰번호</string>
     <string name="register_car">소유차량 (있는 경우)</string>
 
@@ -35,4 +35,12 @@
     <string name="mainnews">GREEN NEWS</string>
     <string name="logoTv">G R E E N R I G H T</string>
     <string name="loginBtn">L O G I N</string>
+    <string name="introLogo">Less Pollution, The Best Solution</string>
+    <string name="useridHint">Username</string>
+    <string name="pwHint">●●●●●●●●</string>
+    <string name="register">R E G I S T E R</string>
+    <string name="walkTv1">T O D A Y\nS T E P S</string>
+    <string name="walkTv2">5325</string>
+    <string name="walkTv3">G O A L\nS T E P S</string>
+    <string name="walkTv4">10000</string>
 </resources>

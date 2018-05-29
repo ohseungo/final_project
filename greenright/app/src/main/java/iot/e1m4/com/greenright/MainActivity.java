@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-                if(tabId==R.id.tab_barcode){
-                    transaction.replace(R.id.contentContainer, new FragmentIntro1()).commit();
+                if(tabId==R.id.tab_co2){
+                    transaction.replace(R.id.contentContainer, new WalkFragment()).commit();
                     return;
                 }
 
