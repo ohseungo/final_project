@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
                 }else if(tabId==R.id.tab_cup){
                     transaction.replace(R.id.contentContainer, new MapsFragment()).commit();
                     return;
+                }else if(tabId==R.id.tab_main){
+                    transaction.replace(R.id.contentContainer, new HomeFragment()).commit();
                 }
 
 
