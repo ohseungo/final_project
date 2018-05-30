@@ -46,5 +46,14 @@
     <string name="walkTv2">5325</string>
     <string name="walkTv3">G O A L\nS T E P S</string>
     <string name="walkTv4">10000</string>
+    <string name="nav_menu_1">내 정보</string>
+    <string name="nav_menu_2">포인트 내역</string>
+    <string name="nav_menu_3">로그아웃</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">김예솔님 안녕하세요</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
