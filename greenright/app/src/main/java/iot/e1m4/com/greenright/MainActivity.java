@@ -14,6 +14,11 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 public class MainActivity extends AppCompatActivity {
     FragmentTransaction transaction;
+
+    WalkFragment mWalkFragment = new WalkFragment();
+    MapsFragment mMapsFragment = new MapsFragment();
+    HomeFragment mHomeFragment = new HomeFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,19 +30,18 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(0xFFffffff));
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
 
-        transaction=getSupportFragmentManager().beginTransaction();
-
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
+                transaction=getSupportFragmentManager().beginTransaction();
                 if(tabId==R.id.tab_co2){
-                    transaction.replace(R.id.contentContainer, new WalkFragment()).commit();
+                    transaction.replace(R.id.contentContainer, mWalkFragment).commit();
                     return;
                 }else if(tabId==R.id.tab_cup){
-                    transaction.replace(R.id.contentContainer, new MapsFragment()).commit();
+                    transaction.replace(R.id.contentContainer, mMapsFragment).commit();
                     return;
                 }else if(tabId==R.id.tab_main){
-                    transaction.replace(R.id.contentContainer, new HomeFragment()).commit();
+                    transaction.replace(R.id.contentContainer, mHomeFragment).commit();
                 }
 
             }
@@ -52,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         if(getIntent().getAction() == "NOTIFICATION"){
+            transaction=getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.contentContainer, new MapsFragment()).commit();
             return;
         }
