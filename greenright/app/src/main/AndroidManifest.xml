@@ -28,7 +28,7 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity android:name=".RegisterActivity" />
 
         <meta-data
@@ -46,6 +46,7 @@
             android:name=".BeaconListenerService"
             android:enabled="true"
             android:exported="false" />
+
         <service
             android:name=".DistanceListenerService"
             android:enabled="true"
@@ -54,6 +55,7 @@
             android:name=".DayResetService"
             android:enabled="true"
             android:exported="true"></service>
+
     </application>
 
 </manifest>

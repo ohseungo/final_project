@@ -38,7 +38,7 @@ public class IntroActivity extends AppCompatActivity {
         mPager.setPageTransformer(true, new DepthPageTransformer());
         mPagerAdapter = new IntroPagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         final ImageView introIndicator1 = (ImageView) findViewById(R.id.intro1);
         final ImageView introIndicator2 = (ImageView) findViewById(R.id.intro2);
         final ImageView introIndicator3 = (ImageView) findViewById(R.id.intro3);
