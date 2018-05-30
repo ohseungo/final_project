@@ -8,36 +8,86 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="173dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:layout_weight="1"
+        android:background="#ffffff"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/storeListViewButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/textView2"
+            android:background="@drawable/rounded_2"
+            android:drawablePadding="4dp"
+            android:drawableStart="@drawable/ic_search"
+            android:padding="2dp"
             android:text="@string/map_update_store"
-            />
+            android:textColor="#ffffff" />
+
         <Button
             android:id="@+id/cupListViewButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/textView3"
+            android:background="@drawable/rounded_1"
+            android:drawablePadding="4dp"
+            android:drawableStart="@drawable/ic_search"
+            android:padding="2dp"
+            android:text="@string/map_update_cup"
+            android:textColor="#ffffff" />
 
-            android:text="@string/map_update_cup" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="218dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="내 주변 제휴 매장 찾기"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="218dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="47dp"
+            android:gravity="center"
+            android:text="내 주변 컵 수거함 찾기"
+            android:textSize="20dp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="463dp"
+        android:layout_height="327dp"
         android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp">
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.MapFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="20" />
     </RelativeLayout>
 

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     WalkFragment mWalkFragment = new WalkFragment();
     MapsFragment mMapsFragment = new MapsFragment();
     HomeFragment mHomeFragment = new HomeFragment();
-
+    PointFragment mPointFragment= new PointFragment();
     DrawerLayout mDrawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +65,14 @@ public class MainActivity extends AppCompatActivity {
 
                 int id=item.getItemId();
 
+                transaction=getSupportFragmentManager().beginTransaction();
                 switch(id){
                     case R.id.first_navigation_item:
                         Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
                         break;
 
                     case R.id.second_navigation_item:
-                        Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                        transaction.replace(R.id.contentContainer, mPointFragment).commit();
                         break;
                     case R.id.third_navigation_item:
                         Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
