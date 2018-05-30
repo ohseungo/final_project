@@ -16,10 +16,6 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends Activity {
 
-    private TextView tv;
-    private LocationManager lm;
-    private LocationListener ll;
-    double mySpeed, maxSpeed;
 
     /** Called when the activity is first created. */
     @Override
@@ -41,6 +37,12 @@ public class MainActivity extends Activity {
         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, ll);
     }
 
+    private TextView tv;
+    private LocationManager lm;
+    private LocationListener ll;
+    double mySpeed, maxSpeed;
+    Location prevLoc;
+    double currDis;
     private class SpeedoActionListener implements LocationListener {
 
         @Override
@@ -50,8 +52,14 @@ public class MainActivity extends Activity {
                 if (mySpeed > maxSpeed) {
                     maxSpeed = mySpeed;
                 }
-                tv.setText("\nCurrent Speed : " + mySpeed + " km/h, Max Speed : "
-                        + maxSpeed + " km/h");
+                if (prevLoc !=null) {
+                    currDis =prevLoc.distanceTo(location);
+                }
+                prevLoc = location;
+
+                tv.setText("\nCurrent Speed : " + mySpeed + " m/s, Max Speed : "
+                        + maxSpeed + " m/s"
+                        + "curr distance : " + currDis);
             }else {
                 Toast.makeText(MainActivity.this, "location null", Toast.LENGTH_SHORT).show();
             }

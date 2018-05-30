@@ -26,11 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
-
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".RegisterActivity" />
 
         <meta-data
@@ -39,15 +37,23 @@
 
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop" />
         <activity
             android:name=".IntroLoginActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <service
             android:name=".BeaconListenerService"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
+        <service
+            android:name=".DistanceListenerService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".DayResetService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -67,7 +67,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     private static final int FASTEST_UPDATE_INTERVAL_MS = 15000;
 
     private static final int DEFAULT_ZOOM = 15;
-    private final LatLng DEFAULT_LOCATION = new LatLng(-33.8523341, 151.2106085);
+    private final LatLng DEFAULT_LOCATION = new LatLng(37.500763, 127.036842);
 
     private GoogleMap mMap = null;
     private MapView mapView = null;
@@ -266,10 +266,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     public void onResume() {
         super.onResume();
         mapView.onResume();
-
-        if ( googleApiClient != null)
-            googleApiClient.connect();
-
+        if ( googleApiClient != null) googleApiClient.connect();
     }
 
     @Override
@@ -346,7 +343,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
             mMap.setMyLocationEnabled(true);
         }
-
 
         updateLocationUI();
         getDeviceLocation(DEFAULT_ZOOM);

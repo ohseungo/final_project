@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
-import android.widget.Toast;
+
 
 import com.estimote.proximity_sdk.proximity.ProximityAttachment;
 import com.estimote.proximity_sdk.proximity.ProximityObserver;
@@ -36,7 +36,7 @@ public class BeaconListenerService extends Service {
         super.onCreate();
         this.notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         this.inNotification = buildNotification("hello", "helloooooo");
-        this.outNotification = buildNotification("bye", "bye bye");
+        //this.outNotification = buildNotification("bye", "bye bye");
     }
 
 
@@ -73,7 +73,8 @@ public class BeaconListenerService extends Service {
                     public Unit invoke(Throwable throwable) {
                         return null;
                     }
-                }).withBalancedPowerMode().build();
+                }).withEstimoteSecureMonitoringDisabled()
+                        .withTelemetryReportingDisabled().withBalancedPowerMode().build();
 
         checkProximity();
         return super.onStartCommand(intent, flags, startId);
