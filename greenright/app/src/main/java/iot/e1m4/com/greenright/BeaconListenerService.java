@@ -35,23 +35,27 @@ public class BeaconListenerService extends Service {
     public void onCreate() {
         super.onCreate();
         this.notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        this.inNotification = new NotificationCompat.Builder(getApplicationContext())
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle("Hello")
-                .setContentText("hello hello")
-                .setContentIntent(PendingIntent.getActivity( this, 0,
-                        new Intent( this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT))
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .build();
-        this.outNotification =new NotificationCompat.Builder(getApplicationContext())
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle("Bye")
-                .setContentText("bye bye")
-                .setContentIntent(PendingIntent.getActivity( this, 0,
-                        new Intent( this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT))
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .build();
+        this.inNotification = buildNotification("hello", "helloooooo");
+        this.outNotification = buildNotification("bye", "bye bye");
     }
+
+
+    private Notification buildNotification(String title, String text) {
+        Notification notification = new NotificationCompat.Builder(getApplicationContext())
+                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                .setContentTitle(title)
+                .setContentText(text)
+                .setContentIntent(PendingIntent.getActivity( this, 0,
+                        new Intent( this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                                                                                .setAction("NOTIFICATION"),
+                        PendingIntent.FLAG_UPDATE_CURRENT))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .build();
+
+        return notification;
+    }
+
 
     @Override
     public IBinder onBind(Intent intent) {

@@ -40,7 +40,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -60,12 +59,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener,
         GoogleMap.OnMarkerClickListener,
         LocationListener {
-    private static final LatLng DEFAULT_LOCATION = new LatLng(37.56, 126.97);
+
     private static final String TAG = "googlemap_example";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
     private static final int UPDATE_INTERVAL_MS = 15000;
     private static final int FASTEST_UPDATE_INTERVAL_MS = 15000;
+
+    private static final int DEFAULT_ZOOM = 15;
+    private final LatLng DEFAULT_LOCATION = new LatLng(-33.8523341, 151.2106085);
 
     private GoogleMap mMap = null;
     private MapView mapView = null;
@@ -86,7 +88,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
         if (mMap == null) {
             return;
         }
-
         if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -96,7 +97,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
-
         if (mLocationPermissionGranted) {
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
@@ -109,11 +109,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
 
 
-    private static final int DEFAULT_ZOOM = 15;
-    private CameraPosition mCameraPosition;
-    private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
-    private void getDeviceLocation(float cameraZoom) {
 
+    private CameraPosition mCameraPosition;
+    private void getDeviceLocation(float cameraZoom) {
         if (mLocationPermissionGranted) {
             if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
@@ -121,7 +119,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
             mLastKnownLocation = LocationServices.FusedLocationApi
                     .getLastLocation(googleApiClient);
         }
-
         // Set the map's camera position to the current location of the device.
         if (mCameraPosition != null) {
             mMap.moveCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
@@ -131,7 +128,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                             mLastKnownLocation.getLongitude()), cameraZoom));
         } else {
             Log.d(TAG, "Current location is null. Using defaults.");
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, cameraZoom));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LOCATION, cameraZoom));
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
         }
     }
@@ -166,12 +163,13 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
             @Override
             public void onClick(View view) {
                 if (mMap == null) return;
-                //////////////////////////가맹점 리스트 받아오기
+                //////////////////////////수거함 리스트 받아오기
                 viewCupListMarker();
             }
         });
         return layout;
     }
+
 
     static StringRequest stringRequest;
     private void viewCupListMarker() {
@@ -208,6 +206,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
     }
+
 
     private void viewStoreListMarker() {
         stringRequest = new StringRequest(Request.Method.GET, AppConfig.URL_STORE_LIST,
@@ -277,7 +276,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     public void onPause() {
         super.onPause();
         mapView.onPause();
-
         if ( googleApiClient != null || googleApiClient.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
             googleApiClient.stopAutoManage(getActivity());
@@ -294,8 +292,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mapView.onLowMemory();
-
+        mapView.onDestroy();
         if ( googleApiClient != null ) {
             googleApiClient.unregisterConnectionCallbacks(this);
             googleApiClient.unregisterConnectionFailedListener(this);
@@ -356,6 +353,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
     }
 
+
+    //마커 클릭 이벤트 리스너
     @Override
     public boolean onMarkerClick(Marker marker) {
         return false;
