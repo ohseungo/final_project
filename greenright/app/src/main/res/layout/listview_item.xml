@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/mImage"
+        android:layout_width="84dp"
+        android:layout_height="66dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/ic_star" />
+
+    <TextView
+        android:id="@+id/mText"
+        android:layout_width="189dp"
+        android:layout_height="41dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/mImage"
+        android:text="@string/pointContent"
+        android:textSize="16dp"
+        android:paddingTop="10dp"
+        android:textColor="#313131"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/mDate"
+        android:layout_width="189dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/mText"
+        android:layout_toEndOf="@+id/mImage"
+        android:text="@string/pointDate"
+        android:textSize="15dp"
+        android:textColor="#313131"
+        />
+
+    <TextView
+        android:id="@+id/mPoint"
+        android:layout_width="111dp"
+        android:layout_height="67dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/pointWon"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#f27340"/>
+</RelativeLayout>
