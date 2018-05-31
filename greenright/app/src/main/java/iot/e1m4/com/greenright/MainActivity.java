@@ -15,16 +15,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import info.addon.SessionManager;
 import info.app.AppConfig;
+import info.app.AppController;
 
 public class MainActivity extends AppCompatActivity {
     FragmentTransaction transaction;
@@ -38,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
     PointFragment mPointFragment= new PointFragment();
     DrawerLayout mDrawerLayout;
+    View tempView;
+    NavigationView mNagivationView;
+
+    TextView userHead;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
         //navigation view 관련
         mDrawerLayout=findViewById(R.id.drawer_layout);
+        mNagivationView =findViewById(R.id.navigationView);
         NavigationView navigationView=findViewById(R.id.navigationView);
 
         //user id 입력하는 곳 = nav_header_userId
+
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -78,15 +102,16 @@ public class MainActivity extends AppCompatActivity {
 
                 transaction=getSupportFragmentManager().beginTransaction();
                 switch(id){
-                    case R.id.first_navigation_item:
+                    case R.id.first_navigation_item: //내정보 표시
                         Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
                         break;
 
-                    case R.id.second_navigation_item:
+                    case R.id.second_navigation_item: //포인트 표시
                         transaction.replace(R.id.contentContainer, mPointFragment).commit();
                         break;
-                    case R.id.third_navigation_item:
-                        Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                    case R.id.third_navigation_item: //로그아웃
+                        //Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                        logout();
                         break;
                 }
 
@@ -124,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                         transaction=getSupportFragmentManager().beginTransaction();
                         if(tabId==R.id.tab_co2){
                             transaction.replace(R.id.contentContainer, mWalkFragment);
-                            //transaction.addToBackStack(null);
+                            //transaction.addToBackStack(null);ㄷㄷ
                             transaction.commit();
                             return;
                         }else if(tabId==R.id.tab_cup){
@@ -151,19 +176,67 @@ public class MainActivity extends AppCompatActivity {
         if (!sessionManager.isDayChecked(AppConfig.DISTANCE_CHECK_ID)) {
             Intent intent2 = new Intent(this, DistanceListenerService.class);
             startService(intent2);
-            Toast.makeText(MainActivity.this, "시작", Toast.LENGTH_SHORT).show();
             sessionManager.setDayChecked(AppConfig.DISTANCE_CHECK_ID, true);
+            Toast.makeText(MainActivity.this, "시작", Toast.LENGTH_SHORT).show();
         }
+
+        tempView = mNagivationView.getHeaderView(0);
+        userHead = tempView.findViewById(R.id.nav_header_userId);
+        userUpdate();
+    }
+
+    private void userUpdate() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.FIND_USER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //////////////성공//////////////////////
+                        try {
+                            //Toast.makeText(MainActivity.this,response, Toast.LENGTH_SHORT).show();
+                            JSONObject object = new JSONObject(response);
+                            userHead.setText(object.getString("userId") + "님 안녕하세요");
+                            return;
+                        } catch (JSONException e) {
+
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                ///////////////////실패/////////////////////////////////
+                Toast.makeText(MainActivity.this, "실패f", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", sessionManager.getUserId());
+                return params;
+            }
+        };
+
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+        return;
+    }
+
+    private void logout() {
+        sessionManager.setLogin(false, null);
+        startActivity(new Intent(this, IntroLoginActivity.class));
+        finish();
+        return;
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
+
+    ////???//
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

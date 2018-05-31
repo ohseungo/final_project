@@ -6,6 +6,10 @@ import android.media.MediaCas;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.util.Map;
+
 import info.app.AppConfig;
 import iot.e1m4.com.greenright.MainActivity;
 
@@ -31,13 +35,28 @@ public class SessionManager {
 
     private static final String KEY_SHOWN = "firstOn";
 
-
     public SessionManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF, PRIVATE_MODE);
         editor = pref.edit();
     }
 
+
+
+/*
+    public void setLogin(boolean isLoggedIn, String userId) {
+        if (isLoggedIn) {
+            editor.putBoolean(KEY_LOGGEDIN, true);
+            editor.putString(KEY_USERID, userId);
+        }else {
+            editor.putBoolean(KEY_LOGGEDIN, false);
+            editor.putString(KEY_USERID, null);
+        }
+        // commit changes
+        editor.commit();
+
+      //  Log.d(TAG, "User login session modified!");
+    }*/
 
 
     public void setLogin(boolean isLoggedIn, String userId) {
@@ -51,8 +70,9 @@ public class SessionManager {
         // commit changes
         editor.commit();
 
-      //  Log.d(TAG, "User login session modified!");
+        //  Log.d(TAG, "User login session modified!");
     }
+
     public void setFirstOn() {
         editor.putBoolean(KEY_SHOWN, true);
         editor.commit();
@@ -63,19 +83,27 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void setDistanceDayChecked(String id, double distance) {
-        editor.putFloat(id, (float) distance);
+    public void setDistanceDayChecked(double distance) {
+        editor.putFloat(AppConfig.DISTANCE_CHECK_DISTANCE, (float) distance);
         editor.commit();
     }
 
+
+
     public void dayReset(){
         String userId = getUserId();
+        boolean isLoggedIn = isLoggedIn();
         editor.clear().commit();
+
+        ///////// 데이터 이외의 회원 정보 관련 데이터는 유지한다 ////////
         editor.putBoolean(KEY_SHOWN, true).commit();
-        Log.e("tag", userId);
-        editor.putBoolean(KEY_LOGGEDIN,true).commit();
+        editor.putBoolean(KEY_LOGGEDIN,isLoggedIn).commit();
         editor.putString(KEY_USERID, userId).commit();
+
+        return;
     }
+
+
 
     public boolean isLoggedIn(){
         return pref.getBoolean(KEY_LOGGEDIN, false);
@@ -85,5 +113,5 @@ public class SessionManager {
     }
     public boolean isFirstOn() {return pref.getBoolean(KEY_SHOWN, false);}
     public boolean isDayChecked(String id) {return pref.getBoolean(id, false);}
-    public double getDistanceDayChecked(String id) {return (double) pref.getFloat(AppConfig.DISTANCE_CHECK_DISTANCE, 0);}
+    public double getDistanceDayChecked() {return (double) pref.getFloat(AppConfig.DISTANCE_CHECK_DISTANCE, 0);}
 }

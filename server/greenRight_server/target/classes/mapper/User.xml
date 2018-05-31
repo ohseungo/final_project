@@ -5,9 +5,9 @@
 <mapper namespace="user">
 	<insert id="insertUser" parameterType="User">
 	insert into USERINFO (USERID, PASSWORD, USERNAME, USERPHONE,
-							USEREMAIL, USERCAR, USERREGDATE) 
+							USEREMAIL, USERCAR, USERREGDATE,USERTYPE) 
 	VALUES (#{userId}, #{password}, #{userName}, #{userPhone}
-				,#{userEmail} , #{userCar}, SYSDATE)
+				,#{userEmail} , #{userCar}, now(), 0)
 	</insert>
 	<select id="selectUser" parameterType="String" resultType="User">
 		select USERID, PASSWORD, USERNAME, USERPHONE,

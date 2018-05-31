@@ -13,6 +13,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -97,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         hideDialog();
-                        if (response.equals("true")){
+                        if (response.equals("true")) {
                             //로그인 성공했을때
                             session.setLogin(true, userId);
                             finish();

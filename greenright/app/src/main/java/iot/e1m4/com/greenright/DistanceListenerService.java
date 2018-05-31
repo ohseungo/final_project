@@ -40,7 +40,7 @@ public class DistanceListenerService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         sessionManager = new SessionManager(this);
         maxSpeed = mySpeed = 0;
-        totalDis = sessionManager.getDistanceDayChecked(AppConfig.DISTANCE_CHECK_DISTANCE);
+        totalDis = sessionManager.getDistanceDayChecked();
 
         lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         ll = new SpeedoActionListener();
@@ -67,12 +67,12 @@ public class DistanceListenerService extends Service {
                 }
                 prevLoc = location;
             totalDis+=currDis;
-            sessionManager.setDistanceDayChecked(AppConfig.DISTANCE_CHECK_DISTANCE, totalDis);
+            sessionManager.setDistanceDayChecked(totalDis);
             }else {
                 Toast.makeText(DistanceListenerService.this, "location null", Toast.LENGTH_SHORT).show();
             }
-            Toast.makeText(DistanceListenerService.this, "현재 속도 " + mySpeed
-                                                        + "이동 거리 " + totalDis, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(DistanceListenerService.this, "현재 속도 " + mySpeed
+              //                                          + "이동 거리 " + totalDis, Toast.LENGTH_SHORT).show();
         }
 
         @Override

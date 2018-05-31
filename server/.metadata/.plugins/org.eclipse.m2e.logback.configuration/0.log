@@ -2286,3 +2286,20 @@
 2018-05-30 19:04:03,591 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
 2018-05-30 19:04:03,593 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2018-05-30 19:04:03,593 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+2018-05-31 07:33:30,052 [Worker-3] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-05-31 07:33:49,928 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-31 07:33:49,929 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
+2018-05-31 07:33:49,931 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-31 07:33:49,931 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+2018-05-31 19:03:59,938 [Worker-294] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-31 19:03:59,939 [Worker-294] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
+2018-05-31 19:03:59,940 [Worker-294] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-31 19:03:59,940 [Worker-294] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+2018-05-31 19:08:19,215 [Worker-297] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-31 19:08:19,215 [Worker-297] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
+2018-05-31 19:08:19,216 [Worker-297] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-31 19:08:19,216 [Worker-297] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources
+2018-05-31 19:33:22,769 [Worker-304] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-31 19:33:22,769 [Worker-304] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\main\resources
+2018-05-31 19:33:22,770 [Worker-304] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-05-31 19:33:22,770 [Worker-304] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SCSA\final_project\server\greenRight_server\src\test\resources

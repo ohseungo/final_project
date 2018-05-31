@@ -78,11 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         register(userId, password, userEmail, userName, userPhone, userCar);
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-
+        return;
     }
 
     /*
@@ -98,6 +94,9 @@ public class RegisterActivity extends AppCompatActivity {
                         //가입 성공시
                         if (response.equals("true")){
                              Toast.makeText(getApplicationContext(), "가입되셨습니다!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }else {
                             Toast.makeText(getApplicationContext(), "가입 중 문제가 발생하였습니다", Toast.LENGTH_SHORT).show();
                         }
