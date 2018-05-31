@@ -57,5 +57,16 @@
     <string name="action_settings">Settings</string>
     <string name="month">이번달 포인트 적립 현황</string>
     <string name="pointList">적립 내역</string>
+    <string name="regiId">Your ID</string>
+    <string name="regipw">Your Password</string>
+    <string name="regirepw">Repeat Password</string>
+    <string name="regiEmail">Your Email</string>
+    <string name="regiName">Your Name</string>
+    <string name="ispossible">사용 가능</string>
+    <string name="regi_phone">Your Phone</string>
+    <string name="regi_car">If you have a car, input your car Number</string>
+    <string name="pointContent">컵 수거 완료 포인트 적립</string>
+    <string name="pointDate">2018.05.31</string>
+    <string name="pointWon">50Point</string>
 
 </resources>
