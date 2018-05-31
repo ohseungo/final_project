@@ -8,6 +8,9 @@ public class User {
 	private String userEmail;
 	private String userCar;
 	private String userRegDate;
+	private int userType;
+	private String compId;
+	
 	
 	public String getUserId() {
 		return userId;
@@ -50,6 +53,18 @@ public class User {
 	}
 	public void setUserRegDate(String userRegDate) {
 		this.userRegDate = userRegDate;
+	}
+	public int getUserType() {
+		return userType;
+	}
+	public void setUserType(int userType) {
+		this.userType = userType;
+	}
+	public String getCompId() {
+		return compId;
+	}
+	public void setCompId(String compId) {
+		this.compId = compId;
 	}
 	
 	

@@ -29,6 +29,10 @@ public class UserController {
 			return false;
 		}
 	}
+	@RequestMapping("/find_user.do")
+	public @ResponseBody User login(String userId) {
+		return userService.searchUser(userId);
+	}
 	
 	@RequestMapping("/register_user.do")
 	public @ResponseBody boolean addUser(User user) {

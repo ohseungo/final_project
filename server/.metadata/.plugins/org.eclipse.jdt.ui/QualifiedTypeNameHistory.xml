@@ -11,7 +11,6 @@
 <fullyQualifiedTypeName name="com.scsa.model.dao.RecycleBoxDAO"/>
 <fullyQualifiedTypeName name="com.scsa.model.service.RecycleBoxService"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.scsa.model.vo.Step"/>
 <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
@@ -19,4 +18,5 @@
 <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
 <fullyQualifiedTypeName name="com.scsa.model.service.StepService"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
 </qualifiedTypeNameHistroy>
