@@ -15,7 +15,7 @@
 			</tr>
 			<tr>
 				<td align="right">아이디</td>
-				<td><input type="text" id="id" name="id"></td>
+				<td><input type="text" id="userId" name="userId"></td>
 			</tr>
 			<tr>
 				<td align="right">비밀번호</td>
@@ -27,7 +27,6 @@
 					type="reset" name="reset" value="취소"></td>
 			</tr>
 		</table>
-		<h4>아직 회원이 아니신가요?<a href="signUp.jsp">회원가입</a></h4>
 	</form>
 </body>
 </html>

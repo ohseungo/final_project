@@ -9,10 +9,7 @@
 <body>
 <table style="width:80%">
 	<tr>
-		<td><a href="#">홈</a></td>
-		<td><a href="#">로그아웃</a></td>
-		<td><a href="#">점포관리</a></td>
-		<td><a href="#">제품관리</a></td>
+		<td><a href="./logout.do">로그아웃</a></td>
 	</tr>
 </table>
 </body>
