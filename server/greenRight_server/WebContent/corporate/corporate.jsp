@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="UTF-8">
-<title>°ü¸®ÀÚ</title>
+<title>ê´€ë¦¬ìž</title>
 <link rel="stylesheet" type="text/css" href="../css/board.css">
 <script type="text/javascript">
 
@@ -17,17 +17,17 @@
 	</style>
 </head>
 <body>
-** °ü¸®ÀÚ È­¸é **
-<%@ include file="/admin/admin_top.jsp" %>
-<table style="width:90%">
+** ê´€ë¦¬ìž í™”ë©´ **
+<%@ include file="/corporate/corporate_admin_top.jsp" %>
+<table style="width:90%; background-image: url('./img/field.jpg')" >
 	<tr>
 		<td style="background-image: './img/field.jpg'; background-size:100%;
 		background-position: center;">
 			<br><br><br>
-		<h2 style="text-align:center; color:white;">°ü¸®ÀÚ ÆäÀÌÁö</h2>
+		<h2 style="text-align:center; color:white;">ê´€ë¦¬ìž íŽ˜ì´ì§€</h2>
 		</td>
 	</tr>
 </table>
-<%@ include file="/admin/admin_bottom.jsp" %>
+<%@ include file="/corporate/corporate_admin_bottom.jsp" %>
 </body>
 </html> 

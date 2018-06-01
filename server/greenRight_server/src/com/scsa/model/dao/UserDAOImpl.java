@@ -15,7 +15,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean insertUser(User user) {
-		return sqlSession.insert("user.insertUser", user) ==1;
+		return sqlSession.insert("user.insertUser", user) == 1;
 	}
 
 	@Override
