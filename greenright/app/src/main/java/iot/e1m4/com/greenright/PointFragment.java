@@ -57,7 +57,7 @@ public class PointFragment extends Fragment {
         pieChart.setTransparentCircleRadius(61f);
 
         ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
-
+/////////////////////////////////
         yValues.add(new PieEntry(34f,"컵수거"));
         yValues.add(new PieEntry(23f,"걷기"));
         yValues.add(new PieEntry(14f,"대중교통"));
@@ -97,7 +97,7 @@ public class PointFragment extends Fragment {
         mListView=layout.findViewById(R.id.mList);
         mAdapter=new ListViewAdapter(getActivity());
         mListView.setAdapter(mAdapter);
-
+////////////////////////////////////////////////////////////////////////////
         //list view 아이템 추가는 이곳에서
         mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
         mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");

@@ -43,22 +43,6 @@ public class SessionManager {
 
 
 
-/*
-    public void setLogin(boolean isLoggedIn, String userId) {
-        if (isLoggedIn) {
-            editor.putBoolean(KEY_LOGGEDIN, true);
-            editor.putString(KEY_USERID, userId);
-        }else {
-            editor.putBoolean(KEY_LOGGEDIN, false);
-            editor.putString(KEY_USERID, null);
-        }
-        // commit changes
-        editor.commit();
-
-      //  Log.d(TAG, "User login session modified!");
-    }*/
-
-
     public void setLogin(boolean isLoggedIn, String userId) {
         if (isLoggedIn) {
             editor.putBoolean(KEY_LOGGEDIN, true);

@@ -26,8 +26,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -40,6 +38,7 @@ import org.w3c.dom.Text;
 import java.util.HashMap;
 import java.util.Map;
 
+import info.addon.PointManager;
 import info.addon.SessionManager;
 import info.app.AppConfig;
 import info.app.AppController;
@@ -162,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
                             transaction.commit();
                             return;
                         }else if (tabId== R.id.tab_green_market) {
+                            /////////테스트////////////////
                             startService(new Intent(MainActivity.this, DayResetService.class));
                             Toast.makeText(MainActivity.this, "체크", Toast.LENGTH_SHORT).show();
                             return;
@@ -192,20 +192,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         //////////////성공//////////////////////
                         try {
-                            //Toast.makeText(MainActivity.this,response, Toast.LENGTH_SHORT).show();
-                            JSONObject object = new JSONObject(response);
-                            userHead.setText(object.getString("userId") + "님 안녕하세요");
+                            userHead.setText(new JSONObject(response).getString("userId") + " 님 안녕하세요");
                             return;
                         } catch (JSONException e) {
-
                             e.printStackTrace();
                         }
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                ///////////////////실패/////////////////////////////////
-                Toast.makeText(MainActivity.this, "실패f", Toast.LENGTH_SHORT).show();
+                },
+                new Response.ErrorListener() {
+                    @Override
+                     public void onErrorResponse(VolleyError error) {
+                    ///////////////////실패/////////////////////////////////
+                    Toast.makeText(MainActivity.this, "회원 정보 요청 중 문제 발생", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
@@ -215,7 +213,6 @@ public class MainActivity extends AppCompatActivity {
                 return params;
             }
         };
-
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
         return;
@@ -239,9 +236,7 @@ public class MainActivity extends AppCompatActivity {
     ////???//
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id=item.getItemId();
-
         switch (id){
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
