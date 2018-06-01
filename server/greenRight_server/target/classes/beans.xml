@@ -45,6 +45,6 @@
 	<bean id="walkDao" class="com.scsa.model.dao.WalkDAOImpl"
 		p:sqlSession-ref="sqlSession"/>
 	<bean id="walkSerivce" class="com.scsa.model.service.WalkServiceImpl"
-		p:stepDao-ref="stepDao"/>
+		p:stepDao-ref="walkDao"/>
 		
 </beans>

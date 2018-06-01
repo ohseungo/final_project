@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< HEAD
 	<item value="C:\Program Files\Java\jdk1.8.0_171\jre\lib" key="org.eclipse.jdt.ui.lastextjar"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="updateQualifiedNames"/>
@@ -52,14 +53,11 @@
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
+=======
+	<item value="C:\Program Files\Java\jre1.8.0_131\lib" key="org.eclipse.jdt.ui.lastextjar"/>
+>>>>>>> b0178bbae69883b4f8a380e4a3cef28ab8882af9
 	<section name="BuildPathsPropertyPage">
-		<item value="2" key="pageIndex"/>
-	</section>
-	<section name="completion_proposal_size">
-	</section>
-	<section name="AddGetterSetterDialog">
-		<item value="false" key="SortOrdering"/>
-		<item value="false" key="RemoveFinal"/>
+		<item value="3" key="pageIndex"/>
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
