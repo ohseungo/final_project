@@ -42,9 +42,9 @@
 	<bean id="recycleBoxService" class="com.scsa.model.service.RecycleBoxServiceImpl"
 		p:recycleBoxDao-ref="recycleBoxDao"/>
 		
-	<bean id="stepDao" class="com.scsa.model.dao.StepDAOImpl"
+	<bean id="walkDao" class="com.scsa.model.dao.WalkDAOImpl"
 		p:sqlSession-ref="sqlSession"/>
-	<bean id="stepSerivce" class="com.scsa.model.service.StepServiceImpl"
+	<bean id="walkSerivce" class="com.scsa.model.service.WalkServiceImpl"
 		p:stepDao-ref="stepDao"/>
 		
 </beans>

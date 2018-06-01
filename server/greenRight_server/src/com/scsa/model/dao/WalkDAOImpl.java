@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.scsa.model.vo.Step;
+import com.scsa.model.vo.Walk;
 
-public class StepDAOImpl implements StepDAO {
+
+
+public class WalkDAOImpl implements WalkDAO {
 
 	SqlSession sqlSession;
 	
@@ -15,8 +17,8 @@ public class StepDAOImpl implements StepDAO {
 	}
 
 	@Override
-	public List<Step> selectStepListWithUserId(String userId) {
-		return sqlSession.selectList("step.selectStepListWithUserId", userId);
+	public List<Walk> selectWalkListWithUserId(String userId) {
+		return sqlSession.selectList("step.selectWalkListWithUserId", userId);
 	}
 
 }

@@ -11,8 +11,8 @@
 										alias="Store"/>
 		<typeAlias type="com.scsa.model.vo.RecycleBox" 
 										alias="RecycleBox"/>
-		<typeAlias type="com.scsa.model.vo.Step" 
-										alias="Step"/>							
+		<typeAlias type="com.scsa.model.vo.Walk" 
+										alias="Walk"/>							
 	</typeAliases>
 	
 	<mappers>
@@ -20,7 +20,7 @@
 		<mapper resource="mapper/GreenPoint.xml"/>
 		<mapper resource="mapper/Store.xml"/>
 		<mapper resource="mapper/RecycleBox.xml"/>
-		<mapper resource="mapper/Step.xml"/>
+		<mapper resource="mapper/Walk.xml"/>
 	</mappers>
 	
 </configuration>
