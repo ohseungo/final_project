@@ -5,24 +5,10 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-<<<<<<< HEAD
 			<item value="D:\workspace\final_project\server"/>
-=======
-			<item value="C:\Users\Home\Documents\final_project\server"/>
->>>>>>> 991b8708dfffd036004fd4872747b65909c954e3
-			<item value="C:\Users\SCSA\final_project\server"/>
-			<item value="C:\Users\SCSA\final_project\server\greenRight_server"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
-	</section>
-	<section name="WORKBENCH_SETTINGS">
-		<list key="ENABLED_TRANSFERS">
-		</list>
-	</section>
-	<section name="ChooseWorkspaceDialogSettings">
-		<item value="340" key="DIALOG_X_ORIGIN"/>
-		<item value="182" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
