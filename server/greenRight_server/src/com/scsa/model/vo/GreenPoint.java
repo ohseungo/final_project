@@ -1,13 +1,15 @@
 package com.scsa.model.vo;
 
 public class GreenPoint {
-	public String greenPointId;
-	public int greenPointValue;
-	public int greenPointType; //1이면 취득 -1이면 사용
-	public String grrenPointDate;
+	private String greenPointId;
+	private int greenPointValue;
+	private int greenPointType; //1이면 취득 -1이면 사용
+	private String grrenPointDate;
 	
-	public String userId;
-	public String compId;
+	private String greenPointContent;
+	private String userId;
+	private String compId;
+	
 	public String getGreenPointId() {
 		return greenPointId;
 	}
@@ -43,6 +45,12 @@ public class GreenPoint {
 	}
 	public void setCompId(String compId) {
 		this.compId = compId;
+	}
+	public String getGreenPointContent() {
+		return greenPointContent;
+	}
+	public void setGreenPointContent(String greenPointContent) {
+		this.greenPointContent = greenPointContent;
 	}
 	
 	

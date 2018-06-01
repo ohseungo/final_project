@@ -5,14 +5,14 @@
 <mapper namespace="greenPoint">
 	<insert id="insertGreenPoint" parameterType="GreenPoint">
 		insert into GREENPOINT (GREENPOINTID, GREENPOINTVALUE, GREENPOINTTYPE, 
-							GREENPOINTDATE,USERID,COMPID) 
-	VALUES (#{greenPointId}, #{greenPointValue}, #{greenPointType},
-	 		SYSDATE, #{userId} , #{compId}) 
+							GREENPOINTDATE,GREENPOINTCONTENT, USERID,COMPID) 
+			VALUES (#{greenPointId}, #{greenPointValue}, #{greenPointType},
+	 		now(),#{greenPointContent}, #{userId} , #{compId}) 
 	</insert>
 	<select id="selectGreenPointListwithUserId" parameterType="String" 
 			resultType="GreenPoint">
 		select GREENPOINTID, GREENPOINTVALUE, GREENPOINTTYPE, 
-							GREENPOINTDATE,USERID,COMPID
+							GREENPOINTDATE,GREENPOINTCONTENT, USERID,COMPID
 		from GREENPOINT
 		where USERID = #{id}
 	</select>

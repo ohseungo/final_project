@@ -43,6 +43,10 @@ public class UserController {
 		}
 		return "redirect:/login.jsp";
 	}
+	@RequestMapping("/find_user.do")
+	public @ResponseBody User login(String userId) {
+		return userService.searchUser(userId);
+	}
 	
 	*/
 	@RequestMapping("/register_user.do")

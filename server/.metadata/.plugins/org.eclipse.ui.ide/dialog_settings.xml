@@ -5,7 +5,11 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+<<<<<<< HEAD
 			<item value="C:\Users\Home\Documents\final_project\server"/>
+=======
+			<item value="D:\workspace\final_project\server"/>
+>>>>>>> origin/feature/server2
 			<item value="C:\Users\SCSA\final_project\server"/>
 			<item value="C:\Users\SCSA\final_project\server\greenRight_server"/>
 		</list>
