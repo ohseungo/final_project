@@ -102,6 +102,13 @@ public class PointFragment extends Fragment {
         mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
         mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
         mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+
 
 
         return layout;
