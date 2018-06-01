@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post" action="./login.do" style="width:250px; margin:0 auto 0 auto;">
-		<table border="1" id=totaltable style="background-color: LightGray">
+	<form method="post" action="./login.do" style="width:500px; margin:0 auto 0 auto;">
+		<table border="1" id=totaltable style="background-color: LightGray; width:300px">
 			<tr>
 				<td align="center" colspan="2"
 					style="background-color: MediumSeaGreen">로그인</td>
@@ -27,6 +27,7 @@
 					type="reset" name="reset" value="취소"></td>
 			</tr>
 		</table>
+		<h4>아직 회원이 아니신가요?<a href="signUp.jsp">회원가입</a></h4>
 	</form>
 </body>
 </html>
