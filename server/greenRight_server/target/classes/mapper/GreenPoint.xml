@@ -3,16 +3,31 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="greenPoint">
+
 	<insert id="insertGreenPoint" parameterType="GreenPoint">
-		insert into GREENPOINT (GREENPOINTID, GREENPOINTVALUE, GREENPOINTTYPE, 
+		insert into GREENPOINT (GREENPOINTVALUE, GREENPOINTTYPE, 
 							GREENPOINTDATE,GREENPOINTCONTENT, USERID,COMPID) 
-			VALUES (#{greenPointId}, #{greenPointValue}, #{greenPointType},
-	 		now(),#{greenPointContent}, #{userId} , #{compId}) 
+			VALUES (#{greenPointValue}, #{greenPointType},
+	 		now(),#{greenPointContent}, #{userId} , #{compId})
 	</insert>
+	
 	<select id="selectGreenPointListwithUserId" parameterType="String" 
 			resultType="GreenPoint">
 		select GREENPOINTID, GREENPOINTVALUE, GREENPOINTTYPE, 
 							GREENPOINTDATE,GREENPOINTCONTENT, USERID,COMPID
+		from GREENPOINT
+		where USERID = #{id}
+	</select>
+	<select id="selectGreenPointStatuswithUserId" parameterType="GreenPoint" 
+			resultType="String">
+		select sum(GREENPOINTVALUE), GREENPOINTTYPE		
+		from GREENPOINT
+		where USERID = #{id}
+		group by GREENPOINTTYPE
+	</select>
+	<select id="selectGreenPointTotalwithUserId" parameterType="int" 
+			resultType="String">
+		select sum(GREENPOINTVALUE)		
 		from GREENPOINT
 		where USERID = #{id}
 	</select>

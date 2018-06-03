@@ -23,4 +23,9 @@ public class RecycleBoxServiceImpl implements RecycleBoxService {
 		return null;
 	}
 
+	@Override
+	public boolean addRecycleBox(RecycleBox recycleBox) {
+		return recycleBoxDao.insertRecycleBox(recycleBox);
+	}
+
 }

@@ -26,7 +26,12 @@ public class GreenPointDAOImpl implements GreenPointDAO {
 
 	@Override
 	public int selectGreenPointTotalwithUserId(String userId) {
-		return 0;
+		return sqlSession.selectOne("greenPoint.selectGreenPointTotalwithUserId", userId);
+	}
+
+	@Override
+	public List<GreenPoint> selectGreenPointStatuswithUserId(String userId) {
+		return sqlSession.selectList("greenPoint.selectGreenPointStatuswithUserId", userId);
 	}
 
 }

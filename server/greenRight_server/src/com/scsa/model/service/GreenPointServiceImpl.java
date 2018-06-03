@@ -27,4 +27,9 @@ public class GreenPointServiceImpl implements GreenPointService {
 		return greenPointDao.selectGreenPointTotalwithUserId(userId);
 	}
 
+	@Override
+	public List<GreenPoint> searchGreenPointStatuswithUserId(String userId) {
+		return greenPointDao.selectGreenPointStatuswithUserId(userId);
+	}
+
 }

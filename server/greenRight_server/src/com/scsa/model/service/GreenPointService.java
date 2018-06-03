@@ -8,4 +8,5 @@ public interface GreenPointService {
 	boolean addGreenPoint(GreenPoint point);
 	List<GreenPoint> searchGreenPointListwithUserId(String userId);
 	int searchGreenPointTotalwithUserId(String userId);
+	List<GreenPoint> searchGreenPointStatuswithUserId(String userId);
 }

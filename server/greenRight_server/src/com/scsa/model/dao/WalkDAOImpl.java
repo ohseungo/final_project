@@ -16,9 +16,17 @@ public class WalkDAOImpl implements WalkDAO {
 		this.sqlSession = sqlSession;
 	}
 
+	
 	@Override
 	public List<Walk> selectWalkListWithUserId(String userId) {
 		return sqlSession.selectList("step.selectWalkListWithUserId", userId);
+	}
+
+
+	@Override
+	public boolean insertWalk(Walk walk) {
+		return sqlSession.insert("step.insertWalk", walk)!=0;
+		
 	}
 
 }

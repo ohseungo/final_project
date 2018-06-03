@@ -37,18 +37,19 @@ public class UserController {
 			if(userId.equals("starbucks") || userId.equals("wcafe")) {
 				return "redirect:/company.jsp";
 			}
-			else if(userId.equals("¾Ö°æ")) {
+			else if(userId.equals("ï¿½Ö°ï¿½")) {
 				return "redirect:/mall.jsp";
 			}
 		}
 		return "redirect:/login.jsp";
-	}
+	}*/
+	
 	@RequestMapping("/find_user.do")
 	public @ResponseBody User login(String userId) {
 		return userService.searchUser(userId);
 	}
 	
-	*/
+	
 	@RequestMapping("/register_user.do")
 	public @ResponseBody boolean addUser(User user) {
 		return userService.addUser(user);

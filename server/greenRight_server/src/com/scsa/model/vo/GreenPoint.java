@@ -3,8 +3,8 @@ package com.scsa.model.vo;
 public class GreenPoint {
 	private String greenPointId;
 	private int greenPointValue;
-	private int greenPointType; //1ÀÌ¸é Ãëµæ -1ÀÌ¸é »ç¿ë
-	private String grrenPointDate;
+	private int greenPointType; //1ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ -1ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½
+	private String greenPointDate;
 	
 	private String greenPointContent;
 	private String userId;
@@ -28,11 +28,11 @@ public class GreenPoint {
 	public void setGreenPointType(int greenPointType) {
 		this.greenPointType = greenPointType;
 	}
-	public String getGrrenPointDate() {
-		return grrenPointDate;
+	public String getGreenPointDate() {
+		return greenPointDate;
 	}
-	public void setGrrenPointDate(String grrenPointDate) {
-		this.grrenPointDate = grrenPointDate;
+	public void setGreenPointDate(String greenPointDate) {
+		this.greenPointDate = greenPointDate;
 	}
 	public String getUserId() {
 		return userId;

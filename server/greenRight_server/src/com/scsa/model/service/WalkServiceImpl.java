@@ -19,4 +19,10 @@ public class WalkServiceImpl implements WalkService {
 		return walkDao.selectWalkListWithUserId(userId);
 	}
 
+
+	@Override
+	public boolean addWalk(Walk walk) {
+		return walkDao.insertWalk(walk);
+	}
+
 }

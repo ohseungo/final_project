@@ -7,5 +7,6 @@ import com.scsa.model.vo.Walk;
 public interface WalkDAO {
 	
 	List<Walk> selectWalkListWithUserId(String userId);
+	boolean insertWalk(Walk walk);
 	
 }

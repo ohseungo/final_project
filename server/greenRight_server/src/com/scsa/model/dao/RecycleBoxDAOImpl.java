@@ -25,4 +25,10 @@ public class RecycleBoxDAOImpl implements RecycleBoxDAO {
 		return null;
 	}
 
+
+	@Override
+	public boolean insertRecycleBox(RecycleBox recycleBox) {
+		return sqlSession.insert("recycleBox.insertRecycleBox", recycleBox)!=0;
+	}
+
 }

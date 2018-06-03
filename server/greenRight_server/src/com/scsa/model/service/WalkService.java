@@ -9,5 +9,7 @@ import com.scsa.model.vo.Walk;
 public interface WalkService {
 	
 	List<Walk> findWalkListWithUserId(String userId);
+	boolean addWalk(Walk walk);
+	
 
 }

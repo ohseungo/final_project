@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="walk">
+<mapper namespace="step">
 	<select id="selectWalkListWithUserId" parameterType="String" resultType="Walk">
 		select WALKID, USERID, WALKDISTANCE, WALKDATE
 		from WALK
@@ -10,7 +10,7 @@
 		order by WALKDATE
 	</select>
 	<select id="insertWalk" parameterType="Walk">
-		insert into Walk (WalkID, USERID, WALKDISTANCE, WALKDATE) 
-			VALUES (#{walkId}, #{userId}, #{walkDistance},now()) 
+		insert into Walk (USERID, WALKDISTANCE, WALKDATE) 
+			VALUES (#{userId}, #{walkDistance},now()) 
 	</select>
 </mapper>
