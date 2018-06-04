@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="./login.do" style="width:500px; margin:0 auto 0 auto;">
+	<form method="post" action="./login1.do" style="width:500px; margin:0 auto 0 auto;">
 		<table border="1" id=totaltable style="background-color: LightGray; width:300px">
 			<tr>
 				<td align="center" colspan="2"
@@ -15,7 +15,7 @@
 			</tr>
 			<tr>
 				<td align="right">아이디</td>
-				<td><input type="text" id="id" name="id"></td>
+				<td><input type="text" id="userId" name="userId"></td>
 			</tr>
 			<tr>
 				<td align="right">비밀번호</td>
@@ -27,7 +27,6 @@
 					type="reset" name="reset" value="취소"></td>
 			</tr>
 		</table>
-		<h4>아직 회원이 아니신가요?<a href="signUp.jsp">회원가입</a></h4>
 	</form>
 </body>
 </html>
