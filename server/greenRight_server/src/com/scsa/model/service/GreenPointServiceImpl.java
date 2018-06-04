@@ -23,7 +23,8 @@ public class GreenPointServiceImpl implements GreenPointService {
 	}
 
 	@Override
-	public int searchGreenPointTotalwithUserId(String userId) {
+	public String searchGreenPointTotalwithUserId(String userId) {
+		
 		return greenPointDao.selectGreenPointTotalwithUserId(userId);
 	}
 

@@ -30,7 +30,7 @@ public class GreenPointController {
 	}
 	
 	@RequestMapping("/total_point.do")
-	public int searchGreenPointTotalwithUserId(String userId) {
+	public @ResponseBody String searchGreenPointTotalwithUserId(String userId) {
 		return greenPointService.searchGreenPointTotalwithUserId(userId);
 	}
 

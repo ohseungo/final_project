@@ -10,7 +10,7 @@ public interface GreenPointDAO {
 	List<GreenPoint> selectGreenPointListwithUserId(String userId);
 	
 	
-	int selectGreenPointTotalwithUserId(String userId);
+	String selectGreenPointTotalwithUserId(String userId);
 	List<GreenPoint> selectGreenPointStatuswithUserId(String userId);
 
 	
