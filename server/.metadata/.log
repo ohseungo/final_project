@@ -4976,3 +4976,9 @@ Caused by: java.io.FileNotFoundException: C:\Program Files\Git\mingw64\share\git
 
 !ENTRY org.eclipse.wst.server.discovery 1 0 2018-06-04 09:46:00.601
 !MESSAGE already installed: org.eclipse.jst.server.generic.jonas4
+
+!ENTRY org.eclipse.jface.text 2 0 2018-06-04 10:36:13.012
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2018-06-04 10:36:13.014
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
