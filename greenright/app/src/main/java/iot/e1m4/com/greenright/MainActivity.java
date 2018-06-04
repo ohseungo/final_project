@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
     WalkFragment mWalkFragment = new WalkFragment();
     MapsFragment mMapsFragment = new MapsFragment();
     HomeFragment mHomeFragment = new HomeFragment();
-
+    SaveFragment mSaveFragment = new SaveFragment();
+    MarketFragment mMarketFragment = new MarketFragment();
 
     private SessionManager sessionManager;
 
@@ -137,6 +138,14 @@ public class MainActivity extends AppCompatActivity {
 
                     transaction.commit();
                     return;
+                }else if(tabId==R.id.tab_barcode){
+                    transaction.replace(R.id.contentContainer,mSaveFragment);
+                    transaction.commit();
+                    return;
+                }else if(tabId==R.id.tab_green_market){
+                    transaction.replace(R.id.contentContainer, mMarketFragment);
+                    transaction.commit();
+                    return;
                 }
             }
         });
@@ -162,8 +171,8 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }else if (tabId== R.id.tab_green_market) {
                             /////////테스트////////////////
-                            startService(new Intent(MainActivity.this, DayResetService.class));
-                            Toast.makeText(MainActivity.this, "체크", Toast.LENGTH_SHORT).show();
+                            transaction.replace(R.id.contentContainer, mMarketFragment);
+                            transaction.commit();
                             return;
                         }
                     }

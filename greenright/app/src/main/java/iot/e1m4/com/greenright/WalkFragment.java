@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -27,6 +28,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -78,6 +81,16 @@ public class WalkFragment extends Fragment {
         lineDataSet.setDrawHighlightIndicators(false);
         lineDataSet.setDrawValues(false);
 
+
+        ArrayList<String> labels=new ArrayList<>();
+        labels.add("6일 전");
+        labels.add("5일 전");
+        labels.add("4일 전");
+        labels.add("3일 전");
+        labels.add("2일 전");
+        labels.add("1일 전");
+
+
         LineData lineData=new LineData(lineDataSet);
         lineChart.setData(lineData);
 
@@ -86,7 +99,9 @@ public class WalkFragment extends Fragment {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextColor(Color.BLACK);
         xAxis.setAxisMinimum(0);
-        xAxis.setAxisMaximum(20);
+        xAxis.setAxisMaximum(6);
+
+        xAxis.setValueFormatter(new MyXAxisValueFormatter(labels));
 
         YAxis yLAxis = lineChart.getAxisLeft();
         yLAxis.setTextColor(Color.BLACK);
@@ -101,8 +116,32 @@ public class WalkFragment extends Fragment {
         lineChart.setDoubleTapToZoomEnabled(false);
         lineChart.setDrawGridBackground(false);
         lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
+        lineChart.animateX(1);
         lineChart.invalidate();
         return layout;
+    }
+
+    public class MyXAxisValueFormatter implements IAxisValueFormatter {
+
+        private List mValues;
+
+        public MyXAxisValueFormatter(List<String> values) {
+            this.mValues = values;
+        }
+
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            // "value" represents the position of the label on the axis (x or y)
+            try{
+                int index=(int) value;
+                return (String) mValues.get(index);
+            } catch(Exception e){
+                    return "";
+            }
+
+        }
+
+        public int getDecimalDigits() { return 0; }
     }
 
 

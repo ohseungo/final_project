@@ -174,7 +174,7 @@ public class PointFragment extends Fragment {
         }
         holder.mText.setText(mData.mTilte);
         holder.mDate.setText(mData.mDate);
-        holder.mDate.setText(mData.mDate);
+        holder.mPoint.setText(mData.mPoint);
 
         return convertView;
     }

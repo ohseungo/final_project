@@ -68,5 +68,12 @@
     <string name="pointContent">컵 수거 완료 포인트 적립</string>
     <string name="pointDate">2018.05.31</string>
     <string name="pointWon">50Point</string>
+    <string name="pname1">[RE:CODE]점퍼 슬리브 스트라이프 스웻 티셔츠</string>
+    <string name="pname2">[RE:CODE] pet bag 프린트 점퍼 푸푸 가방</string>
+    <string name="price1">98,000</string>
+    <string name="price2">49,000</string>
+    <string name="company">[RE;CODE]</string>
+    <string name="orderTitle">O R D E R</string>
+    <string name="orderInfo">주문자 정보</string>
 
 </resources>
