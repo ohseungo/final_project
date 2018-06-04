@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="step">
+	<select id="selectWalkListWithUserId" parameterType="String" resultType="Walk">
+		select WALKID, USERID, WALKDISTANCE, WALKDATE
+		from WALK
+		where USERID = #{id}
+		order by WALKDATE
+	</select>
+	<select id="insertWalk" parameterType="Walk">
+		insert into Walk (USERID, WALKDISTANCE, WALKDATE) 
+			VALUES (#{userId}, #{walkDistance},now()) 
+	</select>
+</mapper>

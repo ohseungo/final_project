@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recycleBox">
+	<select id="selectRecycleBox" resultType="RecycleBox">
+		select RECYCLEBOXID,RECYCLEBOXLAT,RECYCLEBOXLONG
+		from RECYCLEBOX
+	</select>
+	<insert id="insertRecycleBox" parameterType="RecycleBox">
+		insert into RECYCLEBOX(RECYCLEBOXID, RECYCLEBOXLAT, 
+		RECYCLEBOXLONG) 
+	VALUES (#{RECYCLEBOXID}, #{RECYCLEBOXLAT}, #{RECYCLEBOXLONG})
+	</insert>
+</mapper>

@@ -3589,3 +3589,142 @@
 2018-06-02 22:40:55,514 [Worker-214] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
 2018-06-02 22:40:55,515 [Worker-214] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2018-06-02 22:40:55,515 [Worker-214] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 08:22:59,093 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-06-04 08:23:37,387 [Worker-1] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: greenRight_server:greenRight_server:0.0.1-SNAPSHOT @ D:\workspace\final_project\server\greenRight_server\pom.xml.
+2018-06-04 08:23:41,987 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:23:41,987 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 08:23:41,992 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:23:41,992 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 08:26:45,072 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:26:45,072 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 08:26:45,075 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:26:45,075 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 08:27:49,074 [Worker-13] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for greenRight_server
+2018-06-04 08:27:49,535 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:27:49,535 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 08:27:49,537 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:27:49,537 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 08:27:49,538 [Worker-13] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of greenRight_server
+2018-06-04 08:27:49,539 [Worker-13] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for greenRight_server
+2018-06-04 08:27:49,569 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for org.apache.maven.plugins:maven-clean-plugin:jar:2.5 is missing, no dependency information available
+2018-06-04 08:27:49,591 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:30:14,887 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:30:14,888 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 08:30:14,890 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:30:14,891 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 08:30:18,255 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:30:18,255 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 08:30:18,261 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:30:18,261 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 08:31:08,888 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:31:08,888 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 08:31:08,905 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:31:08,905 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 08:31:10,097 [Worker-16] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://www.datanucleus.org/downloads/maven2/jstl/jstl/1.2/jstl-1.2.pom
+2018-06-04 08:31:11,244 [Worker-16] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/jstl/jstl/1.2/jstl-1.2.pom
+2018-06-04 08:31:11,471 [Worker-16] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/jstl/jstl/1.2/jstl-1.2.pom
+2018-06-04 08:31:11,888 [Worker-16] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://www.datanucleus.org/downloads/maven2/jstl/jstl/1.2/jstl-1.2.jar
+2018-06-04 08:31:12,101 [Worker-16] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/jstl/jstl/1.2/jstl-1.2.jar
+2018-06-04 08:31:14,388 [Worker-16] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/jstl/jstl/1.2/jstl-1.2.jar
+2018-06-04 08:33:17,091 [main] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: greenRight_server:greenRight_server:0.0.1-SNAPSHOT @ D:\workspace\final_project\server\greenRight_server\pom.xml.
+2018-06-04 08:38:44,637 [Worker-16] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2018-06-04 08:38:45,747 [Worker-16] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: greenRight_server:greenRight_server:0.0.1-SNAPSHOT @ D:\workspace\final_project\server\greenRight_server\pom.xml.
+2018-06-04 08:38:48,054 [Worker-16] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /greenRight_server/src
+2018-06-04 08:38:48,055 [Worker-16] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /greenRight_server/src/test/java because it overlaps with /greenRight_server/src
+2018-06-04 08:38:49,335 [Worker-16] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for greenRight_server
+2018-06-04 08:38:49,346 [Worker-16] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 4 sec
+2018-06-04 08:38:53,139 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:38:53,139 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 08:38:53,142 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:38:53,142 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 08:38:53,143 [Worker-21] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of greenRight_server
+2018-06-04 08:38:53,143 [Worker-21] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for greenRight_server
+2018-06-04 08:38:53,160 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:48:36,909 [Worker-0] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for greenRight_server
+2018-06-04 08:48:37,773 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:48:37,774 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 08:48:37,775 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 08:48:37,776 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 08:48:37,776 [Worker-25] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of greenRight_server
+2018-06-04 08:48:37,776 [Worker-25] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for greenRight_server
+2018-06-04 08:48:37,787 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:03:52,804 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:03:52,805 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:03:52,807 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:03:52,807 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:03:54,268 [Worker-32] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://www.datanucleus.org/downloads/maven2/taglibs/standard/1.1.2/standard-1.1.2.pom
+2018-06-04 09:03:55,329 [Worker-32] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/taglibs/standard/1.1.2/standard-1.1.2.pom
+2018-06-04 09:03:55,537 [Worker-32] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/taglibs/standard/1.1.2/standard-1.1.2.pom
+2018-06-04 09:03:55,938 [Worker-32] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://www.datanucleus.org/downloads/maven2/taglibs/standard/1.1.2/standard-1.1.2.jar
+2018-06-04 09:03:56,089 [Worker-32] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/taglibs/standard/1.1.2/standard-1.1.2.jar
+2018-06-04 09:03:57,958 [Worker-32] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/taglibs/standard/1.1.2/standard-1.1.2.jar
+2018-06-04 09:04:07,985 [Worker-33] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for greenRight_server
+2018-06-04 09:04:08,964 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:04:08,964 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:04:08,966 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:04:08,966 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:04:08,966 [Worker-33] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of greenRight_server
+2018-06-04 09:04:08,967 [Worker-33] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for greenRight_server
+2018-06-04 09:04:08,973 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:05:53,572 [Worker-30] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2018-06-04 09:05:54,509 [Worker-30] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: greenRight_server:greenRight_server:0.0.1-SNAPSHOT @ D:\workspace\final_project\server\greenRight_server\pom.xml.
+2018-06-04 09:05:56,241 [Worker-30] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /greenRight_server/src
+2018-06-04 09:05:56,242 [Worker-30] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /greenRight_server/src/test/java because it overlaps with /greenRight_server/src
+2018-06-04 09:05:57,198 [Worker-30] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for greenRight_server
+2018-06-04 09:05:57,207 [Worker-30] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 3 sec
+2018-06-04 09:05:59,795 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:05:59,796 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:05:59,798 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:05:59,798 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:05:59,799 [Worker-37] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of greenRight_server
+2018-06-04 09:05:59,799 [Worker-37] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for greenRight_server
+2018-06-04 09:05:59,807 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:09:13,248 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:09:13,249 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:09:13,252 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:09:13,252 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:09:18,587 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:09:18,587 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:09:18,589 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:09:18,590 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:09:23,832 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:09:23,833 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:09:23,834 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:09:23,835 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:09:33,423 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:09:33,423 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:09:33,425 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:09:33,426 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:10:47,398 [main] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: greenRight_server:greenRight_server:0.0.1-SNAPSHOT @ D:\workspace\final_project\server\greenRight_server\pom.xml.
+2018-06-04 09:12:00,807 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:12:00,808 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:12:00,810 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:12:00,810 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:12:08,673 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:12:08,673 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:12:08,675 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:12:08,675 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:15:29,005 [Worker-42] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for greenRight_server
+2018-06-04 09:15:30,174 [Worker-39] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of greenRight_server
+2018-06-04 09:15:30,174 [Worker-39] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for greenRight_server
+2018-06-04 09:15:30,937 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:17:27,544 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:17:27,544 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:17:27,546 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:17:27,547 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:17:32,693 [Worker-43] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: greenRight_server:greenRight_server:0.0.1-SNAPSHOT @ D:\workspace\final_project\server\greenRight_server\pom.xml.
+2018-06-04 09:17:34,614 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:17:34,615 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:17:34,618 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:17:34,618 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:17:34,619 [Worker-43] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of greenRight_server
+2018-06-04 09:17:34,620 [Worker-43] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for greenRight_server
+2018-06-04 09:17:34,626 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:17:38,918 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:17:38,919 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:17:38,933 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:17:38,933 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources
+2018-06-04 09:18:12,905 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:18:12,906 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\main\resources
+2018-06-04 09:18:12,909 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-06-04 09:18:12,910 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\final_project\server\greenRight_server\src\test\resources

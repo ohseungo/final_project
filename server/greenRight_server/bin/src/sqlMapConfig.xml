@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.scsa.model.vo.User" alias="User"/>
+		<typeAlias type="com.scsa.model.vo.GreenPoint" 
+										alias="GreenPoint"/>
+		<typeAlias type="com.scsa.model.vo.Store" 
+										alias="Store"/>
+		<typeAlias type="com.scsa.model.vo.RecycleBox" 
+										alias="RecycleBox"/>
+		<typeAlias type="com.scsa.model.vo.Walk" 
+										alias="Walk"/>
+		<typeAlias type="com.scsa.model.vo.Disposable" 
+										alias="Disposable"/>
+		<typeAlias type="com.scsa.model.vo.Product" 
+										alias="Product"/>								
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mapper/User.xml"/>
+		<mapper resource="mapper/GreenPoint.xml"/>
+		<mapper resource="mapper/Store.xml"/>
+		<mapper resource="mapper/RecycleBox.xml"/>
+		<mapper resource="mapper/Walk.xml"/>
+		<mapper resource="mapper/Disposable.xml"/>
+		<mapper resource="mapper/Product.xml"/>
+	</mappers>
+	
+</configuration>
