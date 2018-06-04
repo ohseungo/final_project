@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="./login.do" style="width:500px; margin:0 auto 0 auto;">
+	<form method="post" action="./login1.do" style="width:500px; margin:0 auto 0 auto;">
 		<table border="1" id=totaltable style="background-color: LightGray; width:300px">
 			<tr>
 				<td align="center" colspan="2"

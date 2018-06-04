@@ -50,7 +50,7 @@ public class UserController {
 	
 	*/
 	
-	@RequestMapping(method=RequestMethod.POST, value="/login.do")
+	@RequestMapping(method=RequestMethod.POST, value="/login1.do")
 	public String loginUser(@RequestParam String userId, String password
 			,HttpSession session) {
 		User user = userService.searchUser(userId);
