@@ -48,7 +48,6 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(IntroActivity.this, IntroLoginActivity.class);
-                sessionManager.setFirstOn();
                 startActivity(intent);
                 finish();
                 return;

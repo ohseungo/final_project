@@ -16,9 +16,12 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import info.addon.SessionManager;
 import info.app.AppConfig;
 import info.app.AppController;
 
@@ -32,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText phoneEt;
     private EditText carEt;
 
+    private SessionManager mSessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         nameEt = findViewById(R.id.register_name_edit);
         phoneEt = findViewById(R.id.register_phone_edit);
         carEt = findViewById(R.id.register_car_edit);
+        mSessionManager = new SessionManager(this);
     }
 
 
@@ -94,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                         //가입 성공시
                         if (response.equals("true")){
                              Toast.makeText(getApplicationContext(), "가입되셨습니다!", Toast.LENGTH_SHORT).show();
+                             mSessionManager.setLogin(true, userId);
                             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
@@ -113,12 +119,16 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> user = new HashMap<>();
+                try {
                 user.put("userId", userId);
                 user.put("password", password);
                 user.put("userEmail", userEmail);
-                user.put("userName", userName);
+                user.put("userName", URLEncoder.encode(userName,"UTF-8"));
                 user.put("userPhone", userPhone);
                 user.put("userCar", userCar);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 return user;
             }
         };

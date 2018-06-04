@@ -67,6 +67,6 @@
     <string name="regi_car">If you have a car, input your car Number</string>
     <string name="pointContent">컵 수거 완료 포인트 적립</string>
     <string name="pointDate">2018.05.31</string>
-    <string name="pointWon">50Point</string>
+    <string name="pointWon">100Point</string>
 
 </resources>

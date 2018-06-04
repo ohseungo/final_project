@@ -35,9 +35,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import info.addon.DayResetManager;
 import info.addon.PointManager;
 import info.addon.SessionManager;
 import info.app.AppConfig;
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
     View tempView;
     NavigationView mNagivationView;
+
 
     TextView userHead;
 
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         //user id 입력하는 곳 = nav_header_userId
 
+        DayResetManager.setDayResetAlarm(this);
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -157,7 +162,11 @@ public class MainActivity extends AppCompatActivity {
                             transaction.commit();
                             return;
                         }else if(tabId==R.id.tab_main){
+                            /*PointManager.addPointData(sessionManager.getUserId(), 100,
+                                    2, "테스트", MainActivity.this);
+                            Toast.makeText(MainActivity.this, "포인트 추가", Toast.LENGTH_SHORT).show();*/
                             transaction.replace(R.id.contentContainer, mHomeFragment);
+
                             transaction.commit();
                             return;
                         }else if (tabId== R.id.tab_green_market) {
@@ -173,12 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent1 = new Intent(this, BeaconListenerService.class);
         startService(intent1);
-        if (!sessionManager.isDayChecked(AppConfig.DISTANCE_CHECK_ID)) {
-            Intent intent2 = new Intent(this, DistanceListenerService.class);
-            startService(intent2);
-            sessionManager.setDayChecked(AppConfig.DISTANCE_CHECK_ID, true);
-            Toast.makeText(MainActivity.this, "시작", Toast.LENGTH_SHORT).show();
-        }
+
 
         tempView = mNagivationView.getHeaderView(0);
         userHead = tempView.findViewById(R.id.nav_header_userId);
@@ -192,9 +196,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         //////////////성공//////////////////////
                         try {
-                            userHead.setText(new JSONObject(response).getString("userId") + " 님 안녕하세요");
+                            userHead.setText(URLDecoder.decode(new JSONObject(response).getString("userName")
+                            , "UTF-8")+ " 님 안녕하세요");
                             return;
                         } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
                     }
@@ -250,11 +257,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(getIntent().getAction() == "NOTIFICATION"){
+        if(getIntent().getAction() == "NOTIFICATION"){ //알림 타고 들어왔을 경우
             transaction=getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.contentContainer, new MapsFragment()).commit();
             return;
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent distanceListenerIntent = new Intent(this, DistanceListenerService.class);
+        startService(distanceListenerIntent);
+        Toast.makeText(MainActivity.this, "리스너 시작", Toast.LENGTH_SHORT).show();
+
+
     }
 }
 

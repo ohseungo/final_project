@@ -10,7 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
@@ -19,8 +25,21 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import info.addon.SessionManager;
+import info.app.AppConfig;
+import info.app.AppController;
 
 
 /**
@@ -38,6 +57,8 @@ public class PointFragment extends Fragment {
     android.widget.ListView mListView=null;
     ListViewAdapter mAdapter=null;
 
+
+    SessionManager mSessionManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,6 +77,8 @@ public class PointFragment extends Fragment {
         pieChart.setHoleColor(Color.WHITE);
         pieChart.setTransparentCircleRadius(61f);
 
+        mSessionManager = new SessionManager(getActivity());
+
         ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
 /////////////////////////////////
         yValues.add(new PieEntry(34f,"컵수거"));
@@ -64,6 +87,7 @@ public class PointFragment extends Fragment {
         yValues.add(new PieEntry(35f,"그린영상"));
         yValues.add(new PieEntry(40f,"텀블러"));
 
+        //////////////////////////////////
 
         com.github.mikephil.charting.components.Legend l = pieChart.getLegend();
         l.setVerticalAlignment(com.github.mikephil.charting.components.Legend.LegendVerticalAlignment.TOP);
@@ -92,26 +116,82 @@ public class PointFragment extends Fragment {
         data.setValueTextColor(Color.BLACK);
 
         pieChart.setData(data);
-
+/////////////////////////////////////////
         //list view 관련
         mListView=layout.findViewById(R.id.mList);
         mAdapter=new ListViewAdapter(getActivity());
         mListView.setAdapter(mAdapter);
 ////////////////////////////////////////////////////////////////////////////
         //list view 아이템 추가는 이곳에서
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        getPointList(mSessionManager.getUserId());
 
+
+        //mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+     /*   mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
+*/
 
 
         return layout;
+    }
+
+    private List<JSONObject> mPointList;
+    private void getPointList(final String userId) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject object;
+
+
+                            for (int i =0; i<jsonArray.length(); i++) {
+                                object = jsonArray.getJSONObject(i);
+                                try {
+                                    mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),
+                                            URLDecoder.decode(object.getString("greenPointContent"),"UTF-8") ,
+                                            object.getString("greenPointDate") ,
+                                            object.getString("greenPointValue") + " point");
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            mAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", userId);
+                return params;
+            }
+
+
+        };
+
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+
     }
 
     private class ViewHolder{
@@ -174,7 +254,7 @@ public class PointFragment extends Fragment {
         }
         holder.mText.setText(mData.mTilte);
         holder.mDate.setText(mData.mDate);
-        holder.mDate.setText(mData.mDate);
+        holder.mPoint.setText(mData.mPoint);
 
         return convertView;
     }

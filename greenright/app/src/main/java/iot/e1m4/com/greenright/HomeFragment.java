@@ -9,11 +9,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import info.addon.SessionManager;
+import info.app.AppConfig;
+import info.app.AppController;
 
 
 /**
@@ -25,7 +39,8 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
         // Required empty public constructor
     }
-
+    TextView mTotalPoint;
+    SessionManager sessionManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,8 +62,42 @@ public class HomeFragment extends Fragment {
         } catch (WriterException e) {
             e.printStackTrace();
         }
+        sessionManager = new SessionManager(getActivity());
 
+        mTotalPoint = layout.findViewById(R.id.pointTv);
+        getTotalPoint(sessionManager.getUserId());
+        
         return layout;
     }
+
+    private void getTotalPoint(final String userId) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.TOTAL_POINT,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response ==null || response.equals("")) response = "0";
+                        mTotalPoint.setText("P " + response);
+                        return;
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", userId);
+                return params;
+            }
+        };
+
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+    }
+
 
 }

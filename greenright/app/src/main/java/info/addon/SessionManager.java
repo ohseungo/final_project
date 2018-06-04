@@ -28,12 +28,11 @@ public class SessionManager {
 
     // Shared preferences file name
     private static final String PREF = "greenRight";
-
     private static final String KEY_LOGGEDIN = "isLoggedIn";
-
     private static final String KEY_USERID = "userId";
-
     private static final String KEY_SHOWN = "firstOn";
+
+    private static final String KEY_ALARM_BASE_REQUEST_CODE = "base_request";
 
     public SessionManager(Context context) {
         this._context = context;
@@ -41,7 +40,9 @@ public class SessionManager {
         editor = pref.edit();
     }
 
-
+    public SharedPreferences getPref() {
+        return pref;
+    }
 
     public void setLogin(boolean isLoggedIn, String userId) {
         if (isLoggedIn) {
@@ -67,11 +68,10 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void setDistanceDayChecked(double distance) {
-        editor.putFloat(AppConfig.DISTANCE_CHECK_DISTANCE, (float) distance);
+    public void setDistanceDayChecked(String userId, double distance) {
+        editor.putFloat(userId+AppConfig.DISTANCE_CHECK_DISTANCE, (float) distance);
         editor.commit();
     }
-
 
 
     public void dayReset(){
@@ -88,6 +88,18 @@ public class SessionManager {
     }
 
 
+    public int getRequestCode(){
+        if (pref.getInt(getUserId(), 0 ) ==0) { //한 아이디에 설정이 안되어있을 경우 부여 한다
+            editor.putInt(getUserId(), pref.getInt(KEY_ALARM_BASE_REQUEST_CODE, 0));
+            editor.putInt(KEY_ALARM_BASE_REQUEST_CODE, pref.getInt(KEY_ALARM_BASE_REQUEST_CODE,1)+1);
+            //값하나씩 부여하면서 +1 저장 (1부터 시작해서 1,2,3....)
+
+        }
+        editor.commit();
+        return pref.getInt(getUserId(), 0);
+
+    }
+
 
     public boolean isLoggedIn(){
         return pref.getBoolean(KEY_LOGGEDIN, false);
@@ -97,5 +109,6 @@ public class SessionManager {
     }
     public boolean isFirstOn() {return pref.getBoolean(KEY_SHOWN, false);}
     public boolean isDayChecked(String id) {return pref.getBoolean(id, false);}
-    public double getDistanceDayChecked() {return (double) pref.getFloat(AppConfig.DISTANCE_CHECK_DISTANCE, 0);}
+    public double getDistanceDayChecked(String userId) {
+        return (double) pref.getFloat(userId + AppConfig.DISTANCE_CHECK_DISTANCE, 0);}
 }

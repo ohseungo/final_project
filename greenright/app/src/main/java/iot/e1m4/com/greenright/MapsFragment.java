@@ -209,7 +209,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
 
     private void viewStoreListMarker() {
-        stringRequest = new StringRequest(Request.Method.GET, AppConfig.URL_STORE_LIST,
+        stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_STORE_LIST,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

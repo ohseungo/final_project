@@ -9,6 +9,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +32,8 @@ public class PointManager {
         return mInstance;
     }
 
-    public static boolean addPointData(final String userId, final int pointValue, final String pointContent, final Context context) {
+    public static boolean addPointData(final String userId, final int pointValue,
+                                       final int pointType, final String pointContent, final Context context) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.ADD_POINT,
                 new Response.Listener<String>() {
                     @Override
@@ -56,7 +59,12 @@ public class PointManager {
                 Map<String, String> params = new HashMap<>();
                 params.put("userId", userId);
                 params.put("greenPointValue", String.valueOf(pointValue));
-                params.put("greenPointContent", pointContent);
+                params.put("greenPointType", String.valueOf(pointType));
+                try {
+                    params.put("greenPointContent", URLEncoder.encode(pointContent, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 return params;
             }
         };

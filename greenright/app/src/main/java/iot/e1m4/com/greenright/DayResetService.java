@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import info.addon.PointManager;
 import info.addon.SessionManager;
 import info.app.AppConfig;
 import info.app.AppController;
@@ -32,25 +33,28 @@ public class DayResetService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         sessionManager = new SessionManager(this);
-        //Toast.makeText(this, sessionManager.getDistanceDayChecked() + " " +sessionManager.getUserId(), Toast.LENGTH_SHORT).show();
 
-        if (sessionManager.getUserId()!= null) {
-            addDistanceData(sessionManager.getUserId(), sessionManager.getDistanceDayChecked());
-        }
+        for(String key: sessionManager.getPref().getAll().keySet()){
+            Toast.makeText(DayResetService.this, key + " " + sessionManager.getPref().getAll().get(key), Toast.LENGTH_SHORT).show();
+            if (key.contains(AppConfig.DISTANCE_CHECK_DISTANCE)) {
+
+                addDistanceData(key.replace(AppConfig.DISTANCE_CHECK_DISTANCE, ""),
+                         sessionManager.getPref().getAll().get(key));
+            }
+            }
         sessionManager.dayReset(); //리셋한다
         stopSelf();
         return super.onStartCommand(intent, flags, startId);
     }
 
     ///거리 데이터 db에 올리기
-    private void addDistanceData(final String userId, final double walkDistance){
+    private void addDistanceData(final String userId, final Object walkDistance){
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.ADD_WALK,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(DayResetService.this, response, Toast.LENGTH_SHORT).show();
-
                     }
                 },
                 new Response.ErrorListener() {

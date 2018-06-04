@@ -11,10 +11,18 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -29,27 +37,32 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import info.addon.SessionManager;
+import info.app.AppConfig;
+import info.app.AppController;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link WalkFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link WalkFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class WalkFragment extends Fragment {
 
     private LineChart lineChart;
+    private SessionManager sessionManager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sessionManager = new SessionManager(getActivity());
 
     }
-
+    private TextView currDis;
+    private TextView goalDis;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,17 +70,61 @@ public class WalkFragment extends Fragment {
 
         View layout=inflater.inflate(R.layout.fragment_walk, container, false);
 
-        lineChart=layout.findViewById(R.id.chart);
+        currDis = layout.findViewById(R.id.currTv);
+        goalDis = layout.findViewById(R.id.goalTv);
+        currDis.setText(sessionManager.getDistanceDayChecked(sessionManager.getUserId()) + "km");
+        goalDis.setText(10 + "km");
+        getLineData(layout, sessionManager.getUserId());
 
+
+        return layout;
+    }
+
+    private void getLineData(final View layout, final String userId) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_WALK,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        getLineChart(response, layout);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", userId);
+                return params;
+            }
+        };
+
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+    }
+
+
+    private void getLineChart(String response, View layout) {
+
+        lineChart=layout.findViewById(R.id.chart);
         //데이터 넣기 걷기..데이터
         List<Entry> entries=new ArrayList<>();
-        entries.add(new Entry(1, 1000));
-        entries.add(new Entry(2, 2500));
-        entries.add(new Entry(3, 1300));
-        entries.add(new Entry(4, 4200));
-        entries.add(new Entry(5, 7500));
+        try {
+            JSONArray jArray = new JSONArray(response);
+            for (int i =0; i<jArray.length(); i++){
+                entries.add(new Entry(i+1, (float) jArray.getJSONObject(i).getDouble("walkDistance")));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        LineDataSet lineDataSet=new LineDataSet(entries,"걸음 수");
+
+        LineDataSet lineDataSet=new LineDataSet(entries,"이동거리");
         lineDataSet.setLineWidth(2);
         lineDataSet.setCircleRadius(6);
         lineDataSet.setCircleColor(Color.parseColor("#FFfcd868"));
@@ -92,7 +149,7 @@ public class WalkFragment extends Fragment {
         yLAxis.setTextColor(Color.BLACK);
 
         yLAxis.setAxisMinimum(0);
-        yLAxis.setAxisMaximum(10000);
+        yLAxis.setAxisMaximum(200);
         YAxis yRAxis = lineChart.getAxisRight();
         yRAxis.setDrawLabels(false);
         yRAxis.setDrawAxisLine(false);
@@ -100,9 +157,47 @@ public class WalkFragment extends Fragment {
 
         lineChart.setDoubleTapToZoomEnabled(false);
         lineChart.setDrawGridBackground(false);
-        lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
+        lineChart.animateY(40, Easing.EasingOption.EaseInCubic);
         lineChart.invalidate();
-        return layout;
+    }
+
+    private List<Entry> getLineList(final String userId){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject object;
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", userId);
+                return params;
+            }
+
+
+        };
+
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+        return null;
     }
 
 

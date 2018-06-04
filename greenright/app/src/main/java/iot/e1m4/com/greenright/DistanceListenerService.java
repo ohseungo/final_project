@@ -1,6 +1,9 @@
 package iot.e1m4.com.greenright;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -11,26 +14,31 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
+import info.addon.PointManager;
 import info.addon.SessionManager;
-import info.app.AppConfig;
 
 public class DistanceListenerService extends Service {
-    public DistanceListenerService() {
-    }
-
-
-
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    private LocationManager lm;
-    private LocationListener ll;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+    }
+
+    private LocationManager mLocationManager;
+    private LocationListener mLocationListner;
     private SessionManager sessionManager;
+
+    private NotificationManager mNotificationManager;
+    private Notification mNotification;
 
     double mySpeed, maxSpeed;
     Location prevLoc;
@@ -40,18 +48,22 @@ public class DistanceListenerService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         sessionManager = new SessionManager(this);
         maxSpeed = mySpeed = 0;
-        totalDis = sessionManager.getDistanceDayChecked();
+        totalDis = sessionManager.getDistanceDayChecked(sessionManager.getUserId());
 
-        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        ll = new SpeedoActionListener();
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        mLocationListner = new SpeedoActionListener();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(DistanceListenerService.this, "안됨", Toast.LENGTH_SHORT).show();
+            //permission 없음
         }else {
-            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ll);
-            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, ll);
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListner);
+            mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListner);
         }
         return super.onStartCommand(intent, flags, startId);
     }
+
+
+
 
     private class SpeedoActionListener implements LocationListener {
 
@@ -66,14 +78,20 @@ public class DistanceListenerService extends Service {
                     currDis =prevLoc.distanceTo(location);
                 }
                 prevLoc = location;
-            totalDis+=currDis;
-            sessionManager.setDistanceDayChecked(totalDis);
+                totalDis+=currDis;
+
+                if (totalDis >= 500 ) { ///////////일정 거리 이상이면 포인트 갱신
+                    PointManager.addPointData(sessionManager.getUserId(), 10,
+                        2, "500미터 달성", DistanceListenerService.this);
+                    mNotification = buildNotification("걷기 달성!", "500m 걸었어요! 야호!");
+                }
+                sessionManager.setDistanceDayChecked(sessionManager.getUserId(), totalDis);
             }else {
+                //문제 발생
                 Toast.makeText(DistanceListenerService.this, "location null", Toast.LENGTH_SHORT).show();
             }
-            //Toast.makeText(DistanceListenerService.this, "현재 속도 " + mySpeed
-              //                                          + "이동 거리 " + totalDis, Toast.LENGTH_SHORT).show();
         }
+
 
         @Override
         public void onProviderDisabled(String provider) {
@@ -92,7 +110,22 @@ public class DistanceListenerService extends Service {
             // TODO Auto-generated method stub
 
         }
-    }
 
+        private Notification buildNotification(String title, String text) {
+            Notification notification = new NotificationCompat.Builder(getApplicationContext())
+                    .setSmallIcon(android.R.drawable.ic_dialog_info)
+                    .setContentTitle(title)
+                    .setContentText(text)
+                    .setContentIntent(PendingIntent.getActivity( DistanceListenerService.this, 0,
+                            new Intent( DistanceListenerService.this, MainActivity.class).
+                                    addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                                    .setAction("NOTIFICATION"),
+                            PendingIntent.FLAG_UPDATE_CURRENT))
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setAutoCancel(true)
+                    .build();
 
+            return notification;
+        }
+    }//locationlistner end
 }
