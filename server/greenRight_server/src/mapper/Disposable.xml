@@ -3,5 +3,21 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="disposable">
-	
+	<insert id="insertDisposable" parameterType="Disposable">
+	insert into DISPOSABLE (DISPID, DISPTYPE, DISPVALUE, DISPCOLLECTED, COMPID, COMPNAME) 
+	VALUES (#{disdId}, #{dispType}, #{dispValue}, #{dispCollected}, #{compId}, #{compName})
+	</insert>
+	<select id="selectDisposable" parameterType="String" resultType="Disposable">
+		select DISPID, DISPTYPE, DISPVALUE, DISPCOLLECTED, COMPID, COMPNAME
+		from DISPOSABLE
+		where DISPID = #{id}
+	</select>
+	<select id="selectDisposableList" resultType="Disposable">
+		select DISPID, DISPTYPE, DISPVALUE, DISPCOLLECTED, COMPID, COMPNAME
+		from DISPOSABLE
+	</select>
+	<delete id="deleteDisposable" parameterType="String">
+		delete from DISPOSABLE
+		where DISPID = #{id}
+	</delete>
 </mapper>

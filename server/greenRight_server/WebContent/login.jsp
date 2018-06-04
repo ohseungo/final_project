@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
@@ -11,20 +11,20 @@
 		<table border="1" id=totaltable style="background-color: LightGray; width:300px">
 			<tr>
 				<td align="center" colspan="2"
-					style="background-color: MediumSeaGreen">ë¡œê·¸ì¸</td>
+					style="background-color: MediumSeaGreen">·Î±×ÀÎ</td>
 			</tr>
 			<tr>
-				<td align="right">ì•„ì´ë””</td>
+				<td align="right">¾ÆÀÌµğ</td>
 				<td><input type="text" id="userId" name="userId"></td>
 			</tr>
 			<tr>
-				<td align="right">ë¹„ë°€ë²ˆí˜¸</td>
+				<td align="right">ºñ¹Ğ¹øÈ£</td>
 				<td><input type="password" id="password" name="password"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit"
-					name="submit" value="ë¡œê·¸ì¸" id="loginBtn"> <input
-					type="reset" name="reset" value="ì·¨ì†Œ"></td>
+					name="submit" value="·Î±×ÀÎ" id="loginBtn"> <input
+					type="reset" name="reset" value="Ãë¼Ò"></td>
 			</tr>
 		</table>
 	</form>
