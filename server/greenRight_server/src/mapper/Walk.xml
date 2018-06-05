@@ -7,6 +7,7 @@
 		select WALKID, USERID, WALKDISTANCE, WALKDATE
 		from WALK
 		where USERID = #{id}
+		and WALKDATE between DATE_SUB(now(), INTERVAL 7 DAY) and now()
 		order by WALKDATE
 	</select>
 	<select id="insertWalk" parameterType="Walk">

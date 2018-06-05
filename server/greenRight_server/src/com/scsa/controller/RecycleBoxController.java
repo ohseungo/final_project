@@ -25,8 +25,8 @@ public class RecycleBoxController {
 	}
 
 
-	public List<RecycleBox> findRecycleBoxListWithCurrentLocation(float latitude, float longitude) {
-		return null;
+	public @ResponseBody List<RecycleBox> findRecycleBoxListWithCurrentLocation(RecycleBox recycleBox) {
+		return recycleBoxService.findRecycleBoxListWithCurrentLocation(recycleBox);
 	}
 	
 	@RequestMapping("/add_box.do")

@@ -12,4 +12,12 @@
 		RECYCLEBOXLONG) 
 	VALUES (#{RECYCLEBOXID}, #{RECYCLEBOXLAT}, #{RECYCLEBOXLONG})
 	</insert>
+	<select id="selectRecycleBoxWithCurrLocation" resultType="RecycleBox">
+		select RECYCLEBOXID,RECYCLEBOXLAT,RECYCLEBOXLONG
+		from RECYCLEBOX
+		where RECYCLEBOXLAT 
+		between #{RECYCLEBOXLAT}-0.005 and #{RECYCLEBOXLAT}+0.005
+		and RECYCLEBOXLONG
+		between #{RECYCLEBOXLONG}-0.005 and #{RECYCLEBOXLONG}+0.005
+	</select>
 </mapper>

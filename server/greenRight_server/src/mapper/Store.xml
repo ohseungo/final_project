@@ -6,6 +6,5 @@
 	<select id="selectStoreList" resultType="Store">
 		select STOREID,COMPID,STORENAME,STORELAT,STORELONG 
 		from store
-		
 	</select>
 </mapper>

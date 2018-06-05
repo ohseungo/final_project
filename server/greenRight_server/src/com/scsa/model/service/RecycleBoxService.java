@@ -6,6 +6,6 @@ import com.scsa.model.vo.RecycleBox;
 
 public interface RecycleBoxService {
 	List<RecycleBox> findRecycleBoxList();
-	List<RecycleBox> findRecycleBoxListWithCurrentLocation(float latitude, float longitude);
+	List<RecycleBox> findRecycleBoxListWithCurrentLocation(RecycleBox recycleBox);
 	boolean addRecycleBox(RecycleBox recycleBox);
 }

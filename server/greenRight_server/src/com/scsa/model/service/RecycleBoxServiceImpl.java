@@ -19,8 +19,8 @@ public class RecycleBoxServiceImpl implements RecycleBoxService {
 	}
 
 	@Override
-	public List<RecycleBox> findRecycleBoxListWithCurrentLocation(float latitude, float longitude) {
-		return null;
+	public List<RecycleBox> findRecycleBoxListWithCurrentLocation(RecycleBox recycleBox) {
+		return recycleBoxDao.selectRecycleBoxListWithCurrentLocation(recycleBox);
 	}
 
 	@Override

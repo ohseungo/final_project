@@ -29,21 +29,6 @@ public class UserController {
 	}
 	
 	
-/*
-	@RequestMapping("/login.do")
-	public @ResponseBody String login(String userId, String password) {
-		User user = userService.searchUser(userId);
-		if (user!=null && user.getPassword().equals(password)) {
-			if(userId.equals("starbucks") || userId.equals("wcafe")) {
-				return "redirect:/company.jsp";
-			}
-			else if(userId.equals("�ְ�")) {
-				return "redirect:/mall.jsp";
-			}
-		}
-		return "redirect:/login.jsp";
-	}*/
-	
 	@RequestMapping("/find_user.do")
 	public @ResponseBody User login(String userId) {
 		return userService.searchUser(userId);
@@ -69,6 +54,7 @@ public class UserController {
 			return "redirect:/login.jsp";
 		}
 	}
+	
 	
 	@RequestMapping("/logout.do")
 	//아이디나 유저정보 필요없으니까 session만 받으면 됨.

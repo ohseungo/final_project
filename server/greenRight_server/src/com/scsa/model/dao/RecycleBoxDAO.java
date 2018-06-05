@@ -6,7 +6,7 @@ import com.scsa.model.vo.RecycleBox;
 
 public interface RecycleBoxDAO {
 	List<RecycleBox> selectRecycleBoxList();
-	List<RecycleBox> selectRecycleBoxListWithCurrentLocation(float latitude, float longitude);
+	List<RecycleBox> selectRecycleBoxListWithCurrentLocation(RecycleBox recycleBox);
 	boolean insertRecycleBox(RecycleBox recycleBox);
 
 }

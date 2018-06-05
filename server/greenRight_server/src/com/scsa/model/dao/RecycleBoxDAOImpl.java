@@ -21,8 +21,8 @@ public class RecycleBoxDAOImpl implements RecycleBoxDAO {
 	}
 
 	@Override
-	public List<RecycleBox> selectRecycleBoxListWithCurrentLocation(float latitude, float longitude) {
-		return null;
+	public List<RecycleBox> selectRecycleBoxListWithCurrentLocation(RecycleBox recycleBox) {
+		return sqlSession.selectList("recycleBox.selectRecycleBoxWithCurrLocation");
 	}
 
 

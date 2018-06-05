@@ -47,4 +47,19 @@
 	<bean id="walkSerivce" class="com.scsa.model.service.WalkServiceImpl"
 		p:stepDao-ref="walkDao"/>
 		
+	<bean id="productDao" class="com.scsa.model.dao.ProductDAOImpl"
+		p:sqlSession-ref="sqlSession"/>
+	<bean id="productService" class="com.scsa.model.service.ProductServiceImpl"
+		p:productDao-ref="productDao"/>
+	
+	<bean id="disposableDao" class="com.scsa.model.dao.DisposableDAOImpl"
+		p:sqlSession-ref="sqlSession"/>
+	<bean id="disposableService" class="com.scsa.model.service.DisposableServiceImpl"
+		p:disposableDao-ref="disposableDao"/>
+		
+	<bean id="companyDao" class="com.scsa.model.dao.CompanyDAOImpl"
+		p:sqlSession-ref="sqlSession"/>
+	<bean id="companyService" class="com.scsa.model.service.CompanyServiceImpl"
+		p:companyDao-ref="companyService"/>
+		
 </beans>
