@@ -75,5 +75,13 @@
     <string name="company">[RE;CODE]</string>
     <string name="orderTitle">O R D E R</string>
     <string name="orderInfo">주문자 정보</string>
+    <string name="check">주문자 정보와 동일</string>
+    <string name="gpayBtn">Google Pay</string>
+    <string name="kakaopayBtn">Kakao Pay</string>
+    <string name="samsungpayBtn">Samsung Pay</string>
+    <string name="payBtn">결제하기</string>
+    <string name="orderprice">158,000원</string>
+    <string name="deliveryPrice">0원</string>
+    <string name="finalPrice">158,000원</string>
 
 </resources>

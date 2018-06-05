@@ -18,6 +18,9 @@
         <!-- Toolbar Up Button Color -->
         <item name="android:textColorSecondary">@android:color/white</item>
     </style>
+    <style name="spinnerStyle">
+        <item name="android:background">@drawable/spinnerstyle</item>
+    </style>
 
 
 </resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SimplePayFragment"
+    android:weightSum="10">
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9" >
+
+    <RadioButton
+        android:id="@+id/gpaybtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_margin="5dp"
+        android:text="@string/gpayBtn" />
+
+    <RadioButton
+        android:id="@+id/kakaopaybtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_margin="5dp"
+        android:text="@string/kakaopayBtn" />
+
+    <RadioButton
+        android:id="@+id/samsungpaybtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_margin="5dp"
+        android:text="@string/samsungpayBtn" />
+    </RadioGroup>
+</LinearLayout>

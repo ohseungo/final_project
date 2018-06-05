@@ -143,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
                     transaction.commit();
                     return;
                 }else if(tabId==R.id.tab_green_market){
-                    transaction.replace(R.id.contentContainer, mMarketFragment);
+                    //transaction.replace(R.id.contentContainer, mMarketFragment);
+                    transaction.replace(R.id.contentContainer, new OrderFragment());
                     transaction.commit();
                     return;
                 }
