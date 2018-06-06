@@ -14,9 +14,12 @@
 
     <style name="Toolbar" parent="AppTheme">
         <!-- Toolbar Title Color -->
-        <item name="android:textColorPrimary">#f27340</item>
+        <item name="android:textColorPrimary">#86af45</item>
         <!-- Toolbar Up Button Color -->
         <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+    <style name="spinnerStyle">
+        <item name="android:background">@drawable/spinnerstyle</item>
     </style>
 
     <style name="AppTheme.PopUpTheme">

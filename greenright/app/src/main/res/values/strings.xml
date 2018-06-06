@@ -75,5 +75,22 @@
     <string name="company">[RE;CODE]</string>
     <string name="orderTitle">O R D E R</string>
     <string name="orderInfo">주문자 정보</string>
+    <string name="check">주문자 정보와 동일</string>
+    <string name="gpayBtn">Google Pay</string>
+    <string name="kakaopayBtn">Kakao Pay</string>
+    <string name="samsungpayBtn">Samsung Pay</string>
+    <string name="payBtn">결제하기</string>
+    <string name="orderprice">158,000원</string>
+    <string name="deliveryPrice">0원</string>
+    <string name="finalPrice">158,000원</string>
+    <string name="userName">김예솔</string>
+    <string name="pointBtn">보유 포인트</string>
+    <string name="orderBtn">주문현황</string>
+    <string name="updateBtn">내 정보 수정</string>
+    <string name="cancelBtn">회원 탈퇴</string>
+    <string name="mainUser">김예솔</string>
+    <string name="currentPoin">25000</string>
+    <string name="currentPoint">25000</string>
+    <string name="totalCup">13</string>
 
 </resources>

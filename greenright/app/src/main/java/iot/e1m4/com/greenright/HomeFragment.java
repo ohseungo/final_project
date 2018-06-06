@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_home, container, false);
-        QRCodeWriter writer = new QRCodeWriter();
+       /* QRCodeWriter writer = new QRCodeWriter();
         try {
             BitMatrix bitMatrix = writer.encode("yetolkun", BarcodeFormat.QR_CODE,500, 500);
             int width = bitMatrix.getWidth();
