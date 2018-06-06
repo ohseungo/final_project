@@ -107,7 +107,7 @@
                 android:fontFamily="@font/yoon330"
                 android:textSize="20dp" />
             <TextView
-                android:id="@+id/walkTv2"
+                android:id="@+id/currTv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -135,7 +135,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/yoon330"/>
             <TextView
-                android:id="@+id/walkTv4"
+                android:id="@+id/goalTv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
