@@ -85,7 +85,13 @@ public class PointFragment extends Fragment {
         PieDataSet dataSet = new PieDataSet(yValues,"적립 내역");
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
-        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+
+        int[] myColors={R.color.c1,R.color.c2,R.color.c3,R.color.c4,R.color.c5};
+        ArrayList<Integer> colors=new ArrayList<>();
+        for(int c: myColors){
+            colors.add(c);
+        }
+        dataSet.setColors(colors);
 
         PieData data = new PieData((dataSet));
         data.setValueTextSize(10f);

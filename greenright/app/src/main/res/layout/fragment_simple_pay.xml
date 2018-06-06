@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SimplePayFragment"
-    android:weightSum="10">
+    android:weightSum="3">
 
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9" >
+        android:layout_weight="3" >
 
     <RadioButton
         android:id="@+id/gpaybtn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="1"
         android:layout_margin="5dp"
         android:text="@string/gpayBtn" />
 
@@ -25,7 +25,7 @@
         android:id="@+id/kakaopaybtn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="1"
         android:layout_margin="5dp"
         android:text="@string/kakaopayBtn" />
 
@@ -33,7 +33,7 @@
         android:id="@+id/samsungpaybtn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="1"
         android:layout_margin="5dp"
         android:text="@string/samsungpayBtn" />
     </RadioGroup>

@@ -4,31 +4,31 @@
         id="@+id/tab_main"
         icon="@drawable/ic_home"
         title="메인"
-        inActiveColor="#939393"
-        activeColor="#f27340"/>
+        inActiveColor="#313131"
+        activeColor="#86af45"/>
     <tab
         id="@+id/tab_co2"
         icon="@drawable/ic_co2"
         title="탄소줄이기"
         inActiveColor="#313131"
-        activeColor="#f27340"/>
+        activeColor="#86af45"/>
     <tab
         id="@+id/tab_cup"
         icon="@drawable/ic_coffee"
         title="컵수거함"
         inActiveColor="#313131"
-        activeColor="#f27340"/>
+        activeColor="#86af45"/>
     <tab
         id="@+id/tab_barcode"
         icon="@drawable/ic_qr_code"
         title="적립"
         inActiveColor="#313131"
-        activeColor="#f27340"/>
+        activeColor="#86af45"/>
     <tab
         id="@+id/tab_green_market"
         icon="@drawable/ic_shopping_cart"
         title="그린마켓"
         inActiveColor="#313131"
-        activeColor="#f27340"/>
+        activeColor="#86af45"/>
 
 </tabs>

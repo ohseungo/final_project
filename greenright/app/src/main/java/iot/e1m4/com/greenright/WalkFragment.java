@@ -73,8 +73,8 @@ public class WalkFragment extends Fragment {
         LineDataSet lineDataSet=new LineDataSet(entries,"걸음 수");
         lineDataSet.setLineWidth(2);
         lineDataSet.setCircleRadius(6);
-        lineDataSet.setCircleColor(Color.parseColor("#FFfcd868"));
-        lineDataSet.setColor(Color.parseColor("#FFfcd868"));
+        lineDataSet.setCircleColor(Color.parseColor("#86af45"));
+        lineDataSet.setColor(Color.parseColor("#86af45"));
         lineDataSet.setDrawCircleHole(true);
         lineDataSet.setDrawCircles(true);
         lineDataSet.setDrawHorizontalHighlightIndicator(false);

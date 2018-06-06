@@ -57,14 +57,15 @@ public class MarketFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id){
                 Product mData = mAdapter.mListData.get(position);
-                Bundle extras=new Bundle();
+                /*Bundle extras=new Bundle();
                 extras.putString("pname",mData.getpName1());
                 extras.putString("company",mData.getCompany());
                 extras.putString("price",mData.getPrice1());
 
                 Intent intent = new Intent(getActivity(), OrderFragment.class);
                 intent.putExtras(extras);
-                startActivity(intent);
+                startActivity(intent);*/
+                getFragmentManager().beginTransaction().replace(R.id.contentContainer,new OrderFragment()).commit();
 
             }
         });

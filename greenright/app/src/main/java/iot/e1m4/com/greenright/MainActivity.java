@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment mHomeFragment = new HomeFragment();
     SaveFragment mSaveFragment = new SaveFragment();
     MarketFragment mMarketFragment = new MarketFragment();
+    MypageFragment mMypageFragment = new MypageFragment();
 
     private SessionManager sessionManager;
 
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 transaction=getSupportFragmentManager().beginTransaction();
                 switch(id){
                     case R.id.first_navigation_item: //내정보 표시
-                        Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                        transaction.replace(R.id.contentContainer, mMypageFragment).commit();
                         break;
 
                     case R.id.second_navigation_item: //포인트 표시
@@ -143,8 +144,7 @@ public class MainActivity extends AppCompatActivity {
                     transaction.commit();
                     return;
                 }else if(tabId==R.id.tab_green_market){
-                    //transaction.replace(R.id.contentContainer, mMarketFragment);
-                    transaction.replace(R.id.contentContainer, new OrderFragment());
+                    transaction.replace(R.id.contentContainer, mMarketFragment);
                     transaction.commit();
                     return;
                 }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MapsFragment">
+    tools:context=".MapsFragment"
+    android:weightSum="10">
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="173dp"
         android:layout_marginBottom="5dp"
@@ -21,14 +22,13 @@
 
         <Button
             android:id="@+id/storeListViewButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:background="@drawable/rounded_2"
             android:drawablePadding="4dp"
             android:drawableStart="@drawable/ic_search"
             android:padding="2dp"
+            android:fontFamily="@font/nanum"
             android:text="@string/map_update_store"
             android:textColor="#ffffff" />
 
@@ -42,16 +42,14 @@
             android:drawablePadding="4dp"
             android:drawableStart="@drawable/ic_search"
             android:padding="2dp"
+            android:fontFamily="@font/nanum"
             android:text="@string/map_update_cup"
             android:textColor="#ffffff" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="218dp"
-            android:layout_height="48dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="15dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:text="내 주변 제휴 매장 찾기"
             android:textSize="20dp"
@@ -59,11 +57,8 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="218dp"
-            android:layout_height="48dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="47dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:text="내 주변 컵 수거함 찾기"
             android:textSize="20dp"
@@ -91,6 +86,94 @@
             android:layout_weight="20" />
     </RelativeLayout>
 
+-->
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:background="#ffffff"
+        android:weightSum="2">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="10">
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="내 주변 제휴 매장 찾기"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/storeListViewButton"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_2"
+                android:drawablePadding="1dp"
+                android:drawableStart="@drawable/ic_search"
+                android:padding="2dp"
+                android:fontFamily="@font/nanum"
+                android:text="@string/map_update_store"
+                android:layout_margin="10dp"
+                android:textSize="10sp"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="내 주변 컵 수거함 찾기"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/cupListViewButton"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_1"
+                android:drawablePadding="1dp"
+                android:drawableStart="@drawable/ic_search"
+                android:padding="2dp"
+                android:fontFamily="@font/nanum"
+                android:text="@string/map_update_cup"
+                android:layout_margin="10dp"
+                android:textSize="10sp"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:background="#ffffff">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="20" />
+    </LinearLayout>
+</LinearLayout>

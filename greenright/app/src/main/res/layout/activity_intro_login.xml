@@ -23,7 +23,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="185dp"
-        android:fontFamily="@font/yoon360"
+        android:fontFamily="@font/nanum_bold"
         android:gravity="center"
         android:text="@string/logoTv"
         android:textColor="#ffffff"
@@ -34,7 +34,7 @@
         android:layout_width="306dp"
         android:layout_height="63dp"
         android:layout_centerInParent="true"
-        android:fontFamily="@font/yoon330"
+        android:fontFamily="@font/nanum"
         android:gravity="center"
         android:text="@string/introLogo"
         android:textColor="#ffffff"
@@ -49,7 +49,7 @@
         android:layout_marginBottom="131dp"
         android:background="#ffffff"
         android:onClick="btnRegister"
-
+        android:fontFamily="@font/nanum"
         android:text="@string/registerBtn"
 
         android:textColor="#313131" />
@@ -63,6 +63,7 @@
         android:layout_marginBottom="60dp"
         android:background="#f27340"
         android:onClick="btnLogin"
+        android:fontFamily="@font/nanum"
         android:text="@string/loginBtn"
 
         android:textColor="#ffffff" />
