@@ -23,10 +23,11 @@ public class AppConfig {
             "http://192.168.10.41:9090/greenRight_server/view_point.do";
     public static final String VIEW_WALK =
             "http://192.168.10.41:9090/greenRight_server/view_walk.do";
-
+    public static final String VIEW_POINT_BY_TYPE =
+            "http://192.168.10.41:9090/greenRight_server/status_point.do";
 
 
     public static final String DISTANCE_CHECK_DISTANCE = "greenright_distance";
     public static final String TOTAL_POINT = "http://192.168.10.41:9090/greenRight_server/total_point.do";
-    //"http://70.12.109.168:9090/greenRight_server/register_user.do";
+
 }

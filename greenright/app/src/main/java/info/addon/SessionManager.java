@@ -2,31 +2,20 @@ package info.addon;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.MediaCas;
-import android.util.Log;
-import android.widget.Toast;
-
-import org.json.JSONObject;
-
-import java.util.Map;
 
 import info.app.AppConfig;
-import iot.e1m4.com.greenright.MainActivity;
 
 public class SessionManager {
-    // LogCat tag
+
     private static String TAG = SessionManager.class.getSimpleName();
 
-    // Shared Preferences
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
-    Context _context;
+    Context mContext;
 
-    // Shared pref mode
-    int PRIVATE_MODE = 0;
+    private final int PRIVATE_MODE = 0;
 
-    // Shared preferences file name
     private static final String PREF = "greenRight";
     private static final String KEY_LOGGEDIN = "isLoggedIn";
     private static final String KEY_USERID = "userId";
@@ -35,8 +24,8 @@ public class SessionManager {
     private static final String KEY_ALARM_BASE_REQUEST_CODE = "base_request";
 
     public SessionManager(Context context) {
-        this._context = context;
-        pref = _context.getSharedPreferences(PREF, PRIVATE_MODE);
+        this.mContext = context;
+        pref = mContext.getSharedPreferences(PREF, PRIVATE_MODE);
         editor = pref.edit();
     }
 
@@ -52,21 +41,16 @@ public class SessionManager {
             editor.putBoolean(KEY_LOGGEDIN, false);
             editor.putString(KEY_USERID, null);
         }
-        // commit changes
         editor.commit();
-
-        //  Log.d(TAG, "User login session modified!");
     }
-
+    /*
+      설치후 한번 켜지면 무조건 true
+     */
     public void setFirstOn() {
         editor.putBoolean(KEY_SHOWN, true);
         editor.commit();
     }
 
-    public void setDayChecked(String id, boolean check) {
-        editor.putBoolean(id, check);
-        editor.commit();
-    }
 
     public void setDistanceDayChecked(String userId, double distance) {
         editor.putFloat(userId+AppConfig.DISTANCE_CHECK_DISTANCE, (float) distance);
@@ -101,6 +85,10 @@ public class SessionManager {
     }
 
 
+    public void setBeaconChecked(String beaconKey) {
+        editor.putBoolean(beaconKey, true).commit();
+    }
+
     public boolean isLoggedIn(){
         return pref.getBoolean(KEY_LOGGEDIN, false);
     }
@@ -108,7 +96,9 @@ public class SessionManager {
         return pref.getString(KEY_USERID, null);
     }
     public boolean isFirstOn() {return pref.getBoolean(KEY_SHOWN, false);}
-    public boolean isDayChecked(String id) {return pref.getBoolean(id, false);}
     public double getDistanceDayChecked(String userId) {
-        return (double) pref.getFloat(userId + AppConfig.DISTANCE_CHECK_DISTANCE, 0);}
+        double result = (int) (pref.getFloat(userId + AppConfig.DISTANCE_CHECK_DISTANCE, 0)/100);
+        return result/10;
+    }
+    public boolean isBeaconChecked(String beaconKey) {return pref.getBoolean(beaconKey, false);}
 }

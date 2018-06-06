@@ -41,7 +41,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import info.addon.DayResetManager;
-import info.addon.PointManager;
 import info.addon.SessionManager;
 import info.app.AppConfig;
 import info.app.AppController;
@@ -174,9 +173,14 @@ public class MainActivity extends AppCompatActivity {
                             /*PointManager.addPointData(sessionManager.getUserId(), 100,
                                     2, "테스트", MainActivity.this);
                             Toast.makeText(MainActivity.this, "포인트 추가", Toast.LENGTH_SHORT).show();*/
-                            transaction.replace(R.id.contentContainer, mHomeFragment);
-
-                            transaction.commit();
+/*
+                            Intent intent = new Intent(MainActivity.this,DayResetService.class);
+                            startService(intent);
+*/
+                            Intent intent = new Intent(MainActivity.this, PopUpVideo.class);
+                            startActivity(intent);
+                            //transaction.replace(R.id.contentContainer, mHomeFragment);
+                            //transaction.commit();
                             return;
                         }else if (tabId== R.id.tab_green_market) {
                             /////////테스트////////////////
@@ -266,10 +270,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(getIntent().getAction() == "NOTIFICATION"){ //알림 타고 들어왔을 경우
-            transaction=getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.contentContainer, new MapsFragment()).commit();
-            return;
+        if(getIntent().getAction()!= null){
+            if(getIntent().getAction().equals(BeaconListenerService.NOTIFICATION_ID)) { //알림 타고 들어왔을 경우
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.contentContainer, new PointFragment()).commit();
+                return;
+            }
+            if(getIntent().getAction().equals(BeaconListenerService.NOTIFICATION_ID_VIDEO)) { //비디오 알림 타고 들어왔을 경우
+                Intent intent = new Intent(MainActivity.this, PopUpVideo.class);
+                startActivity(intent);
+                return;
+            }
+
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if(getIntent().getAction()!= null){
+            if(getIntent().getAction().equals(BeaconListenerService.NOTIFICATION_ID)) { //알림 타고 들어왔을 경우
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.contentContainer, new PointFragment()).commit();
+                return;
+            }
+            if(getIntent().getAction().equals(BeaconListenerService.NOTIFICATION_ID_VIDEO)) { //비디오 알림 타고 들어왔을 경우
+                Intent intent2 = new Intent(MainActivity.this, PopUpVideo.class);
+                startActivity(intent2);
+                return;
+            }
+
         }
     }
 
@@ -278,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         Intent distanceListenerIntent = new Intent(this, DistanceListenerService.class);
         startService(distanceListenerIntent);
-        Toast.makeText(MainActivity.this, "리스너 시작", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "거리 리스너 시작", Toast.LENGTH_SHORT).show();
 
 
     }

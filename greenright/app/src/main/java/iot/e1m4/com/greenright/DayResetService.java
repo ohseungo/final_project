@@ -29,11 +29,14 @@ public class DayResetService extends Service {
     public IBinder onBind(Intent intent) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
     private SessionManager sessionManager;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         sessionManager = new SessionManager(this);
-
+        /*
+         이미 거리 저장된 아이디 전부 저장
+         */
         for(String key: sessionManager.getPref().getAll().keySet()){
             Toast.makeText(DayResetService.this, key + " " + sessionManager.getPref().getAll().get(key), Toast.LENGTH_SHORT).show();
             if (key.contains(AppConfig.DISTANCE_CHECK_DISTANCE)) {
@@ -42,9 +45,11 @@ public class DayResetService extends Service {
                          sessionManager.getPref().getAll().get(key));
             }
             }
+
         sessionManager.dayReset(); //리셋한다
         stopSelf();
         return super.onStartCommand(intent, flags, startId);
+
     }
 
     ///거리 데이터 db에 올리기
@@ -75,6 +80,7 @@ public class DayResetService extends Service {
 
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
+
     }
 
 }

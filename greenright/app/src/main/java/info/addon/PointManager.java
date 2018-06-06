@@ -1,6 +1,7 @@
 package info.addon;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -18,10 +19,8 @@ import info.app.AppConfig;
 import info.app.AppController;
 
 public class PointManager {
-    private static String TAG = PointManager.class.getSimpleName();
 
-    private PointManager() {
-    }
+    private static String TAG = PointManager.class.getSimpleName();
 
     private static PointManager mInstance;
 
@@ -39,9 +38,9 @@ public class PointManager {
                     @Override
                     public void onResponse(String response) {
                         if (response.equals("true")){
-                            Toast.makeText(context, "성공", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "포인트 성공", Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(context, "실패", Toast.LENGTH_SHORT).show();
+                            Log.e(TAG,"포인트 이력 추가 실패" );
                         }
                         return;
                     }
@@ -50,17 +49,17 @@ public class PointManager {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         ///////////////////실패/////////////////////////////////
-                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG,"포인트 이력 추가 실패" );
 
                     }
                 }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("userId", userId);
-                params.put("greenPointValue", String.valueOf(pointValue));
-                params.put("greenPointType", String.valueOf(pointType));
                 try {
+                     params.put("userId", userId);
+                     params.put("greenPointValue", String.valueOf(pointValue));
+                     params.put("greenPointType", String.valueOf(pointType));
                     params.put("greenPointContent", URLEncoder.encode(pointContent, "UTF-8"));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();

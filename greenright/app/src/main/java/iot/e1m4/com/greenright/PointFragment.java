@@ -79,43 +79,8 @@ public class PointFragment extends Fragment {
 
         mSessionManager = new SessionManager(getActivity());
 
-        ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
-/////////////////////////////////
-        yValues.add(new PieEntry(34f,"컵수거"));
-        yValues.add(new PieEntry(23f,"걷기"));
-        yValues.add(new PieEntry(14f,"대중교통"));
-        yValues.add(new PieEntry(35f,"그린영상"));
-        yValues.add(new PieEntry(40f,"텀블러"));
+        makePieEntry(mSessionManager.getUserId());
 
-        //////////////////////////////////
-
-        com.github.mikephil.charting.components.Legend l = pieChart.getLegend();
-        l.setVerticalAlignment(com.github.mikephil.charting.components.Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(com.github.mikephil.charting.components.Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(com.github.mikephil.charting.components.Legend.LegendOrientation.VERTICAL);
-        l.setDrawInside(false);
-        l.setXEntrySpace(7f);
-        l.setYEntrySpace(0f);
-        l.setYOffset(0f);
-
-        // entry label styling
-        pieChart.setEntryLabelColor(Color.WHITE);
-
-        pieChart.setEntryLabelTextSize(12f);
-
-
-        pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic); //애니메이션
-
-        PieDataSet dataSet = new PieDataSet(yValues,"적립 내역");
-        dataSet.setSliceSpace(3f);
-        dataSet.setSelectionShift(5f);
-        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-
-        PieData data = new PieData((dataSet));
-        data.setValueTextSize(10f);
-        data.setValueTextColor(Color.BLACK);
-
-        pieChart.setData(data);
 /////////////////////////////////////////
         //list view 관련
         mListView=layout.findViewById(R.id.mList);
@@ -126,19 +91,89 @@ public class PointFragment extends Fragment {
         getPointList(mSessionManager.getUserId());
 
 
-        //mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-     /*   mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),"컵 수거함 적립 완료","2018-05-31","50point");
-*/
-
-
         return layout;
+    }
+
+    private void makePieEntry(final String userId) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT_BY_TYPE,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject object;
+                            ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
+
+                            for (int i =0; i<jsonArray.length(); i++) {
+                                object = jsonArray.getJSONObject(i);
+                                yValues.add(new PieEntry(Integer.parseInt(object.getString("greenPointValue")),
+                                        object.getString("greenPointType")));
+                            }
+
+                            com.github.mikephil.charting.components.Legend l = pieChart.getLegend();
+                            l.setVerticalAlignment(com.github.mikephil.charting.components.Legend.LegendVerticalAlignment.TOP);
+                            l.setHorizontalAlignment(com.github.mikephil.charting.components.Legend.LegendHorizontalAlignment.RIGHT);
+                            l.setOrientation(com.github.mikephil.charting.components.Legend.LegendOrientation.VERTICAL);
+                            l.setDrawInside(false);
+                            l.setXEntrySpace(7f);
+                            l.setYEntrySpace(0f);
+                            l.setYOffset(0f);
+
+                            // entry label styling
+                            pieChart.setEntryLabelColor(Color.WHITE);
+
+                            pieChart.setEntryLabelTextSize(12f);
+
+
+                            pieChart.animateY(1000, Easing.EasingOption.EaseInOutCubic); //애니메이션
+
+                            PieDataSet dataSet = new PieDataSet(yValues,"적립 내역");
+                            dataSet.setSliceSpace(3f);
+                            dataSet.setSelectionShift(5f);
+                            dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+
+                            PieData data = new PieData((dataSet));
+                            data.setValueTextSize(10f);
+                            data.setValueTextColor(Color.BLACK);
+
+                            pieChart.setData(data);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getActivity(), "에러!", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "에러어", Toast.LENGTH_SHORT).show();
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", userId);
+                return params;
+            }
+
+
+        };
+
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+        ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
+/////////////////////////////////
+       /* yValues.add(new PieEntry(34f,"컵수거"));
+        yValues.add(new PieEntry(23f,"걷기"));
+        yValues.add(new PieEntry(14f,"대중교통"));
+        yValues.add(new PieEntry(35f,"그린영상"));
+        yValues.add(new PieEntry(40f,"텀블러"));
+*/
+        //////////////////////////////////
+
+
     }
 
     private List<JSONObject> mPointList;

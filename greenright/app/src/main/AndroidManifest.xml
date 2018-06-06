@@ -42,6 +42,9 @@
             android:name=".IntroLoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
+        <activity android:name=".PopUpVideo"
+            android:theme="@style/AppTheme.PopUpTheme" />
+
         <service
             android:name=".BeaconListenerService"
             android:enabled="true"

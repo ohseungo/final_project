@@ -75,7 +75,8 @@ public class WalkFragment extends Fragment {
 
         currDis = layout.findViewById(R.id.currTv);
         goalDis = layout.findViewById(R.id.goalTv);
-        currDis.setText(sessionManager.getDistanceDayChecked(sessionManager.getUserId()) + "km");
+        currDis.setText(  sessionManager.getDistanceDayChecked(sessionManager.getUserId()) +
+                "km");
         goalDis.setText(10 + "km");
         getLineData(layout, sessionManager.getUserId());
 
@@ -113,19 +114,23 @@ public class WalkFragment extends Fragment {
 
 
     private void getLineChart(String response, View layout) {
-
-        lineChart=layout.findViewById(R.id.chart);
-        //데이터 넣기 걷기..데이터
         List<Entry> entries=new ArrayList<>();
-        try {
-            JSONArray jArray = new JSONArray(response);
-            for (int i =0; i<jArray.length(); i++){
-                entries.add(new Entry(i+1, (float) jArray.getJSONObject(i).getDouble("walkDistance")));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        lineChart=layout.findViewById(R.id.chart);
+        if (response.equals("") || response == null || response.equals("[]")) {
+            entries.add(new Entry(6, 0));
         }
-
+        else {
+            try {
+                JSONArray jArray = new JSONArray(response);
+                for (int i = 0; i < jArray.length(); i++) {
+                /*Toast.makeText(getActivity(),(float) jArray.getJSONObject(i).getDouble("walkDistance") + ""
+                        , Toast.LENGTH_SHORT).show();*/
+                    entries.add(new Entry(i + 1, (float) jArray.getJSONObject(i).getDouble("walkDistance")));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
         LineDataSet lineDataSet=new LineDataSet(entries,"이동거리");
         lineDataSet.setLineWidth(2);

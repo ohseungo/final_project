@@ -1,10 +1,16 @@
 package iot.e1m4.com.greenright;
 
 import android.content.Intent;
+import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -15,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -26,7 +33,7 @@ import info.app.AppConfig;
 import info.app.AppController;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    private String TAG = getClass().getSimpleName();
     private EditText idEt;
     private EditText pwEt;
     private EditText pwChEt;
@@ -34,6 +41,10 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText nameEt;
     private EditText phoneEt;
     private EditText carEt;
+
+    private Button regIdCheckBut;
+    private TextView regIdCheck;
+    private boolean idCheck = false;
 
     private SessionManager mSessionManager;
 
@@ -49,9 +60,69 @@ public class RegisterActivity extends AppCompatActivity {
         nameEt = findViewById(R.id.register_name_edit);
         phoneEt = findViewById(R.id.register_phone_edit);
         carEt = findViewById(R.id.register_car_edit);
+
+        regIdCheckBut = findViewById(R.id.register_id_check);
+        regIdCheck = findViewById(R.id.ispossible);
+
+        idEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                regIdCheckBut.setEnabled(true);
+                regIdCheck.setText("");
+                idCheck = false;
+                return;
+            }
+        });
+
         mSessionManager = new SessionManager(this);
     }
 
+    public void checkIdDup(View view) {
+        if (idEt.getText().toString().trim().equals("")) {
+            return;
+        }
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                AppConfig.FIND_USER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        if (response.equals("") || response == null) { //없을 경우
+                            regIdCheckBut.setEnabled(false);
+                            regIdCheck.setText("사용 가능");
+                            idCheck = true;
+                            return;
+                        }else {
+                            regIdCheckBut.setEnabled(true);
+                            regIdCheck.setText("사용 불가능");
+                            idCheck = false;
+                            return;
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> user = new HashMap<>();
+                user.put("userId", idEt.getText().toString());
+                return user;
+            }
+        };
+
+        //요청 서버로 보낸다
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+    }
 
     /**
      * 회원가입 버튼 온클릭 이벤트
@@ -67,11 +138,16 @@ public class RegisterActivity extends AppCompatActivity {
         String userPhone = phoneEt.getText().toString().trim();
         String userCar = carEt.getText().toString().trim();
 
+
         if (userId.isEmpty() || password.isEmpty() || passwordCheck.isEmpty() ||
                 userEmail.isEmpty() || userName.isEmpty() || userPhone.isEmpty()) {
             Toast.makeText(getApplicationContext(), "필수 사항을 모두 입력해주세요!", Toast.LENGTH_SHORT).show();
             pwEt.setText("");
             pwChEt.setText("");
+            return;
+        }
+        if (!idCheck) {
+            Toast.makeText(getApplicationContext(), "종복체크를 해주세요", Toast.LENGTH_SHORT).show();
             return;
         }
         if (!password.equals(passwordCheck)) {
@@ -85,6 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
         register(userId, password, userEmail, userName, userPhone, userCar);
         return;
     }
+
 
     /*
     회원가입 구현 메소드
@@ -107,13 +184,12 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "가입 중 문제가 발생하였습니다", Toast.LENGTH_SHORT).show();
                         }
 
-
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //가입실패
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, error.getMessage());
             }
         }) {
             @Override

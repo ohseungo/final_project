@@ -78,13 +78,17 @@ public class DistanceListenerService extends Service {
                     currDis =prevLoc.distanceTo(location);
                 }
                 prevLoc = location;
-                totalDis+=currDis;
+                if (mySpeed>0 && mySpeed <4.5) {
+                    totalDis += currDis;
+                }
 
+/*
                 if (totalDis >= 500 ) { ///////////일정 거리 이상이면 포인트 갱신
                     PointManager.addPointData(sessionManager.getUserId(), 10,
                         2, "500미터 달성", DistanceListenerService.this);
                     mNotification = buildNotification("걷기 달성!", "500m 걸었어요! 야호!");
-                }
+                    mNotification.notify();
+                }*/
                 sessionManager.setDistanceDayChecked(sessionManager.getUserId(), totalDis);
             }else {
                 //문제 발생
@@ -96,13 +100,13 @@ public class DistanceListenerService extends Service {
         @Override
         public void onProviderDisabled(String provider) {
             // TODO Auto-generated method stub
-            Toast.makeText(DistanceListenerService.this, "안됨", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DistanceListenerService.this, "거리 측정 안됨", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onProviderEnabled(String provider) {
             // TODO Auto-generated method stub
-            Toast.makeText(DistanceListenerService.this, "시작", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DistanceListenerService.this, "거리 측정 가능", Toast.LENGTH_SHORT).show();
         }
 
         @Override

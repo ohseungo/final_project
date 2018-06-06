@@ -29,11 +29,11 @@ public class IntroActivity extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
         if (sessionManager.isFirstOn()) {
             Intent intent=new Intent(IntroActivity.this, IntroLoginActivity.class);
-            sessionManager.setFirstOn();
             startActivity(intent);
             finish();
             return;
         }
+        sessionManager.setFirstOn();
         mPager = (ViewPager) findViewById(R.id.intro_pager);
         mPager.setPageTransformer(true, new DepthPageTransformer());
         mPagerAdapter = new IntroPagerAdapter(getSupportFragmentManager());
