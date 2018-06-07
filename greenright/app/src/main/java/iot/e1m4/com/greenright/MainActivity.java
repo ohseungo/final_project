@@ -178,10 +178,10 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this,DayResetService.class);
                             startService(intent);
 */
-                            Intent intent = new Intent(MainActivity.this, PopUpVideo.class);
-                            startActivity(intent);
-                            //transaction.replace(R.id.contentContainer, mHomeFragment);
-                            //transaction.commit();
+                          /*  Intent intent = new Intent(MainActivity.this, PopUpVideo.class);
+                            startActivity(intent);*/
+                            transaction.replace(R.id.contentContainer, mHomeFragment);
+                            transaction.commit();
                             return;
                         }else if (tabId== R.id.tab_green_market) {
                             /////////테스트////////////////

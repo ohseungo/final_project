@@ -92,5 +92,8 @@
     <string name="currentPoin">25000</string>
     <string name="currentPoint">25000</string>
     <string name="totalCup">13</string>
+    <string name="useTitle">그린 마켓</string>
+    <string name="usePoint">2000</string>
+    <string name="useDay">2018-06-07</string>
 
 </resources>

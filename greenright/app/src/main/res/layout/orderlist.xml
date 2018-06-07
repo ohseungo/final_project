@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:weightSum="4"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5"
+            android:background="#86af45">
+
+            <TextView
+                android:id="@+id/orderDate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:text="2018-05-16"
+                android:paddingStart="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#ffffff"/>
+
+            <TextView
+                android:id="@+id/orderNum"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="20180516-0001938"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:textColor="#ffffff"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/ic_chevron_right"
+                    android:drawablePadding="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="주문상품: "
+                    android:gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/orderItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="점퍼 슬리브 스트라이프 스웻 티셔츠"
+                    android:gravity="center_vertical"/>
+                <TextView
+                    android:id="@+id/orderCnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="(총 1개 품목)"
+                    android:gravity="center_vertical"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="주문금액: "
+                    android:gravity="center_vertical"
+                    android:drawableStart="@drawable/ic_chevron_right"
+                    android:drawablePadding="3dp"
+                    android:layout_marginLeft="5dp"/>
+
+                <TextView
+                    android:id="@+id/orderPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="98000"
+                    android:gravity="center_vertical"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="주문처리상태: "
+                    android:drawableStart="@drawable/ic_chevron_right"
+                    android:drawablePadding="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/orderState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="배송완료"
+                    android:gravity="center_vertical"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
