@@ -11,8 +11,9 @@
 
     <ImageView
         android:id="@+id/qrCode"
-        android:layout_width="214dp"
-        android:layout_height="277dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/ic_qr_code"
+        android:padding="20sp"
         android:layout_gravity="center"/>
 </FrameLayout>

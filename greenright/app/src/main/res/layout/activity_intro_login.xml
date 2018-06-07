@@ -1,72 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/greenmain"
-    tools:context=".IntroLoginActivity">
+    android:orientation="vertical"
+    tools:context=".IntroLoginActivity"
+    android:weightSum="5">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="61dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="110dp"
-        app:srcCompat="@drawable/worldwide" />
-
-    <TextView
-        android:id="@+id/logoTv"
-        android:layout_width="255dp"
-        android:layout_height="73dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="185dp"
-        android:fontFamily="@font/nanum_bold"
-        android:gravity="center"
-        android:text="@string/logoTv"
-        android:textColor="#ffffff"
-        android:textSize="25dp" />
-
-    <TextView
-        android:id="@+id/introLogo"
-        android:layout_width="306dp"
-        android:layout_height="63dp"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/nanum"
-        android:gravity="center"
-        android:text="@string/introLogo"
-        android:textColor="#ffffff"
-        android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/register_btn"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="131dp"
-        android:background="#ffffff"
-        android:onClick="btnRegister"
-        android:fontFamily="@font/nanum"
-        android:text="@string/registerBtn"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:weightSum="4">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"></LinearLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/worldwide" />
+        <TextView
+            android:id="@+id/logoTv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanum_bold"
+            android:gravity="center"
+            android:text="@string/logoTv"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="25dp" />
 
-        android:textColor="#313131" />
+        <TextView
+            android:id="@+id/introLogo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanum"
+            android:gravity="center"
+            android:text="@string/introLogo"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/loginBtn"
+
+
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="60dp"
-        android:background="#f27340"
-        android:onClick="btnLogin"
-        android:fontFamily="@font/nanum"
-        android:text="@string/loginBtn"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
+        android:orientation="vertical"
+        android:weightSum="5">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="vertical"></LinearLayout>
+        <Button
+            android:id="@+id/register_btn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/point_shape4"
+            android:onClick="btnRegister"
+            android:fontFamily="@font/nanum"
+            android:text="@string/registerBtn"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#313131" />
 
-        android:textColor="#ffffff" />
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/point_shape3"
+            android:onClick="btnLogin"
+            android:fontFamily="@font/nanum"
+            android:text="@string/loginBtn"
+            android:textColor="#ffffff" />
 
-
-</RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"></LinearLayout>
+</LinearLayout>

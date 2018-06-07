@@ -195,6 +195,8 @@ public class MainActivity extends AppCompatActivity {
                             startService(intent);
 */
 
+                          /*  Intent intent = new Intent(MainActivity.this, PopUpVideo.class);
+                            startActivity(intent);*/
                             transaction.replace(R.id.contentContainer, mHomeFragment);
                             transaction.commit();
                             return;

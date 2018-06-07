@@ -26,6 +26,7 @@ import java.util.Map;
 import info.addon.SessionManager;
 import info.app.AppConfig;
 import info.app.AppController;
+import android.widget.Button;
 
 
 /**
@@ -82,6 +83,22 @@ public class MainFragment extends Fragment {
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
         return;
+        View layout=inflater.inflate(R.layout.fragment_main, container, false);
+        airBtn=layout.findViewById(R.id.airBtn);
+        airBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String stationName="역삼동";
+                getWeather(stationName);
+
+            }
+        });
+        return layout;
+    }
+
+    public static  void getWeather(String name){
+
+>>>>>>> origin/feature/new_view
     }
 
 }

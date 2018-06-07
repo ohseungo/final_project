@@ -13,17 +13,18 @@
         inActiveColor="#313131"
         activeColor="#86af45"/>
     <tab
-        id="@+id/tab_cup"
-        icon="@drawable/ic_coffee"
-        title="컵수거함"
-        inActiveColor="#313131"
-        activeColor="#86af45"/>
-    <tab
         id="@+id/tab_barcode"
         icon="@drawable/ic_qr_code"
         title="적립"
         inActiveColor="#313131"
         activeColor="#86af45"/>
+    <tab
+        id="@+id/tab_cup"
+        icon="@drawable/ic_coffee"
+        title="컵수거함"
+        inActiveColor="#313131"
+        activeColor="#86af45"/>
+
     <tab
         id="@+id/tab_green_market"
         icon="@drawable/ic_shopping_cart"
