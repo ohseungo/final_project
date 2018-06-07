@@ -19,15 +19,17 @@
 		where USERID = #{id}
 	</select>
 	<select id="selectGreenPointStatuswithUserId" parameterType="GreenPoint" 
-			resultType="String">
-		select sum(GREENPOINTVALUE), GREENPOINTTYPE		
+			resultType="GreenPoint">
+		select sum(GREENPOINTVALUE) GREENPOINTVALUE, GREENPOINTTYPE		
 		from GREENPOINT
 		where USERID = #{id}
 		group by GREENPOINTTYPE
+		having GREENPOINTTYPE in (1,2,3,4)
+		order by GREENPOINTTYPE
 	</select>
 	<select id="selectGreenPointTotalwithUserId" resultType="String" 
 			parameterType="String">
-		select sum(GREENPOINTVALUE)		
+		select sum(GREENPOINTVALUE) GREENPOINTVALUE		
 		from GREENPOINT
 		where USERID = #{id}
 	</select>

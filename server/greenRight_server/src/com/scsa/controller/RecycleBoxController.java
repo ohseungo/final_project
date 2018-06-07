@@ -19,12 +19,12 @@ public class RecycleBoxController {
 		this.recycleBoxService = recycleBoxService;
 	}
 
-	@RequestMapping("/list_box.do")
+	//@RequestMapping("/list_box.do")
 	public @ResponseBody List<RecycleBox> findRecycleBoxList() {
 		return recycleBoxService.findRecycleBoxList();
 	}
 
-
+	@RequestMapping("/list_box.do")
 	public @ResponseBody List<RecycleBox> findRecycleBoxListWithCurrentLocation(RecycleBox recycleBox) {
 		return recycleBoxService.findRecycleBoxListWithCurrentLocation(recycleBox);
 	}

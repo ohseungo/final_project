@@ -60,6 +60,6 @@
 	<bean id="companyDao" class="com.scsa.model.dao.CompanyDAOImpl"
 		p:sqlSession-ref="sqlSession"/>
 	<bean id="companyService" class="com.scsa.model.service.CompanyServiceImpl"
-		p:companyDao-ref="companyService"/>
+		p:companyDao-ref="companyDao"/>
 		
 </beans>

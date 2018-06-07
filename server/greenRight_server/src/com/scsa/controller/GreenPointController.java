@@ -35,7 +35,7 @@ public class GreenPointController {
 	}
 
 	@RequestMapping("/status_point.do")
-	public List<GreenPoint> searchGreenPointStatuswithUserId(String userId) {
+	public @ResponseBody List<GreenPoint> searchGreenPointStatuswithUserId(String userId) {
 		return greenPointService.searchGreenPointStatuswithUserId(userId);
 	}
 	
