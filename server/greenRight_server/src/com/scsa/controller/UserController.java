@@ -42,15 +42,15 @@ public class UserController {
 		User user = userService.searchUser(userId);
 		session.setAttribute("user", user);
 		if (user!=null && user.getPassword().equals(password)) {//로그인에 성공하면
-			if(user.getUserType() == 2) {//상품 판매자 웹페이지로 이동
-				session.setAttribute("userId", userId);
-				session.setAttribute("compId", user.getCompId());
-				return "redirect:/mall.do?compId="+user.getCompId();
-			}
-			else if (user.getUserType() == 1){//업체(컵관련) 웹페이지로 이동
+			if(user.getUserType() == 1) {//상품 판매자 웹페이지로 이동
 				session.setAttribute("userId", userId);
 				session.setAttribute("compId", user.getCompId());
 				return "redirect:/corporate.do?compId="+user.getCompId();
+			}
+			else if (user.getUserType() == 2){//업체(컵관련) 웹페이지로 이동
+				session.setAttribute("userId", userId);
+				session.setAttribute("compId", user.getCompId());
+				return "redirect:/mall.do?compId="+user.getCompId();
 			}
 			else {//0번(일반고객일 경우)
 				return "redirect:/error.jsp";

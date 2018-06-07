@@ -10,6 +10,6 @@ public interface DisposableDAO {
 //	List<Disposable> selectDisposableList();
 //	List<Disposable> selectDisposableListWithCompId();
 	Disposable selectDisposable(String dispId);
-	List<Disposable> selectDisposableList();
+	List<Disposable> selectDisposableList(String compId);
 	boolean deleteDisposable(String dispId);
 }

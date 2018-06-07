@@ -24,13 +24,13 @@ public class DisposableServiceImpl implements DisposableService {
 	}
 
 	@Override
-	public List<Disposable> selectDisposableList() {
-		return disposableDao.selectDisposableList();
+	public boolean deleteDisposable(String dispId) {
+		return disposableDao.deleteDisposable(dispId);
 	}
 
 	@Override
-	public boolean deleteDisposable(String dispId) {
-		return disposableDao.deleteDisposable(dispId);
+	public List<Disposable> selectDisposableList(String compId) {
+		return disposableDao.selectDisposableList(compId);
 	}
 
 }

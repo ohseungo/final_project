@@ -12,7 +12,7 @@
 		from DISPOSABLE
 		where DISPID = #{id}
 	</select>
-	<select id="selectDisposableList" resultType="Disposable">
+	<select id="selectDisposableList" parameterType="String" resultType="Disposable">
 		select DISPID, DISPTYPE, DISPVALUE, DISPCOLLECTED, COMPID, COMPNAME
 		from DISPOSABLE
 	</select>

@@ -34,15 +34,8 @@ public class ProductController {
 	
 	@RequestMapping("/corporate.do")
 	public String selectProductList(Model model, String compId, HttpSession session) {
-		
 		model.addAttribute("productList", productService.selectProductList(compId));
 		return "/corporate.jsp";
-	}
-	
-	@RequestMapping("/mall.do")
-	public String selectProductList2(Model model, String compId) {
-		model.addAttribute("productList", productService.selectProductList(compId));
-		return "/mall.jsp";
 	}
 	
 	@RequestMapping("/delete_product.do")

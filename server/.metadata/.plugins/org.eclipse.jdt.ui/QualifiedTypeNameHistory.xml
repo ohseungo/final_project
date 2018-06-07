@@ -15,4 +15,5 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.scsa.model.dao.DisposableDAO"/>
 <fullyQualifiedTypeName name="com.scsa.model.service.DisposableService"/>
+<fullyQualifiedTypeName name="org.springframework.ui.Model"/>
 </qualifiedTypeNameHistroy>

@@ -2,8 +2,11 @@ package com.scsa.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,14 +35,30 @@ public class DisposableController {
 		return disposableService.selectDisposable(dispId);
 	}
 	
-	@RequestMapping("/view_disposable.do")
-	public @ResponseBody List<Disposable> selectDisposableList() {
-		return disposableService.selectDisposableList();
+	@RequestMapping("/mall.do")
+	public String selectDisposableList(Model model, String compId) {
+		model.addAttribute("disposableList", disposableService.selectDisposableList(compId));
+		return "/mall.jsp";
 	}
 	
+//	@RequestMapping("/delete_disposable.do")
+//	public @ResponseBody boolean deleteDisposable(String dispId) {
+//		
+//		return disposableService.deleteDisposable(dispId);
+//	}
+	
 	@RequestMapping("/delete_disposable.do")
-	public @ResponseBody boolean deleteDisposable(String dispId) {
-		return disposableService.deleteDisposable(dispId);
-	}
+	public  String deleteDisposable(String dispId, HttpSession session) {
+		String result = null;
+		Disposable disposable = disposableService.selectDisposable(dispId);
+		session.setAttribute("disposable", disposable);
+		if(disposableService.deleteDisposable(dispId) == true) {
+			session.setAttribute("compId", disposable.getCompId());
+			result = "redirect:/corporate.do="+disposable.getCompId();
+		}else {
+			result = null;
+		}
+		return result;
+	} 
 	
 }

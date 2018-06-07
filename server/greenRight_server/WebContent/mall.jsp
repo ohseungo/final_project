@@ -8,75 +8,67 @@
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>GreenRight</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FreeHTML5.co" />
 
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
 
-	<!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> -->
-	
-	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/et-line-font.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+  	<link rel="stylesheet" href="css/vegas.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Rajdhani:400,500,700' rel='stylesheet' type='text/css'>
+	<!--Animate.css -->
 	<link rel="stylesheet" href="css/1animate.css">
-	<!-- Icomoon Icon Fonts-->
+	<!--Icomoon Icon Fonts -->
 	<link rel="stylesheet" href="css/1icomoon.css">
-	<!-- Bootstrap  -->
+	<!--Bootstrap  -->
 	<link rel="stylesheet" href="css/1bootstrap.css">
-	<!-- Theme style  -->
+	<!--Theme style --> 
 	<link rel="stylesheet" href="css/1style.css">
-
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
 	
 	<style>
 		body{
-			background-image: url('./images/slide-3.PNG');
-			background-size: 100% 300%;
+			background-image: url('./images/slide-3.jpg');
+			background-size: 100% 120%;
 		}
 	</style>
+	
+	
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	
+ 	<script type="text/javascript">
+ 		
+		function deleteBtn(pId) {
+			if(confirm("정말 삭제하시겠습니까?") == true){
+				document.location.href="./delete_product.do?productId="+pId;
+			}else{
+				return;
+			}
+		}
+	</script> 
 	
 </head>
 	
     
 <body>
+
+
 	<div class="fh5co-loader"></div>
 	<div id="page">
 	<nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="fh5co-top-logo">
-				<div id="fh5co-logo"><a href="index.html">Home</a></div>
+				<div id="fh5co-logo"><a href="redirect:/corporate.do">Home</a></div>
 			</div>
 			<div class="fh5co-top-menu menu-1 text-left">
 				<ul>
-					<li class="has-dropdown">
-						<a href="#">상품관리</a>
- 						<ul class="dropdown">
-							<li><a href="#">Add Product</a></li>
-							<li><a href="#">Edit Product</a></li>
-							<li><a href="#">Delete Product</a></li>
-						</ul> 
-					</li>
-					<li class="has-dropdown">
-						<a href="#">주문관리</a>
-						<ul class="dropdown">
-							<li><a href="#">View Orders</a></li>
-						</ul>
-					</li>
-					
 				</ul>
 			</div>
 			<div class="fh5co-top-social menu-1 text-right">
 				<ul class="fh5co-social">
-					<li><a href="./logout.do">로그아웃</a></li>
+					<li><a href="./logout.do" style="color: black">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>
@@ -84,62 +76,65 @@
       
      <div id="result" ></div>
         <div id="dataDiv">
-        	<table id="dataTable" style="margin-left: auto; margin-right: auto; background: rgba(255,255,255,0.1)" 
+        	<table id="dataTable" style="margin-left: auto; margin-right: auto; background: rgba(255,255,255,0.8)" 
         	border="1px" bordercolor="white" align="center">
         	<br/><br/>
-        	<h3 align="center" style="color: white">판매 상품 목록</h3>
+        	<h3 align="center" style="color: white">일회용품 목록</h3>
         	<thead>
-        		<tr style="color: white;">
-        			<th style="text-align: center">상품번호</th>
-        			<th style="text-align: center">상품명</th>
+        		<tr style="color: black;">
+        			<th style="text-align: center">제품번호</th>
         			<th style="text-align: center">종류</th>
-        			<th style="text-align: center">가격</th>
+        			<th style="text-align: center">입수가능포인트</th>
+        			<th style="text-align: center">제품정보수정</th>
+        			<th style="text-align: center">제품삭제</th>
         		</tr>
         	</thead>  
         	<tbody>
         		<c:if test="${sessionScope.compId != null}">
-					<c:forEach items = "${productList}" var="product">
-						<tr style="color: white; text-align: center;" height="90">
-							<td width="159">${product.productId}</td>
-							<td width="374">${product.productName}</td>
-							<td width="374">${product.productContent}</td>
-							<td width="92">${product.productValue}</td>
+					<c:forEach items = "${disposableList}" var="disposable">
+						<tr id="proId" style="color: black; text-align: center;" height="150">
+							<td width="159">${disposable.dispId}</td>
+							<td width="159">${disposable.dispType}</td>
+							<td width="300">${disposable.dispValue}</td>
+							<td width="100">
+							<input type="button" value="수정">
+							</td>
+							<td width="80">
+							<input type="button" value="삭제" onclick="deleteBtn('${disposable.dispId}');">
+							</td>
 						</tr>
 					</c:forEach>
         		</c:if>
         	</tbody>
         	</table>
+        	<br/>
+        	<div align="right">
+        	<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs" data-wow-delay="0.8s">상품 등록</a>
+        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	</div>
         </div>
-	
 
-
-	<!-- <footer id="fh5co-footer" role="contentinfo">
-		<div class="container">
-			<div class="row copyright">
-				<div class="col-md-12 text-center">
-					<p>
-						<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small> 
-						<small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a> &amp; <a href="http://blog.gessato.com/" target="_blank">Gessato</a></small>
-					</p>
-					
-					<ul class="fh5co-social-icons">
-						<li><a href="#"><i class="icon-twitter"></i></a></li>
-						<li><a href="#"><i class="icon-facebook"></i></a></li>
-						<li><a href="#"><i class="icon-linkedin"></i></a></li>
-						<li><a href="#"><i class="icon-dribbble"></i></a></li>
-					</ul>
-					
-				</div>
-			</div>
-
-		</div>
-	</footer> -->
-	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
 	
+<!-- modal -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content modal-popup">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" style="color: white">상품등록</h2>
+        </div>
+        <form action="./add_product.do" method="post">
+          <input name="productId" type="text" class="form-control" id="productId" placeholder="상품번호를 입력하세요">
+          <input name="productImage" type="text" class="form-control" id="productImage" placeholder="상품이미지를 추가하세요">
+          <input name="productName" type="text" class="form-control" id="productName" placeholder="상품명을 입력하세요">
+          <input name="productContent" type="text" class="form-control" id="productContent" placeholder="상품종류를 입력하세요">
+          <input name="productValue" type="text" class="form-control" id="productValue" placeholder="상품가격을 입력하세요">
+          <input name="submit" type="submit" class="form-control" id="submitBtn" value="추가하기">
+        </form>
+      </div>
+  </div>
+</div>
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
