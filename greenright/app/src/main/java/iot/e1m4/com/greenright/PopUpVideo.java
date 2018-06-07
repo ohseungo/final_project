@@ -1,6 +1,8 @@
 package iot.e1m4.com.greenright;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -21,13 +23,29 @@ public class PopUpVideo extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.popup_view);
 
-  /*      DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("그린 영상을 시청하시겠습니까? \n 영상 시청시 15포인트 적립!")
+                .setCancelable(false)
+                .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        showVideo();
+                        return;
+                    }
+                }).setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                return;
+            }
+        });
 
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
+            AlertDialog dialog = builder.create();
+            dialog.show();
 
-        getWindow().setLayout((int)(width * 0.8), (int) (height * 0.6));*/
+    }
+
+    private void showVideo() {
         sessionManager = new SessionManager(this);
         mVideoView= findViewById(R.id.popUpVideoView);
 

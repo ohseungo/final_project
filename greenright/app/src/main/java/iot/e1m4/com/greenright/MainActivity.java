@@ -1,5 +1,6 @@
 package iot.e1m4.com.greenright;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -94,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         //user id 입력하는 곳 = nav_header_userId
 
         DayResetManager.setDayResetAlarm(this);
-
+        ///알람 시작
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -115,8 +117,22 @@ public class MainActivity extends AppCompatActivity {
                         transaction.replace(R.id.contentContainer, mPointFragment).commit();
                         break;
                     case R.id.third_navigation_item: //로그아웃
-                        //Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
-                        logout();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setMessage("로그아웃하시겠습니까?")
+                                .setCancelable(false)
+                                .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        logout();
+                                        return;
+                                    }
+                                }).setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        }).create().show();
+
                         break;
                 }
 
@@ -178,10 +194,9 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this,DayResetService.class);
                             startService(intent);
 */
-                            Intent intent = new Intent(MainActivity.this, PopUpVideo.class);
-                            startActivity(intent);
-                            //transaction.replace(R.id.contentContainer, mHomeFragment);
-                            //transaction.commit();
+
+                            transaction.replace(R.id.contentContainer, mHomeFragment);
+                            transaction.commit();
                             return;
                         }else if (tabId== R.id.tab_green_market) {
                             /////////테스트////////////////

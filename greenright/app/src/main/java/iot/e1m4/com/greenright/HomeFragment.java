@@ -22,6 +22,11 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +46,7 @@ public class HomeFragment extends Fragment {
     }
     TextView mTotalPoint;
     SessionManager sessionManager;
+    TextView userHead;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,7 +72,9 @@ public class HomeFragment extends Fragment {
 
         mTotalPoint = layout.findViewById(R.id.pointTv);
         getTotalPoint(sessionManager.getUserId());
-        
+        userHead = layout.findViewById(R.id.mainUser);
+        userUpdate();
+
         return layout;
     }
 
@@ -97,6 +105,41 @@ public class HomeFragment extends Fragment {
 
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
+    }
+
+    private void userUpdate() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.FIND_USER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //////////////성공//////////////////////
+                        try {
+                            userHead.setText(URLDecoder.decode(new JSONObject(response).getString("userName")
+                                    , "UTF-8"));
+                            return;
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        ///////////////////실패/////////////////////////////////
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", sessionManager.getUserId());
+                return params;
+            }
+        };
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+        return;
     }
 
 

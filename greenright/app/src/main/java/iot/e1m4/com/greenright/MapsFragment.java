@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -49,6 +50,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import info.app.AppConfig;
 import info.app.AppController;
@@ -201,7 +205,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                 ///리스트 가져오기 실패
                 Toast.makeText(getContext(), "실패", Toast.LENGTH_SHORT).show();
             }
-        });
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, Double> map = new HashMap<>();
+                map.put("recycleBoxLat",mLastKnownLocation.getLatitude());
+                map.put("recycleBoxLong",mLastKnownLocation.getLongitude());
+                return super.getParams();
+            }
+        };
 
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
@@ -236,7 +248,15 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                 ///리스트 가져오기 실패
                 Toast.makeText(getContext(), "실패", Toast.LENGTH_SHORT).show();
             }
-        });
+        })  {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("recycleBoxLat",mLastKnownLocation.getLatitude() + "");
+                map.put("recycleBoxLong",mLastKnownLocation.getLongitude() + "");
+                return map;
+            }
+        };
 
         AppController.getInstance().
                 addToRequestQueue(stringRequest);

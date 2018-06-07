@@ -94,6 +94,8 @@ public class PointFragment extends Fragment {
         return layout;
     }
 
+    private static String[] pointTypeList = {null, "일회용 수거", "도보 이용", "대중교통 이용", "환경 영상 시청"};
+
     private void makePieEntry(final String userId) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT_BY_TYPE,
                 new Response.Listener<String>() {
@@ -107,7 +109,7 @@ public class PointFragment extends Fragment {
                             for (int i =0; i<jsonArray.length(); i++) {
                                 object = jsonArray.getJSONObject(i);
                                 yValues.add(new PieEntry(Integer.parseInt(object.getString("greenPointValue")),
-                                        object.getString("greenPointType")));
+                                        pointTypeList[object.getInt("greenPointType")]));
                             }
 
                             com.github.mikephil.charting.components.Legend l = pieChart.getLegend();
@@ -190,6 +192,7 @@ public class PointFragment extends Fragment {
 
                             for (int i =0; i<jsonArray.length(); i++) {
                                 object = jsonArray.getJSONObject(i);
+                                if (object.getInt("greenPointType") == -1) continue;
                                 try {
                                     mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),
                                             URLDecoder.decode(object.getString("greenPointContent"),"UTF-8") ,

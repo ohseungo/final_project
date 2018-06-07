@@ -14,8 +14,26 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import info.app.AppConfig;
+import info.app.AppController;
 
 
 /**
@@ -43,14 +61,14 @@ public class MarketFragment extends Fragment {
         mListView.setAdapter(mAdapter);
 
         //데이터 입력은 이곳에서~~~~
-
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p1),"체리열매 발아키트","[커피팟]","12,000");
+        marketListUpdate();
+        /*mAdapter.addItem(getResources().getDrawable(R.drawable.p1),"체리열매 발아키트","[커피팟]","12,000");
         mAdapter.addItem(getResources().getDrawable(R.drawable.p2),"토트백","[FREiTAG]","229,000");
         mAdapter.addItem(getResources().getDrawable(R.drawable.p3),"데일리 썸머 파우치 3size","[Dadume]","22,000");
         mAdapter.addItem(getResources().getDrawable(R.drawable.p4),"빈티지 가랜드","[Dadume]","16,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p5),"점퍼 슬리브 스트라이프 스웻 티셔츠","[RE:CODE]","98,000");
+        mAdapter.addItem(getResources().getDrawable(R.drawable.p5),"점퍼 us슬리브 스트라이프 스웻 티셔츠","[RE:CODE]","98,000");
         mAdapter.addItem(getResources().getDrawable(R.drawable.p6),"pet bag 프린트 점퍼 푸푸 가방","[RE:CODE]","49,000");
-
+*/
       //주문 화면으로 이동
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -65,12 +83,47 @@ public class MarketFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), OrderFragment.class);
                 intent.putExtras(extras);
                 startActivity(intent);*/
+                Toast.makeText(getActivity(), mData.getpName1().getBytes() +"", Toast.LENGTH_SHORT).show();
                 getFragmentManager().beginTransaction().replace(R.id.contentContainer,new OrderFragment()).commit();
 
             }
         });
 
         return layout;
+    }
+
+    private void marketListUpdate() {
+        StringRequest  stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_STORE_LIST,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject object;
+                            for (int i =0; i<jsonArray.length(); i++) {
+                                object = jsonArray.getJSONObject(i);
+                                mAdapter.addItem(getResources().getDrawable(R.drawable.p1),
+                                        object.getString("productName"),
+                                        object.getString("compName"),
+                                        object.getString("productValue"));
+                            }
+
+                            mAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getContext(), "오류", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                ///리스트 가져오기 실패
+                Toast.makeText(getContext(), "실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+
     }
 
     public class ViewHolder{
