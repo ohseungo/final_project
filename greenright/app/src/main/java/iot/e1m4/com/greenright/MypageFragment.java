@@ -31,7 +31,6 @@ public class MypageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_mypage, container, false);
         View layout=inflater.inflate(R.layout.fragment_mypage, container, false);
         mPointBtn=layout.findViewById(R.id.pointBtn);
         mPointBtn.setOnClickListener(new View.OnClickListener() {

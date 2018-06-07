@@ -83,7 +83,7 @@ public class MainFragment extends Fragment {
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
         return;
-        View layout=inflater.inflate(R.layout.fragment_main, container, false);
+    /*    View layout=inflater.inflate(R.layout.fragment_main, container, false);
         airBtn=layout.findViewById(R.id.airBtn);
         airBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,12 +93,11 @@ public class MainFragment extends Fragment {
 
             }
         });
-        return layout;
+        return layout;*/
     }
 
     public static  void getWeather(String name){
 
->>>>>>> origin/feature/new_view
     }
 
 }
