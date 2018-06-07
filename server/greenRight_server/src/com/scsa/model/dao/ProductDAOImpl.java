@@ -31,17 +31,17 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	@Override
-	public List<Product> selectProductList() {
-		return sqlSession.selectList("product.selectProductList");
-	}
-	
-	@Override
 	public boolean deleteProduct(String productId) {
 		boolean result = false;
 		if(sqlSession.delete("product.deleteProduct", productId) > 0) {
 			result = true;
 		}
 		return result;
+	}
+
+	@Override
+	public List<Product> selectProductList(String compId) {
+		return sqlSession.selectList("product.selectProductList", compId);
 	}
 	
 }

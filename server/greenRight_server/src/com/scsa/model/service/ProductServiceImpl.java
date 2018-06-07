@@ -23,12 +23,13 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.selectProduct(productId);
 	}
 	
-	public List<Product> selectProductList(){
-		return productDao.selectProductList();
-	}
-	
 	public boolean deleteProduct(String productId) {
 		return productDao.deleteProduct(productId);
+	}
+
+	@Override
+	public List<Product> selectProductList(String compId) {
+		return productDao.selectProductList(compId);
 	}
 	
 }

@@ -9,7 +9,6 @@
 <fullyQualifiedTypeName name="com.scsa.model.dao.ProductDAO"/>
 <fullyQualifiedTypeName name="com.scsa.model.service.ProductService"/>
 <fullyQualifiedTypeName name="com.scsa.model.vo.Product"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.scsa.model.dao.DisposableDAO"/>
 <fullyQualifiedTypeName name="com.scsa.model.service.DisposableService"/>
 <fullyQualifiedTypeName name="com.scsa.model.vo.Company"/>
@@ -19,4 +18,5 @@
 <fullyQualifiedTypeName name="com.scsa.model.service.CompanyService"/>
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

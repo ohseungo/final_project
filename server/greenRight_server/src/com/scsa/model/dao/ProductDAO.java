@@ -10,7 +10,7 @@ public interface ProductDAO {
 
 	Product selectProduct(String productId);
 
-	List<Product> selectProductList();
+	List<Product> selectProductList(String compId);
 
 	boolean deleteProduct(String productId);
 

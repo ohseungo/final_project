@@ -2,19 +2,27 @@ package com.scsa.model.vo;
 
 public class Product {
 	private String productId;
+	private String productImage;
 	private int productValue;
 	private String productName;
-	
 	private String productContent;
-	
 	private String compId;
 
+	
 	public String getProductId() {
 		return productId;
 	}
 
 	public void setProductId(String productId) {
 		this.productId = productId;
+	}
+	
+	public String getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
 	}
 
 	public int getProductValue() {

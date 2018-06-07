@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.scsa.model.service.UserService;
@@ -39,13 +40,17 @@ public class UserController {
 	public String loginUser(@RequestParam String userId, String password
 			,HttpSession session) {
 		User user = userService.searchUser(userId);
+		session.setAttribute("user", user);
 		if (user!=null && user.getPassword().equals(password)) {//로그인에 성공하면
 			if(user.getUserType() == 1) {//상품 판매자 웹페이지로 이동
 				session.setAttribute("userId", userId);
-				return "/WEB-INF/mall/mall.jsp";
+				session.setAttribute("compId", user.getCompId());
+				return "redirect:/mall.do?compId="+user.getCompId();
 			}
 			else if (user.getUserType() == 2){//업체(컵관련) 웹페이지로 이동
-				return "/WEB-INF/corporate/corporate.jsp";
+				session.setAttribute("userId", userId);
+				session.setAttribute("compId", user.getCompId());
+				return "redirect:/corporate.do?compId="+user.getCompId();
 			}
 			else {//0번(일반고객일 경우)
 				return "redirect:/error.jsp";
@@ -62,7 +67,7 @@ public class UserController {
 		//session을 초기화하는놈. id로 로그인이 되어있으니까 걔를 session에서 지워주면 로그아웃하는 기능처럼 됨!
 		session.invalidate();
 		//session 클리어 한 후 다시 로그인페이지로 가라!
-		return "redirect:/login.jsp";
+		return "redirect:/index.jsp";
 	}
 	
 	@RequestMapping("/register_user.do")
