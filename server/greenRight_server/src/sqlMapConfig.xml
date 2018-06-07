@@ -18,7 +18,9 @@
 		<typeAlias type="com.scsa.model.vo.Product" 
 										alias="Product"/>
 		<typeAlias type="com.scsa.model.vo.Company" 
-										alias="Company"/>									
+										alias="Company"/>
+		<typeAlias type="com.scsa.model.vo.Purchase" 
+										alias="Purchase"/>										
 	</typeAliases>
 	
 	<mappers>
@@ -30,6 +32,7 @@
 		<mapper resource="mapper/Disposable.xml"/>
 		<mapper resource="mapper/Product.xml"/>
 		<mapper resource="mapper/Company.xml"/>
+		<mapper resource="mapper/Purchase.xml"/>
 	</mappers>
 	
 </configuration>

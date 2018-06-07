@@ -26,8 +26,7 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:beans.xml</param-value>
   </context-param>
-  
-  
+
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -40,14 +39,5 @@
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>*.do</url-pattern>
   </filter-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ProductController</display-name>
-    <servlet-name>ProductController</servlet-name>
-    <servlet-class>com.scsa.controller.ProductController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProductController</servlet-name>
-    <url-pattern>/Product.do</url-pattern>
-  </servlet-mapping>
+  
 </web-app>

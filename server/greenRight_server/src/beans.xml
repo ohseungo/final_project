@@ -62,6 +62,15 @@
 		p:sqlSession-ref="sqlSession"/>
 	<bean id="companyService" class="com.scsa.model.service.CompanyServiceImpl"
 		p:companyDao-ref="companyDao"/>
-			
+	
+	<bean id="purchaseDao" class="com.scsa.model.dao.PurchaseDAOImpl"
+		p:sqlSession-ref="sqlSession"/>
+	<bean id="purchaseService" class="com.scsa.model.service.PurchaseServiceImpl"
+		p:purchaseDao-ref="purchaseDao"/>
+	
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"/>
+	</bean>
 
 </beans>

@@ -142,10 +142,10 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h2 class="modal-title" style="color: white">상품등록</h2>
-        </div>
-        <form action="./add_product.do" method="post">
+        </div>[]
+        <form action="./add_product.do" method="post" enctype="multipart/form-data">
           <input name="productId" type="text" class="form-control" id="productId" placeholder="상품번호를 입력하세요">
-          <input name="productImage" type="text" class="form-control" id="productImage" placeholder="상품이미지를 추가하세요">
+          <input name="productImage" type="file" class="form-control" id="productImage" placeholder="상품이미지를 추가하세요">
           <input name="productName" type="text" class="form-control" id="productName" placeholder="상품명을 입력하세요">
           <input name="productContent" type="text" class="form-control" id="productContent" placeholder="상품종류를 입력하세요">
           <input name="productValue" type="text" class="form-control" id="productValue" placeholder="상품가격을 입력하세요">

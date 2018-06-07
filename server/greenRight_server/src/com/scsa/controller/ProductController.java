@@ -26,8 +26,13 @@ public class ProductController {
 	
 
 	@RequestMapping("/add_product.do")
-	public @ResponseBody boolean addProduct(Product product) {
-		return productService.addProduct(product);
+	public String addProduct(Product product, HttpSession session) {
+		
+		product.setCompId((String) session.getAttribute("compId"));
+		productService.addProduct(product);
+		System.out.println(product);
+		return "redirect:/corporate.do?compId="+
+				session.getAttribute("compId");
 	}
 	
 
@@ -43,6 +48,12 @@ public class ProductController {
 		return "/corporate.jsp";
 	}
 	
+	@RequestMapping("/list_product.do")
+	public List<Product> selectProductListForAndroid(String compId) {
+		return productService.selectProductList(compId);
+	}
+	
+	
 	@RequestMapping("/delete_product.do")
 	public  String deleteProduct(String productId, HttpSession session) {
 		String result = null;
@@ -50,7 +61,7 @@ public class ProductController {
 		session.setAttribute("product", product);
 		if(productService.deleteProduct(productId) == true) {
 			session.setAttribute("compId", product.getCompId());
-			result = "redirect:/corporate.do="+product.getCompId();
+			result = "redirect:/corporate.do?compId="+product.getCompId();
 		}else {
 			result = null;
 		}

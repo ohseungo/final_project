@@ -1,5 +1,6 @@
 package com.scsa.model.vo;
 
+
 public class Product {
 	private String productId;
 	private String productImage;
@@ -7,6 +8,10 @@ public class Product {
 	private String productName;
 	private String productContent;
 	private String compId;
+	
+	private String compName;
+	
+	
 
 	
 	public String getProductId() {
@@ -55,6 +60,22 @@ public class Product {
 
 	public void setCompId(String compId) {
 		this.compId = compId;
+	}
+
+	
+	
+	public String getCompName() {
+		return compName;
+	}
+
+	public void setCompName(String compName) {
+		this.compName = compName;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productImage=" + productImage + ", productValue=" + productValue
+				+ ", productName=" + productName + ", productContent=" + productContent + ", compId=" + compId + "]";
 	}
 	
 	

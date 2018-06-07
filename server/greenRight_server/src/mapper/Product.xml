@@ -4,18 +4,26 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="product">
 	<insert id="insertProduct" parameterType="Product">
-	insert into PRODUCT (PRODUCTID, PRODUCTIMAGE, PRODUCTVALUE, PRODUCTNAME, PRODUCTCONTENT, COMPID) 
-	VALUES (#{productId}, #{productImage}, #{productValue}, #{productName}, #{productContent}, #{id})
+	insert into PRODUCT (PRODUCTID, PRODUCTIMAGE, PRODUCTVALUE, 
+	PRODUCTNAME, PRODUCTCONTENT, PRODUCTIMAGE, COMPID) 
+	VALUES (#{productId}, #{productImage}, #{productValue}, 
+	#{productName}, #{productContent}, #{productImage}, #{compId})
 	</insert>
 	<select id="selectProduct" parameterType="String" resultType="Product">
-		select PRODUCTID, PRODUCTIMAGE, PRODUCTVALUE, PRODUCTNAME, PRODUCTCONTENT, COMPID
+		select PRODUCTID, PRODUCTIMAGE, PRODUCTVALUE, PRODUCTNAME, 
+		PRODUCTCONTENT, PRODUCTIMAGE, COMPID
 		from PRODUCT
 		where PRODUCTID = #{id}
 	</select>
 	<select id="selectProductList" parameterType="String" resultType="Product">
-		select p.PRODUCTID, p.PRODUCTIMAGE, p.PRODUCTVALUE,p.PRODUCTNAME,p.PRODUCTCONTENT,p.COMPID 
-		from PRODUCT p
-		where p.COMPID = #{id}
+		select p.PRODUCTID, p.PRODUCTIMAGE, p.PRODUCTVALUE,
+			p.PRODUCTNAME,p.PRODUCTCONTENT, p.PRODUCTIMAGE, p.COMPID
+			,c.COMPNAME 
+		from PRODUCT p, COMPANY c
+		where p.COMPID = c.COMPID
+		<if test="id!=null">
+			and p.COMPID = #{id}
+		</if>
 	</select>
 	<delete id="deleteProduct" parameterType="String">
 		delete from PRODUCT
