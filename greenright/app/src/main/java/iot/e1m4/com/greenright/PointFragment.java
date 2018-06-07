@@ -130,7 +130,7 @@ public class PointFragment extends Fragment {
                             PieDataSet dataSet = new PieDataSet(yValues,"적립 내역");
                             dataSet.setSliceSpace(3f);
                             dataSet.setSelectionShift(5f);
-                            dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+                            dataSet.setColors(ColorTemplate.PASTEL_COLORS);
 
                             PieData data = new PieData((dataSet));
                             data.setValueTextSize(10f);
@@ -177,6 +177,7 @@ public class PointFragment extends Fragment {
     }
 
     private List<JSONObject> mPointList;
+    private Drawable img;
     private void getPointList(final String userId) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT,
@@ -191,7 +192,22 @@ public class PointFragment extends Fragment {
                             for (int i =0; i<jsonArray.length(); i++) {
                                 object = jsonArray.getJSONObject(i);
                                 try {
-                                    mAdapter.addItem(getResources().getDrawable(R.drawable.ic_star),
+
+                                    switch(object.getInt("greenPointType")){
+                                        case 1:
+                                            img=getResources().getDrawable(R.drawable.ic_recycle);
+                                        case 2:
+                                            img=getResources().getDrawable(R.drawable.ic_walking);
+                                        case 3:
+                                            img=getResources().getDrawable(R.drawable.ic_bus);
+                                        case 4:
+                                            img=getResources().getDrawable(R.drawable.ic_video);
+                                        case 5:
+                                            img=getResources().getDrawable(R.drawable.ic_tumbler);
+                                            default:
+                                                img=getResources().getDrawable(R.drawable.ic_star);
+                                    }
+                                    mAdapter.addItem(img,
                                             URLDecoder.decode(object.getString("greenPointContent"),"UTF-8") ,
                                             object.getString("greenPointDate") ,
                                             object.getString("greenPointValue") + " point");
