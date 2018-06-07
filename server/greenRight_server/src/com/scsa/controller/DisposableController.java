@@ -22,22 +22,22 @@ public class DisposableController {
 		this.disposableService = disposableService;
 	}
 	
-	@RequestMapping("#")
+	@RequestMapping("/add_disposable.do")
 	public @ResponseBody boolean addDisposable(Disposable disposable) {
 		return disposableService.addDisposable(disposable);
 	}
 	
-	@RequestMapping("#")
+	@RequestMapping("/select_disposable.do")
 	public @ResponseBody Disposable selectDisposable(String dispId) {
 		return disposableService.selectDisposable(dispId);
 	}
 	
-	@RequestMapping("#")
+	@RequestMapping("/view_disposable.do")
 	public @ResponseBody List<Disposable> selectDisposableList() {
 		return disposableService.selectDisposableList();
 	}
 	
-	@RequestMapping("#")
+	@RequestMapping("/delete_disposable.do")
 	public @ResponseBody boolean deleteDisposable(String dispId) {
 		return disposableService.deleteDisposable(dispId);
 	}
