@@ -1,22 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.scsa.model.service.WalkService"/>
-<fullyQualifiedTypeName name="com.scsa.model.vo.Walk"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
-<fullyQualifiedTypeName name="com.scsa.model.vo.RecycleBox"/>
-<fullyQualifiedTypeName name="com.scsa.model.vo.Disposable"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
-<fullyQualifiedTypeName name="com.scsa.model.dao.ProductDAO"/>
-<fullyQualifiedTypeName name="com.scsa.model.service.ProductService"/>
-<fullyQualifiedTypeName name="com.scsa.model.vo.Product"/>
-<fullyQualifiedTypeName name="com.scsa.model.dao.DisposableDAO"/>
-<fullyQualifiedTypeName name="com.scsa.model.service.DisposableService"/>
-<fullyQualifiedTypeName name="com.scsa.model.vo.Company"/>
-<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
-<fullyQualifiedTypeName name="com.scsa.model.dao.CompanyDAO"/>
-<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-<fullyQualifiedTypeName name="com.scsa.model.service.CompanyService"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-</qualifiedTypeNameHistroy>
+<qualifiedTypeNameHistroy/>

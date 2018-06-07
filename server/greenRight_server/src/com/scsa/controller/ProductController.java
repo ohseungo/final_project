@@ -36,14 +36,25 @@ public class ProductController {
 		return productService.selectProduct(productId);
 	}
 	
-	//@RequestMapping("#")
-	public @ResponseBody List<Product> selectProductList(String compId) {
-		return productService.selectProductList(compId);
+
+	@RequestMapping("/corporate.do")
+	public String selectProductList(Model model, String compId, HttpSession session) {
+		model.addAttribute("productList", productService.selectProductList(compId));
+		return "/corporate.jsp";
 	}
 	
-	//@RequestMapping("#")
-	public @ResponseBody boolean deleteProduct(String productId) {
-		return productService.deleteProduct(productId);
-	}
+	@RequestMapping("/delete_product.do")
+	public  String deleteProduct(String productId, HttpSession session) {
+		String result = null;
+		Product product = productService.selectProduct(productId);
+		session.setAttribute("product", product);
+		if(productService.deleteProduct(productId) == true) {
+			session.setAttribute("compId", product.getCompId());
+			result = "redirect:/corporate.do="+product.getCompId();
+		}else {
+			result = null;
+		}
+		return result;
+	} 
 	
 }

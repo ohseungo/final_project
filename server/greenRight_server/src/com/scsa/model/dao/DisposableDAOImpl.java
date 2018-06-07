@@ -29,7 +29,7 @@ public class DisposableDAOImpl implements DisposableDAO {
 	}
 
 	@Override
-	public List<Disposable> selectDisposableList() {
+	public List<Disposable> selectDisposableList(String compId) {
 		return sqlSession.selectList("disposable.selectDisposableList");
 	}
 

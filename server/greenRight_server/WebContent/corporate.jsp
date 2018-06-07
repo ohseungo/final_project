@@ -30,7 +30,7 @@
 	<style>
 		body{
 			background-image: url('./images/slide-3.jpg');
-			background-size: 100% 1000px;
+			background-size: 100% 120%;
 		}
 	</style>
 	
