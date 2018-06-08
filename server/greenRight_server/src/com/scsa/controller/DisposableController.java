@@ -27,8 +27,10 @@ public class DisposableController {
 	
 
 	@RequestMapping("/add_disposable.do")
-	public @ResponseBody boolean addDisposable(Disposable disposable) {
-		return disposableService.addDisposable(disposable);
+	public String addDisposable(Disposable disposable, HttpSession session) {
+		disposable.setCompId((String) session.getAttribute("compId"));
+		disposableService.addDisposable(disposable);
+		return "redirect:/mall.do?compId="+disposable.getCompId();
 	}
 	
 
@@ -44,20 +46,13 @@ public class DisposableController {
 		return "/mall.jsp";
 	}
 	
-//	@RequestMapping("/delete_disposable.do")
-//	public @ResponseBody boolean deleteDisposable(String dispId) {
-//		
-//		return disposableService.deleteDisposable(dispId);
-//	}
-	
 	@RequestMapping("/delete_disposable.do")
 	public  String deleteDisposable(String dispId, HttpSession session) {
 		String result = null;
 		Disposable disposable = disposableService.selectDisposable(dispId);
-		session.setAttribute("disposable", disposable);
 		if(disposableService.deleteDisposable(dispId) == true) {
 			session.setAttribute("compId", disposable.getCompId());
-			result = "redirect:/corporate.do="+disposable.getCompId();
+			result = "redirect:/mall.do?compId="+disposable.getCompId();
 		}else {
 			result = null;
 		}

@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.scsa.addon.NameManager;
 import com.scsa.model.service.ProductService;
 import com.scsa.model.vo.Product;
-import com.scsa.model.vo.User;
 
 @Controller
 public class ProductController {
@@ -53,11 +52,18 @@ public class ProductController {
 		product.setCompId((String) session.getAttribute("compId"));
 		productService.addProduct(product);
 		System.out.println(product);
-		return "redirect:/corporate.do?compId="+
-				session.getAttribute("compId");
+		return "redirect:/corporate.do?compId="+session.getAttribute("compId");
 	}
 	
-
+	
+	
+	@RequestMapping("/update_product.do")
+	public String updateProduct(Product product, HttpSession session) {
+		product.setCompId((String) session.getAttribute("compId"));
+		productService.updateProduct(product);
+		return "redirect:/corporate.do?compId="+product.getCompId();
+	}
+	
 	@RequestMapping("/select_product.do")
 	public @ResponseBody Product selectProduct(String productId) {
 		return productService.selectProduct(productId);
@@ -65,7 +71,7 @@ public class ProductController {
 	
 
 	@RequestMapping("/corporate.do")
-	public String selectProductList(Model model, String compId, HttpSession session) {
+	public String selectProductList(Model model, String compId) {
 		model.addAttribute("productList", productService.selectProductList(compId));
 		return "/corporate.jsp";
 	}
