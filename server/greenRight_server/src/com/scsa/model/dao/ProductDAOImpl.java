@@ -41,6 +41,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<Product> selectProductList(String compId) {
+		System.out.println(compId);
 		return sqlSession.selectList("product.selectProductList", compId);
 	}
 	

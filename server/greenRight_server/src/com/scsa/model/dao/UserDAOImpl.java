@@ -28,4 +28,14 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 
+	@Override
+	public boolean deleteUser(String userId) {
+		return sqlSession.delete("user.deleteUser", userId) !=0;
+	}
+
+	@Override
+	public boolean updateUser(User user) {
+		return false;
+	}
+
 }

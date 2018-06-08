@@ -5,26 +5,27 @@
 	<mapper namespace="product">
 	<insert id="insertProduct" parameterType="Product">
 	insert into PRODUCT (PRODUCTID, PRODUCTIMAGE, PRODUCTVALUE, 
-	PRODUCTNAME, PRODUCTCONTENT, PRODUCTIMAGE, COMPID) 
+	PRODUCTNAME, PRODUCTCONTENT,COMPID) 
 	VALUES (#{productId}, #{productImage}, #{productValue}, 
-	#{productName}, #{productContent}, #{productImage}, #{compId})
+	#{productName}, #{productContent},#{compId})
 	</insert>
 	<select id="selectProduct" parameterType="String" resultType="Product">
 		select PRODUCTID, PRODUCTIMAGE, PRODUCTVALUE, PRODUCTNAME, 
-		PRODUCTCONTENT, PRODUCTIMAGE, COMPID
+		PRODUCTCONTENT, COMPID
 		from PRODUCT
 		where PRODUCTID = #{id}
 	</select>
 	<select id="selectProductList" parameterType="String" resultType="Product">
-		select p.PRODUCTID, p.PRODUCTIMAGE, p.PRODUCTVALUE,
-			p.PRODUCTNAME,p.PRODUCTCONTENT, p.PRODUCTIMAGE, p.COMPID
-			,c.COMPNAME 
+		select p.PRODUCTID, p.PRODUCTIMAGE, p.PRODUCTVALUE, p.PRODUCTNAME, 
+		p.PRODUCTCONTENT, p.COMPID, c.COMPNAME 
 		from PRODUCT p, COMPANY c
 		where p.COMPID = c.COMPID
-		<if test="id!=null">
-			and p.COMPID = #{id}
+		<if test="_parameter!= null">
+		and c.COMPID = #{_parameter}
 		</if>
 	</select>
+	
+	
 	<delete id="deleteProduct" parameterType="String">
 		delete from PRODUCT
 		where PRODUCTID = #{id}

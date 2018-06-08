@@ -15,5 +15,9 @@
 		from USERINFO
 		where USERID = #{id}
 	</select>
+	<delete id="deleteUser" parameterType="String">
+	delete from USER
+		where USERID = #{id}
+	</delete>
 	
 </mapper>
