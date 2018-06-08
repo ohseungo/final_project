@@ -3,9 +3,14 @@ package iot.e1m4.com.greenright;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +33,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +48,7 @@ import info.app.AppController;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MarketFragment extends Fragment {
+public class MarketFragment extends Fragment{
 
 
     private ListView mListView=null;
@@ -49,7 +58,13 @@ public class MarketFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        return;
+    }
 
+    private OrderFragment mOrderFragment;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,6 +85,7 @@ public class MarketFragment extends Fragment {
         mAdapter.addItem(getResources().getDrawable(R.drawable.p6),"pet bag 프린트 점퍼 푸푸 가방","[RE:CODE]","49,000");
 */
       //주문 화면으로 이동
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -83,8 +99,12 @@ public class MarketFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), OrderFragment.class);
                 intent.putExtras(extras);
                 startActivity(intent);*/
-                Toast.makeText(getActivity(), mData.getpName1().getBytes() +"", Toast.LENGTH_SHORT).show();
-                getFragmentManager().beginTransaction().replace(R.id.contentContainer,new OrderFragment()).commit();
+                //Toast.makeText(getActivity(), mData.getpId() +"", Toast.LENGTH_SHORT).show();
+                mOrderFragment = new OrderFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("productId", mData.getpId());
+                mOrderFragment.setArguments(bundle);
+                getFragmentManager().beginTransaction().replace(R.id.contentContainer,mOrderFragment).commit();
 
             }
         });
@@ -92,23 +112,66 @@ public class MarketFragment extends Fragment {
         return layout;
     }
 
+
+    class MarketTask extends AsyncTask<JSONArray, Object, Void> {
+        Bitmap bm;
+
+        @Override
+        protected Void doInBackground(JSONArray... jsonArrays) {
+            try {
+            for (int i=0; i<jsonArrays[0].length(); i++){
+                if (jsonArrays[0].getJSONObject(i).getString("productImage") == null ||
+                        jsonArrays[0].getJSONObject(i).getString("productImage").equals("null") ||
+                jsonArrays[0].getJSONObject(i).getString("productImage").trim().equals("")) bm = null;
+                else {
+                 /*   Log.e("확인", AppConfig.REQUEST_URL + "/images/product/"
+                            +jsonArrays[0].getJSONObject(i).getString("productImage"));*/
+                 try (InputStream is =new URL(AppConfig.REQUEST_URL + "/images/product/"
+                         + jsonArrays[0].getJSONObject(i).getString("productImage")).openStream()) {
+                     bm = BitmapFactory.decodeStream(is);
+
+                     publishProgress(jsonArrays[0].getJSONObject(i), bm);
+                 }
+                }
+            }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Object... objects) {
+            super.onProgressUpdate(objects[0]);
+            JSONObject object = (JSONObject) objects[0];
+            Bitmap bm = (Bitmap) objects[1];
+            try {
+                mAdapter.addItem(new BitmapDrawable(getResources(), bm),
+                        object.getString("productName"),
+                        object.getString("compName"),
+                        object.getString("productValue"), object.getString("productId"));
+                mAdapter.notifyDataSetChanged();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private MarketTask mTask;
     private void marketListUpdate() {
-        StringRequest  stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_STORE_LIST,
+        StringRequest  stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_PRODUCT_LIST,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
                             JSONArray jsonArray = new JSONArray(response);
-                            JSONObject object;
-                            for (int i =0; i<jsonArray.length(); i++) {
-                                object = jsonArray.getJSONObject(i);
-                                mAdapter.addItem(getResources().getDrawable(R.drawable.p1),
-                                        object.getString("productName"),
-                                        object.getString("compName"),
-                                        object.getString("productValue"));
-                            }
-
-                            mAdapter.notifyDataSetChanged();
+                         mTask = new MarketTask();
+                         mTask.execute(jsonArray);
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getContext(), "오류", Toast.LENGTH_SHORT).show();
@@ -196,14 +259,14 @@ public class MarketFragment extends Fragment {
             return view;
 
         }
-        public void addItem(Drawable image1,String mName1,String mCompany, String mPrice1){
+        public void addItem(Drawable image1,String mName1,String mCompany, String mPrice1, String mPid){
             Product addInfo = null;
             addInfo = new Product();
-
             addInfo.setDrawable1(image1);
             addInfo.setpName1(mName1);
             addInfo.setCompany(mCompany);
             addInfo.setPrice1(mPrice1);
+            addInfo.setpId(mPid);
 
             mListData.add(addInfo);
         }
@@ -219,4 +282,12 @@ public class MarketFragment extends Fragment {
         }
 
     }
+
+    @Override
+    public void onDestroy() {
+
+        super.onDestroy();
+        if (mTask !=null)  mTask.cancel(true);
+
+        }
 }

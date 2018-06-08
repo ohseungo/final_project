@@ -19,6 +19,7 @@ public class MypageFragment extends Fragment {
     Button mPointBtn;
     Button mOrderBtn;
     Button mUpdateBtn;
+    Button mDeleteBtn;
     Fragment mCurrentPointFragment=new CurrentPointFragment();
     Fragment mCurrentOrderFragment=new CurrentOrderFragment();
     Fragment mEditFragment=new EditFragment();
@@ -51,6 +52,13 @@ public class MypageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction().replace(R.id.contentContainer,mEditFragment).commit();
+            }
+        });
+        mDeleteBtn = layout.findViewById(R.id.deleteBtn);
+        mDeleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
         return layout;

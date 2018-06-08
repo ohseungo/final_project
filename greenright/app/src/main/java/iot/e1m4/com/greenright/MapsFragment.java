@@ -252,8 +252,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
-                map.put("recycleBoxLat",mLastKnownLocation.getLatitude() + "");
-                map.put("recycleBoxLong",mLastKnownLocation.getLongitude() + "");
+
                 return map;
             }
         };

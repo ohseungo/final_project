@@ -42,26 +42,27 @@ public class BeaconListenerService extends Service {
         super.onCreate();
         this.notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         this.inNotification = buildNotification("대중교통 이용", "대중교통 이용으로 30포인트가 추가되었습니다!"
-                                                ,NOTIFICATION_ID);
+                                                ,NOTIFICATION_ID, MainActivity.class);
         this.videoNotification = buildNotification("영상 감지", "영상을 시청하면 15포인트 추가!"
-                                                ,NOTIFICATION_ID_VIDEO);
+                                                ,NOTIFICATION_ID_VIDEO, PopUpVideo.class);
         //this.outNotification = buildNotification("bye", "bye bye");
         sessionManager = new SessionManager(this);
     }
 
 
-    private Notification buildNotification(String title, String text, String action) {
+    private Notification buildNotification(String title, String text, String action, Class destination) {
         Notification notification = new NotificationCompat.Builder(getApplicationContext())
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setContentTitle(title)
                 .setContentText(text)
                 .setContentIntent(PendingIntent.getActivity( this, 0,
-                        new Intent( this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                        new Intent( this, destination).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
                                                                                 .setAction(action),
                         PendingIntent.FLAG_UPDATE_CURRENT))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)
                 .build();
+
 
         return notification;
     }
@@ -135,8 +136,6 @@ public class BeaconListenerService extends Service {
                         if (!sessionManager.isBeaconChecked("viewVideo")) {
                             notificationManager.notify(1, videoNotification);
                             sessionManager.setBeaconChecked("viewVideo");
-                            Intent intent = new Intent(BeaconListenerService.this,PopUpVideo.class);
-                            startActivity(intent);
                         }
                         return null;
                     }

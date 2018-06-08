@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -146,28 +145,22 @@ public class MainActivity extends AppCompatActivity {
                 transaction=getSupportFragmentManager().beginTransaction();
                 if(tabId==R.id.tab_co2){
                     transaction.replace(R.id.contentContainer, mWalkFragment);
-                    //transaction.addToBackStack(null);
-                    transaction.commit();
-                    return;
                 }else if(tabId==R.id.tab_cup){
                     transaction.replace(R.id.contentContainer, mMapsFragment);
 
-                    transaction.commit();
-                    return;
                 }else if(tabId==R.id.tab_main){
                     transaction.replace(R.id.contentContainer, mHomeFragment);
 
-                    transaction.commit();
-                    return;
                 }else if(tabId==R.id.tab_barcode){
                     transaction.replace(R.id.contentContainer,mSaveFragment);
-                    transaction.commit();
-                    return;
+
                 }else if(tabId==R.id.tab_green_market){
                     transaction.replace(R.id.contentContainer, mMarketFragment);
-                    transaction.commit();
-                    return;
+
                 }
+                //transaction.addToBackStack(null);
+                transaction.commit();
+                return;
             }
         });
 
@@ -178,14 +171,9 @@ public class MainActivity extends AppCompatActivity {
                         transaction=getSupportFragmentManager().beginTransaction();
                         if(tabId==R.id.tab_co2){
                             transaction.replace(R.id.contentContainer, mWalkFragment);
-                            //transaction.addToBackStack(null);ㄷㄷ
-                            transaction.commit();
-                            return;
+
                         }else if(tabId==R.id.tab_cup){
                             transaction.replace(R.id.contentContainer, mMapsFragment);
-
-                            transaction.commit();
-                            return;
                         }else if(tabId==R.id.tab_main){
                             /*PointManager.addPointData(sessionManager.getUserId(), 100,
                                     2, "테스트", MainActivity.this);
@@ -198,14 +186,13 @@ public class MainActivity extends AppCompatActivity {
                           /*  Intent intent = new Intent(MainActivity.this, PopUpVideo.class);
                             startActivity(intent);*/
                             transaction.replace(R.id.contentContainer, mHomeFragment);
-                            transaction.commit();
-                            return;
+
                         }else if (tabId== R.id.tab_green_market) {
                             /////////테스트////////////////
                             transaction.replace(R.id.contentContainer, mMarketFragment);
-                            transaction.commit();
-                            return;
                         }
+                        transaction.commit();
+                        return;
                     }
                 }
         );
@@ -312,24 +299,25 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.contentContainer, new PointFragment()).commit();
                 return;
             }
-            if(getIntent().getAction().equals(BeaconListenerService.NOTIFICATION_ID_VIDEO)) { //비디오 알림 타고 들어왔을 경우
-                Intent intent2 = new Intent(MainActivity.this, PopUpVideo.class);
-                startActivity(intent2);
-                return;
-            }
 
         }
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onStart() {
+        super.onStart();
         Intent distanceListenerIntent = new Intent(this, DistanceListenerService.class);
         startService(distanceListenerIntent);
         Toast.makeText(MainActivity.this, "거리 리스너 시작", Toast.LENGTH_SHORT).show();
-
-
     }
+
+
 }
+
+
+
+
+
+
 
 

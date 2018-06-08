@@ -1,6 +1,8 @@
 package info.app;
 
 public class AppConfig {
+    public static final String REQUEST_URL =
+            "http://192.168.10.41:9090/greenRight_server";
     public static final String URL_LOGIN =
             "http://192.168.10.41:9090/greenRight_server/login.do";
     public static final String URL_REGISTER =
@@ -10,6 +12,8 @@ public class AppConfig {
 
     public static final String URL_STORE_LIST =
             "http://192.168.10.41:9090/greenRight_server/list_store.do";
+    public static final String URL_PRODUCT_LIST =
+            "http://192.168.10.41:9090/greenRight_server/list_product.do";
     public static final String URL_BOX_LIST =
             "http://192.168.10.41:9090/greenRight_server/list_box.do";
 

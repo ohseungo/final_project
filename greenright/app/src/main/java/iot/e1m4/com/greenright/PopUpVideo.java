@@ -36,7 +36,6 @@ public class PopUpVideo extends Activity{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
-                return;
             }
         });
 
@@ -76,5 +75,17 @@ public class PopUpVideo extends Activity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

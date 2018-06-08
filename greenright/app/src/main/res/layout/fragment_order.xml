@@ -69,23 +69,25 @@
                         android:text="이메일"
                         android:gravity="center"/>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="4"
                     android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="#ffffff"
                     android:orientation="vertical"
-                    android:weightSum="3"
-                    android:background="#ffffff">
+                    android:weightSum="3">
 
                     <EditText
                         android:id="@+id/orderName"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
                         android:layout_height="0dp"
-                        android:ems="10"
-                        android:inputType="textPersonName"
+                        android:layout_margin="3dp"
+                        android:layout_weight="1"
                         android:background="@drawable/border"
-                        android:layout_margin="3dp"/>
+                        android:ems="10"
+                        android:inputType="textPersonName" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -94,45 +96,27 @@
                         android:weightSum="3">
 
                         <EditText
-                            android:id="@+id/orderPhone1"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:id="@+id/orderPhone"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:ems="10"
-                            android:inputType="phone"
-                            android:background="@drawable/border"
-                            android:layout_margin="3dp"/>
-                        <EditText
-                            android:id="@+id/orderPhone2"
-                            android:layout_width="0dp"
+                            android:layout_margin="3dp"
                             android:layout_weight="1"
-                            android:layout_height="match_parent"
-                            android:ems="10"
-                            android:inputType="phone"
                             android:background="@drawable/border"
-                            android:layout_margin="3dp"/>
-                        <EditText
-                            android:id="@+id/orderPhone3"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"
                             android:ems="10"
-                            android:inputType="phone"
-                            android:background="@drawable/border"
-                            android:layout_margin="3dp"/>
-                    </LinearLayout>
+                            android:inputType="phone" />
 
+                    </LinearLayout>
 
 
                     <EditText
                         android:id="@+id/orderEmail"
                         android:layout_width="match_parent"
-                        android:layout_weight="1"
                         android:layout_height="0dp"
-                        android:ems="10"
-                        android:inputType="textEmailAddress"
+                        android:layout_margin="3dp"
+                        android:layout_weight="1"
                         android:background="@drawable/border"
-                        android:layout_margin="3dp"/>
+                        android:ems="10"
+                        android:inputType="textEmailAddress" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -242,32 +226,15 @@
                         android:weightSum="3">
 
                         <EditText
-                            android:id="@+id/deliveryPhone1"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:id="@+id/deliveryPhone"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:ems="10"
-                            android:inputType="phone"
-                            android:background="@drawable/border"
-                            android:layout_margin="3dp"/>
-                        <EditText
-                            android:id="@+id/deliveryPhone2"
-                            android:layout_width="0dp"
+                            android:layout_margin="3dp"
                             android:layout_weight="1"
-                            android:layout_height="match_parent"
-                            android:ems="10"
-                            android:inputType="phone"
                             android:background="@drawable/border"
-                            android:layout_margin="3dp"/>
-                        <EditText
-                            android:id="@+id/deliveryPhone3"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"
                             android:ems="10"
-                            android:inputType="phone"
-                            android:background="@drawable/border"
-                            android:layout_margin="3dp"/>
+                            android:inputType="phone" />
+
                     </LinearLayout>
 
 

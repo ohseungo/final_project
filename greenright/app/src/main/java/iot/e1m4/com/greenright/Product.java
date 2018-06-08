@@ -8,6 +8,7 @@ public class Product {
     private String pName1;
     private String company;
     private String price1;
+    private String pId;
 
 
     public Product() {
@@ -50,5 +51,13 @@ public class Product {
 
     public void setPrice1(String price1) {
         this.price1 = price1;
+    }
+
+    public String getpId() {
+        return pId;
+    }
+
+    public void setpId(String pId) {
+        this.pId = pId;
     }
 }

@@ -79,6 +79,7 @@ public class DistanceListenerService extends Service {
                 }
                 prevLoc = location;
                 if (mySpeed>0 && mySpeed <4.5) {
+                    Toast.makeText(DistanceListenerService.this, currDis +"", Toast.LENGTH_SHORT).show();
                     totalDis += currDis;
                 }
 

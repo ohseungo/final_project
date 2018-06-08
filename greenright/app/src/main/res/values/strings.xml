@@ -88,9 +88,9 @@
     <string name="orderBtn">주문현황</string>
     <string name="updateBtn">내 정보 수정</string>
     <string name="cancelBtn">회원 탈퇴</string>
-    <string name="mainUser">김예솔</string>
-    <string name="currentPoin">25000</string>
-    <string name="currentPoint">25000</string>
+    <string name="mainUser">     </string>
+    <string name="currentPoin">P 0</string>
+    <string name="currentPoint">P 0</string>
     <string name="totalCup">13</string>
     <string name="useTitle">그린 마켓</string>
     <string name="usePoint">2000</string>
