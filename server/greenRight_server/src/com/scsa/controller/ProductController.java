@@ -1,7 +1,5 @@
 package com.scsa.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.scsa.model.service.ProductService;
 import com.scsa.model.vo.Product;
-import com.scsa.model.vo.User;
 
 @Controller
 public class ProductController {
@@ -26,11 +23,19 @@ public class ProductController {
 	
 
 	@RequestMapping("/add_product.do")
-	public @ResponseBody boolean addProduct(Product product) {
-		return productService.addProduct(product);
+	public String addProduct(Product product, HttpSession session) {
+		product.setCompId((String) session.getAttribute("compId"));
+		productService.addProduct(product);
+		return "redirect:/corporate.do?compId="+product.getCompId();
 	}
 	
-
+	@RequestMapping("/update_product.do")
+	public String updateProduct(Product product, HttpSession session) {
+		product.setCompId((String) session.getAttribute("compId"));
+		productService.updateProduct(product.getProductId());
+		return "redirect:/corporate.do?compId="+product.getCompId();
+	}
+	
 	@RequestMapping("/select_product.do")
 	public @ResponseBody Product selectProduct(String productId) {
 		return productService.selectProduct(productId);
@@ -38,7 +43,7 @@ public class ProductController {
 	
 
 	@RequestMapping("/corporate.do")
-	public String selectProductList(Model model, String compId, HttpSession session) {
+	public String selectProductList(Model model, String compId) {
 		model.addAttribute("productList", productService.selectProductList(compId));
 		return "/corporate.jsp";
 	}
@@ -47,10 +52,9 @@ public class ProductController {
 	public  String deleteProduct(String productId, HttpSession session) {
 		String result = null;
 		Product product = productService.selectProduct(productId);
-		session.setAttribute("product", product);
 		if(productService.deleteProduct(productId) == true) {
 			session.setAttribute("compId", product.getCompId());
-			result = "redirect:/corporate.do="+product.getCompId();
+			result = "redirect:/corporate.do?compId="+product.getCompId();
 		}else {
 			result = null;
 		}

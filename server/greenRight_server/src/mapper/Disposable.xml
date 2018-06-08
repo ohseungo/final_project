@@ -5,7 +5,7 @@
 	<mapper namespace="disposable">
 	<insert id="insertDisposable" parameterType="Disposable">
 	insert into DISPOSABLE (DISPID, DISPTYPE, DISPVALUE, DISPCOLLECTED, COMPID, COMPNAME) 
-	VALUES (#{disdId}, #{dispType}, #{dispValue}, #{dispCollected}, #{compId}, #{compName})
+	VALUES (#{dispId}, #{dispType}, #{dispValue}, #{dispCollected}, #{compId}, #{compName})
 	</insert>
 	<select id="selectDisposable" parameterType="String" resultType="Disposable">
 		select DISPID, DISPTYPE, DISPVALUE, DISPCOLLECTED, COMPID, COMPNAME
@@ -15,6 +15,7 @@
 	<select id="selectDisposableList" parameterType="String" resultType="Disposable">
 		select DISPID, DISPTYPE, DISPVALUE, DISPCOLLECTED, COMPID, COMPNAME
 		from DISPOSABLE
+		where COMPID = #{id}
 	</select>
 	<delete id="deleteDisposable" parameterType="String">
 		delete from DISPOSABLE

@@ -25,12 +25,12 @@ public class DisposableDAOImpl implements DisposableDAO {
 
 	@Override
 	public Disposable selectDisposable(String dispId) {
-		return sqlSession.selectOne(dispId);
+		return sqlSession.selectOne("disposable.selectDisposable", dispId);
 	}
 
 	@Override
 	public List<Disposable> selectDisposableList(String compId) {
-		return sqlSession.selectList("disposable.selectDisposableList");
+		return sqlSession.selectList("disposable.selectDisposableList", compId);
 	}
 
 	@Override

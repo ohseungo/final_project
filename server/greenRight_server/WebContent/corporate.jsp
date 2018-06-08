@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,7 +38,6 @@
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	
  	<script type="text/javascript">
- 		
 		function deleteBtn(pId) {
 			if(confirm("정말 삭제하시겠습니까?") == true){
 				document.location.href="./delete_product.do?productId="+pId;
@@ -48,7 +46,6 @@
 			}
 		}
 	</script> 
-	
 </head>
 	
     
@@ -102,7 +99,6 @@
         			<th style="text-align: center">상품명</th>
         			<th style="text-align: center">종류</th>
         			<th style="text-align: center">가격</th>
-        			<th style="text-align: center">제품정보수정</th>
         			<th style="text-align: center">제품삭제</th>
         		</tr>
         	</thead>  
@@ -110,14 +106,11 @@
         		<c:if test="${sessionScope.compId != null}">
 					<c:forEach items = "${productList}" var="product">
 						<tr id="proId" style="color: black; text-align: center;" height="150">
-							<td width="159">${product.productId}</td>
+							<td width="159"><a href="<%=request.getContextPath()%>/subject_view.do?subject_code=${Subject.subject_code}">${Subject.subject_title}</a>${product.productId}</td>
 							<td width="159">${product.productImage}</td>
 							<td width="300">${product.productName}</td>
 							<td width="300">${product.productContent}</td>
 							<td width="92">${product.productValue}</td>
-							<td width="100">
-							<input type="button" value="수정">
-							</td>
 							<td width="80">
 							<input type="button" value="삭제" onclick="deleteBtn('${product.productId}');">
 							</td>
@@ -154,6 +147,27 @@
       </div>
   </div>
 </div>
+
+<!-- modal2 -->
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content modal-popup">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" style="color: white">상품등록</h2>
+        </div>
+        <form action="./update_product.do" method="post">
+          <input name="productId" type="text" class="form-control" id="productId" placeholder="z">
+          <input name="productImage" type="text" class="form-control" id="productImage" placeholder="z">
+          <input name="productName" type="text" class="form-control" id="productName" placeholder=z>
+          <input name="productContent" type="text" class="form-control" id="productContent" placeholder="z">
+          <input name="productValue" type="text" class="form-control" id="productValue" placeholder="z">
+          <input name="submit" type="submit" class="form-control" id="submitBtn" value="수정 완료">
+        </form>
+      </div>
+  </div>
+</div>
+
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->

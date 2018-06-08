@@ -43,5 +43,15 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> selectProductList(String compId) {
 		return sqlSession.selectList("product.selectProductList", compId);
 	}
+
+
+	@Override
+	public boolean updateProduct(String productId) {
+		boolean result = false;
+		if(sqlSession.update("product.updateProduct", productId) > 0) {
+			result = true;
+		}
+		return result;
+	}
 	
 }

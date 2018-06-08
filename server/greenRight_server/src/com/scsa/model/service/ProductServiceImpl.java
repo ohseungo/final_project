@@ -31,5 +31,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> selectProductList(String compId) {
 		return productDao.selectProductList(compId);
 	}
+
+	@Override
+	public boolean updateProduct(String productId) {
+		return productDao.updateProduct(productId);
+	}
 	
 }

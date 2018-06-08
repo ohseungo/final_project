@@ -4,14 +4,19 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="product">
 	<insert id="insertProduct" parameterType="Product">
-	insert into PRODUCT (PRODUCTID, PRODUCTIMAGE, PRODUCTVALUE, PRODUCTNAME, PRODUCTCONTENT, COMPID) 
-	VALUES (#{productId}, #{productImage}, #{productValue}, #{productName}, #{productContent}, #{id})
+		insert into PRODUCT (PRODUCTID, PRODUCTIMAGE, PRODUCTVALUE, PRODUCTNAME, PRODUCTCONTENT, COMPID) 
+		VALUES (#{productId}, #{productImage}, #{productValue}, #{productName}, #{productContent}, #{compId})
 	</insert>
 	<select id="selectProduct" parameterType="String" resultType="Product">
 		select PRODUCTID, PRODUCTIMAGE, PRODUCTVALUE, PRODUCTNAME, PRODUCTCONTENT, COMPID
 		from PRODUCT
 		where PRODUCTID = #{id}
 	</select>
+	<update id="updateProduct" parameterType="String">
+		update PRODUCT 
+		set	   PRODUCTIMAGE=#{productImage},PRODUCTVALUE=#{productValue},PRODUCTNAME=#{productName},PRODUCTCONTENT=#{productContent} 
+		where  PRODUCTID=#{id}
+	</update>
 	<select id="selectProductList" parameterType="String" resultType="Product">
 		select p.PRODUCTID, p.PRODUCTIMAGE, p.PRODUCTVALUE,p.PRODUCTNAME,p.PRODUCTCONTENT,p.COMPID 
 		from PRODUCT p
