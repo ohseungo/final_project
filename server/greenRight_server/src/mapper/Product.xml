@@ -21,8 +21,8 @@
 			,c.COMPNAME 
 		from PRODUCT p, COMPANY c
 		where p.COMPID = c.COMPID
-		<if test="id!=null">
-			and p.COMPID = #{id}
+		<if test="_parameter!=null">
+			and p.COMPID = #{_parameter}
 		</if>
 	</select>
 	<delete id="deleteProduct" parameterType="String">
