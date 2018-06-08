@@ -32,7 +32,7 @@ public class ProductController {
 	@RequestMapping("/update_product.do")
 	public String updateProduct(Product product, HttpSession session) {
 		product.setCompId((String) session.getAttribute("compId"));
-		productService.updateProduct(product.getProductId());
+		productService.updateProduct(product);
 		return "redirect:/corporate.do?compId="+product.getCompId();
 	}
 	

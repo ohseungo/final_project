@@ -35,6 +35,7 @@
 	
 	
 	<!-- Modernizr JS -->
+	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	
  	<script type="text/javascript">
@@ -45,6 +46,15 @@
 				return;
 			}
 		}
+		
+
+		$(function(){
+			$("#update").click(function(){
+				location.href='updateProduct.jsp?product_no='+$(this).attr("product_no");
+			})
+		})
+		
+		
 	</script> 
 </head>
 	
@@ -100,6 +110,7 @@
         			<th style="text-align: center">종류</th>
         			<th style="text-align: center">가격</th>
         			<th style="text-align: center">제품삭제</th>
+        			<th style="text-align: center">제품수정</th>
         		</tr>
         	</thead>  
         	<tbody>
@@ -113,6 +124,10 @@
 							<td width="92">${product.productValue}</td>
 							<td width="80">
 							<input type="button" value="삭제" onclick="deleteBtn('${product.productId}');">
+							
+							</td>
+							<td width="80">
+							<input type="button" product_no="${product.productId}" name="update" id="update" value="제품 수정"/>
 							</td>
 						</tr>
 					</c:forEach>
@@ -121,7 +136,7 @@
         	</table>
         	<br/>
         	<div align="right">
-        	<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs" data-wow-delay="0.8s">상품 등록</a>
+        	<a href="insertProduct.jsp" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs" data-wow-delay="0.8s">상품 등록</a>
         	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         	</div>
         </div>
@@ -129,7 +144,7 @@
 	</div>
 	
 <!-- modal -->
-<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content modal-popup">
         <div class="modal-header">
@@ -146,10 +161,9 @@
         </form>
       </div>
   </div>
-</div>
+</div> 
 
-<!-- modal2 -->
-<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content modal-popup">
         <div class="modal-header">

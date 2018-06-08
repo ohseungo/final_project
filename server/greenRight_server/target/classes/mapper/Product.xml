@@ -12,10 +12,10 @@
 		from PRODUCT
 		where PRODUCTID = #{id}
 	</select>
-	<update id="updateProduct" parameterType="String">
+	<update id="updateProduct" parameterType="Product">
 		update PRODUCT 
 		set	   PRODUCTIMAGE=#{productImage},PRODUCTVALUE=#{productValue},PRODUCTNAME=#{productName},PRODUCTCONTENT=#{productContent} 
-		where  PRODUCTID=#{id}
+		where  PRODUCTID=#{productId}
 	</update>
 	<select id="selectProductList" parameterType="String" resultType="Product">
 		select p.PRODUCTID, p.PRODUCTIMAGE, p.PRODUCTVALUE,p.PRODUCTNAME,p.PRODUCTCONTENT,p.COMPID 

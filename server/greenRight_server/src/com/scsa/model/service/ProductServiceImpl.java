@@ -33,8 +33,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public boolean updateProduct(String productId) {
-		return productDao.updateProduct(productId);
+	public boolean updateProduct(Product product) {
+		return productDao.updateProduct(product);
 	}
 	
 }
