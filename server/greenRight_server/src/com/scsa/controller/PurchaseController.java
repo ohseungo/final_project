@@ -1,6 +1,7 @@
 package com.scsa.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,7 +22,7 @@ public class PurchaseController {
 	
 	@RequestMapping("orderList.do")
 	public String selectPurchaseList(Model model, HttpSession session) {
-		HashMap<String, String> id=new HashMap<>();
+		Map<String, String> id=new HashMap<String, String>();
 		id.put("compId",(String) session.getAttribute("compId"));
 		model.addAttribute("purchaseList", purchaseService.searchPurchaseListWithMultipleCondition(id));
 		System.out.println(purchaseService.searchPurchaseListWithMultipleCondition(id));
