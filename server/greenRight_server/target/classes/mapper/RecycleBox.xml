@@ -15,9 +15,15 @@
 	<select id="selectRecycleBoxWithCurrLocation" resultType="RecycleBox">
 		select RECYCLEBOXID,RECYCLEBOXLAT,RECYCLEBOXLONG
 		from RECYCLEBOX
-		where RECYCLEBOXLAT 
+		<where>
+		<if test="recycleBoxLat != null">
+		 RECYCLEBOXLAT 
 		between #{RECYCLEBOXLAT}-0.005 and #{RECYCLEBOXLAT}+0.005
+		</if>
+		<if test="recycleBoxLong != null">
 		and RECYCLEBOXLONG
 		between #{RECYCLEBOXLONG}-0.005 and #{RECYCLEBOXLONG}+0.005
+		</if>
+		</where>
 	</select>
 </mapper>

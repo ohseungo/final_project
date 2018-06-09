@@ -56,7 +56,7 @@ public class UserController {
 				return "redirect:/error.jsp";
 			}
 		}else {//로그인에 실패할 경우 다시 로그인페이지로 가줌
-			return "redirect:/login.jsp";
+			return "redirect:/index.jsp";
 		}
 	}
 	
@@ -74,5 +74,6 @@ public class UserController {
 	public @ResponseBody boolean addUser(User user) {
 		return userService.addUser(user);
 	}
+	
 	
 }
