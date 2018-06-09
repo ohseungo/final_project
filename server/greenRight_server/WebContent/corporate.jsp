@@ -80,7 +80,7 @@
 						</ul>  -->
 					</li>
 					<li class="has-dropdown">
-						<a href="addProduct.jsp">주문관리</a>
+						<a href="<%=request.getContextPath()%>/orderList.do">주문관리</a>
 						<!-- <ul class="dropdown">
 							<li><a href="#">View Orders</a></li>
 						</ul> -->
