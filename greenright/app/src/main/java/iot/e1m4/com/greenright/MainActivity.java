@@ -312,6 +312,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    ////////////////////////백버튼 인터페이스///////////////////////////
+    public interface onKeyBackPressedListener {
+        public void onBack();
+    }
+    private onKeyBackPressedListener mOnKeyBackPressedListener;
+
+    public void setmOnKeyBackPressedListener(onKeyBackPressedListener listener) {
+        mOnKeyBackPressedListener = listener;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mOnKeyBackPressedListener != null) {
+            mOnKeyBackPressedListener.onBack();
+        }else {
+            super.onBackPressed();
+        }
+    }
 }
 
 

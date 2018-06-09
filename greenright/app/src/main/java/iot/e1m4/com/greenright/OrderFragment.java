@@ -50,7 +50,7 @@ public class OrderFragment extends Fragment {
     CheckBox mCheckBox;
 
     SessionManager mSessionManager;
-
+    PayFragment mPayFragment;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +64,12 @@ public class OrderFragment extends Fragment {
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.contentContainer,new PayFragment()).commit();
+                mPayFragment= new PayFragment();
+                Bundle args = new Bundle();
+                ////필요한 정보 넣기
+                /////
+                mPayFragment.setArguments(args);
+                getFragmentManager().beginTransaction().replace(R.id.contentContainer,mPayFragment).commit();
             }
         });
 

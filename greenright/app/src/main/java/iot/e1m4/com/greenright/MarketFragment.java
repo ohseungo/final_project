@@ -77,14 +77,6 @@ public class MarketFragment extends Fragment{
 
         //데이터 입력은 이곳에서~~~~
         marketListUpdate();
-        /*mAdapter.addItem(getResources().getDrawable(R.drawable.p1),"체리열매 발아키트","[커피팟]","12,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p2),"토트백","[FREiTAG]","229,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p3),"데일리 썸머 파우치 3size","[Dadume]","22,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p4),"빈티지 가랜드","[Dadume]","16,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p5),"점퍼 us슬리브 스트라이프 스웻 티셔츠","[RE:CODE]","98,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p6),"pet bag 프린트 점퍼 푸푸 가방","[RE:CODE]","49,000");
-*/
-      //주문 화면으로 이동
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -119,17 +111,17 @@ public class MarketFragment extends Fragment{
         @Override
         protected Void doInBackground(JSONArray... jsonArrays) {
             try {
-            for (int i=0; i<jsonArrays[0].length(); i++){
-                if (jsonArrays[0].getJSONObject(i).getString("productImage") == null ||
-                        jsonArrays[0].getJSONObject(i).getString("productImage").equals("null") ||
-                jsonArrays[0].getJSONObject(i).getString("productImage").trim().equals("")) bm = null;
+                JSONArray jArray = jsonArrays[0];
+            for (int i=0; i<jArray.length(); i++){
+                if (jArray.getJSONObject(i).getString("productImage") == null ||
+                        jArray.getJSONObject(i).getString("productImage").equals("null") ||
+                jArray.getJSONObject(i).getString("productImage").trim().equals("")) bm = null;
                 else {
                  /*   Log.e("확인", AppConfig.REQUEST_URL + "/images/product/"
                             +jsonArrays[0].getJSONObject(i).getString("productImage"));*/
                  try (InputStream is =new URL(AppConfig.REQUEST_URL + "/images/product/"
-                         + jsonArrays[0].getJSONObject(i).getString("productImage")).openStream()) {
+                         + jArray.getJSONObject(i).getString("productImage")).openStream()) {
                      bm = BitmapFactory.decodeStream(is);
-
                      publishProgress(jsonArrays[0].getJSONObject(i), bm);
                  }
                 }
@@ -174,14 +166,13 @@ public class MarketFragment extends Fragment{
                          mTask.execute(jsonArray);
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getContext(), "오류", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 ///리스트 가져오기 실패
-                Toast.makeText(getContext(), "실패", Toast.LENGTH_SHORT).show();
+
             }
         });
         AppController.getInstance().
@@ -275,19 +266,14 @@ public class MarketFragment extends Fragment{
             mListData.remove(position);
             dataChange();
         }
-
-
         public void dataChange(){
             mAdapter.notifyDataSetChanged();
         }
-
     }
 
     @Override
     public void onDestroy() {
-
         super.onDestroy();
         if (mTask !=null)  mTask.cancel(true);
-
         }
 }

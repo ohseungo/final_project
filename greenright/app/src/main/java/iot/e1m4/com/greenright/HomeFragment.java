@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,24 +53,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_home, container, false);
-      /*  QRCodeWriter writer = new QRCodeWriter();
-        try {
-            BitMatrix bitMatrix = writer.encode("yetolkun", BarcodeFormat.QR_CODE,500, 500);
-            int width = bitMatrix.getWidth();
-            int height = bitMatrix.getHeight();
-            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
-                    bitmap.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
-                }
-            }
-
-            ((ImageView) layout.findViewById(R.id.imageView1)).setImageBitmap(bitmap);
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }*/
         sessionManager = new SessionManager(getActivity());
-
+        Log.e("TAG", "createView callled");
         mTotalPoint = layout.findViewById(R.id.pointTv);
         getTotalPoint(sessionManager.getUserId());
         userHead = layout.findViewById(R.id.mainUser);
@@ -91,7 +76,7 @@ public class HomeFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                         Toast.makeText(getActivity(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
 
                     }
                 }){

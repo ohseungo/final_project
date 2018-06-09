@@ -2,7 +2,9 @@ package iot.e1m4.com.greenright;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,9 @@ public class MainFragment extends Fragment {
 
     SessionManager sessionManager;
     TextView userHead;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,7 +48,8 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         sessionManager = new SessionManager(getActivity());
         userHead = layout.findViewById(R.id.mainUser);
-        userUpdate();
+
+        //userUpdate();
 
         return layout;
     }

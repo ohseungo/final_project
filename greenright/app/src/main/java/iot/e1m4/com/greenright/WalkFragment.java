@@ -54,7 +54,7 @@ import info.app.AppConfig;
 import info.app.AppController;
 
 
-public class WalkFragment extends Fragment {
+public class WalkFragment extends Fragment implements MainActivity.onKeyBackPressedListener {
 
     private LineChart lineChart;
     private SessionManager sessionManager;
@@ -221,6 +221,8 @@ public class WalkFragment extends Fragment {
         return null;
     }
 
+
+
     public class MyXAxisValueFormatter implements IAxisValueFormatter {
 
         private List mValues;
@@ -244,15 +246,15 @@ public class WalkFragment extends Fragment {
         public int getDecimalDigits() { return 0; }
     }
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        ((MainActivity)context).setmOnKeyBackPressedListener(this);
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-
+    public void onBack() {
+        getFragmentManager().beginTransaction().
+                replace(R.id.contentContainer,new HomeFragment()).commit();
     }
 }
