@@ -20,7 +20,7 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 
 	@Override
 	public List<Purchase> selectPurchaseListWithMultipleCondition(Map<String, String> id) {
-		return null;
+		return sqlSession.selectList("purchase.selectPurchaseListWithMultipleCondition",id);
 	}
 
 	@Override

@@ -9,7 +9,6 @@ public interface PurchaseService {
 	void addPurchase(Purchase purchase);
 	List<Purchase> searchPurchaseListWithMultipleCondition(Map<String, String> id);
 	Purchase searchPurchase(String purchaseId);
-	
 	void changePurchase(Purchase purchase);
 	void removePurchase(String purchaseId);
 }

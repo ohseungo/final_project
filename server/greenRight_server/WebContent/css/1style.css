@@ -90,9 +90,8 @@ h1, h2, h3, h4, h5, h6, figure {
   top: 0;
   left: 0;
   right: 0;
-  padding: 25px 0;
+  padding: 36px 0;
   z-index: 1;
-  background: linear-gradient(to bottom, #ffffff, #7affa2);
 }
 @media screen and (max-width: 768px) {
   .fh5co-nav {

@@ -21,7 +21,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public List<Purchase> searchPurchaseListWithMultipleCondition(Map<String, String> id) {
 		
-		return null;
+		return purchaseDao.selectPurchaseListWithMultipleCondition(id);
 	}
 
 	@Override

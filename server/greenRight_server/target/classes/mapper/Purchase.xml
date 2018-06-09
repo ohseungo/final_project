@@ -3,4 +3,32 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="purchase">
+    <resultMap type="Purchase" id="PurchaseResultMap">
+        <id column="purchaseId" property="purchaseId"/>
+        <result column="purchaseCount" property="purchaseCount"/>
+        <result column="purchaseStatus" property="purchaseStatus"/>
+        <result column="purchaseDate" property="purchaseDate"/>
+        <result column="productId" property="productId"/>
+        <result column="userId" property="userId"/>
+        <result column="purchaseType" property="purchaseType"/>
+        <result column="userAddress" property="userAddress"/>
+        <result column="productValue" property="productValue"/>
+        <result column="userName" property="userName"/>
+        <result column="purchasePoint" property="purchasePoint"/>
+    </resultMap>
+    <select id="selectPurchaseListWithMultipleCondition" parameterType="map" resultMap="PurchaseResultMap">
+        select p.purchaseId, u.userName, p.purchaseType, d.productValue, p.purchasePoint ,p.userAddress, p.purchaseStatus
+        from purchase p, userinfo u, product d
+        <where>
+         p.userId=u.userId
+         and
+         p.productId=d.productId
+        <if test="compId!=null">
+            and p.compId=#{id}
+        </if>
+        <if test="userId!=null">
+            and u.userId=#{id}
+        </if>
+        </where>
+    </select>
 </mapper>
