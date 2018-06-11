@@ -39,6 +39,7 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.roughike.bottombar.BottomBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,6 +59,8 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
 
     private LineChart lineChart;
     private SessionManager sessionManager;
+    private final String TAG = getClass().getSimpleName();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +78,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
 
         currDis = layout.findViewById(R.id.currTv);
         goalDis = layout.findViewById(R.id.goalTv);
-        currDis.setText(  sessionManager.getDistanceDayChecked(sessionManager.getUserId()) +
+        currDis.setText(  sessionManager.getDistance(sessionManager.getUserId()) +
                 "km");
         goalDis.setText(10 + "km");
         getLineData(layout, sessionManager.getUserId());
@@ -107,7 +110,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
                 return params;
             }
         };
-
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
     }
@@ -117,7 +120,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
         List<Entry> entries=new ArrayList<>();
         lineChart=layout.findViewById(R.id.chart);
         if (response.equals("") || response == null || response.equals("[]")) {
-            entries.add(new Entry(6, 0));
+            entries.add(new Entry(6, (int) sessionManager.getDistance(sessionManager.getUserId())));
         }
         else {
             try {
@@ -125,7 +128,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
                 for (int i = 0; i < jArray.length(); i++) {
                 /*Toast.makeText(getActivity(),(float) jArray.getJSONObject(i).getDouble("walkDistance") + ""
                         , Toast.LENGTH_SHORT).show();*/
-                    entries.add(new Entry(i + 1, (float) jArray.getJSONObject(i).getDouble("walkDistance")));
+                    entries.add(new Entry(i , (float) jArray.getJSONObject(i).getDouble("walkDistance")));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -182,6 +185,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
         lineChart.invalidate();
     }
 
+/*
     private List<Entry> getLineList(final String userId){
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT,
@@ -215,11 +219,11 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
 
 
         };
-
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
         return null;
-    }
+    }*/
 
 
 
@@ -254,7 +258,14 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
 
     @Override
     public void onBack() {
-        getFragmentManager().beginTransaction().
-                replace(R.id.contentContainer,new HomeFragment()).commit();
+        BottomBar bottomBar = getActivity().findViewById(R.id.bottomBar);
+        bottomBar.selectTabAtPosition(0);
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
     }
 }

@@ -35,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private ProgressDialog pDialog;
 
+    private final String TAG = getClass().getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        //서버로 보낸다
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
 
@@ -163,5 +165,11 @@ public class LoginActivity extends AppCompatActivity {
         //회원가입 하러 가자
         Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
     }
 }

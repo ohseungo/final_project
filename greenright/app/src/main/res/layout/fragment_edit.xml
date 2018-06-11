@@ -48,7 +48,7 @@
                 android:textColor="#ffffff"/>
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/nameEdit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -82,7 +82,7 @@
                 android:layout_weight="3"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
-                android:text="kys1226" />
+                android:text="" />
 
         </LinearLayout>
         <LinearLayout
@@ -104,7 +104,7 @@
                 android:textColor="#ffffff"/>
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/passEdit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -132,7 +132,7 @@
                 android:textColor="#ffffff"/>
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/passConfirmEdit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -160,7 +160,7 @@
                 android:textColor="#ffffff"/>
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/emailEdit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -188,7 +188,7 @@
                 android:textColor="#ffffff"/>
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/phoneEdit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -216,7 +216,7 @@
                 android:textColor="#ffffff"/>
 
             <EditText
-                android:id="@+id/editText8"
+                android:id="@+id/carEdit"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"

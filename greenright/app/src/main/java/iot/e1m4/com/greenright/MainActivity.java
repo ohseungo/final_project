@@ -49,12 +49,13 @@ import info.app.AppController;
 public class MainActivity extends AppCompatActivity {
     FragmentTransaction transaction;
 
-    WalkFragment mWalkFragment = new WalkFragment();
-    MapsFragment mMapsFragment = new MapsFragment();
-    HomeFragment mHomeFragment = new HomeFragment();
-    SaveFragment mSaveFragment = new SaveFragment();
-    MarketFragment mMarketFragment = new MarketFragment();
-    MypageFragment mMypageFragment = new MypageFragment();
+    WalkFragment mWalkFragment;
+    MapsFragment mMapsFragment;
+    HomeFragment mHomeFragment;
+    SaveFragment mSaveFragment;
+    MarketFragment mMarketFragment;
+    MypageFragment mMypageFragment;
+
 
     private SessionManager sessionManager;
 
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     TextView userHead;
+
+    private final String TAG = getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +88,18 @@ public class MainActivity extends AppCompatActivity {
         //actionBar.setCustomView(R.layout.custom_bar);
         //actionBar.setBackgroundDrawable(new ColorDrawable(0xFFffffff));
 
+        for (String key : sessionManager.getPref().getAll().keySet()) {
+            Log.e("TAG", key + " " + sessionManager.getPref().getAll().get(key));
+        }
+
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+
+        mWalkFragment = new WalkFragment();
+        mMapsFragment = new MapsFragment();
+        mHomeFragment = new HomeFragment();
+        mSaveFragment = new SaveFragment();
+        mMarketFragment = new MarketFragment();
+        mMypageFragment = new MypageFragment();
 
         //navigation view 관련
         mDrawerLayout=findViewById(R.id.drawer_layout);
@@ -238,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
                 return params;
             }
         };
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
         return;
@@ -308,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         Intent distanceListenerIntent = new Intent(this, DistanceListenerService.class);
         startService(distanceListenerIntent);
-        Toast.makeText(MainActivity.this, "거리 리스너 시작", Toast.LENGTH_SHORT).show();
+
     }
 
 
@@ -329,6 +344,13 @@ public class MainActivity extends AppCompatActivity {
         }else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
+
     }
 }
 

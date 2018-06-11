@@ -48,9 +48,7 @@ import info.app.AppController;
 public class PointFragment extends Fragment {
 
 
-    public PointFragment() {
-        // Required empty public constructor
-    }
+    private final String TAG = getClass().getSimpleName();
 
     PieChart pieChart;
 
@@ -163,6 +161,7 @@ public class PointFragment extends Fragment {
 
         };
 
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
         ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
@@ -242,7 +241,7 @@ public class PointFragment extends Fragment {
 
 
         };
-
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
 
@@ -328,14 +327,14 @@ public class PointFragment extends Fragment {
             mListData.remove(position);
             dataChange();
         }
-
-
         public void dataChange(){
             mAdapter.notifyDataSetChanged();
         }
-
-
 }
 
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
+    }
 }

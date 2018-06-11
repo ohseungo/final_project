@@ -41,10 +41,7 @@ import info.app.AppController;
  */
 public class HomeFragment extends Fragment {
 
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
+    private final String TAG = getClass().getSimpleName();
     TextView mTotalPoint;
     SessionManager sessionManager;
     TextView userHead;
@@ -54,7 +51,6 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_home, container, false);
         sessionManager = new SessionManager(getActivity());
-        Log.e("TAG", "createView callled");
         mTotalPoint = layout.findViewById(R.id.pointTv);
         getTotalPoint(sessionManager.getUserId());
         userHead = layout.findViewById(R.id.mainUser);
@@ -122,10 +118,15 @@ public class HomeFragment extends Fragment {
                 return params;
             }
         };
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
         return;
     }
 
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
+    }
 }

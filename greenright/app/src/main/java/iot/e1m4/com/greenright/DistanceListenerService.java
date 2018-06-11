@@ -49,7 +49,6 @@ public class DistanceListenerService extends Service {
         sessionManager = new SessionManager(this);
         maxSpeed = mySpeed = 0;
         totalDis = sessionManager.getDistanceDayChecked(sessionManager.getUserId());
-
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mLocationListner = new SpeedoActionListener();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -59,6 +58,8 @@ public class DistanceListenerService extends Service {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListner);
             mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListner);
         }
+        Toast.makeText(this, "거리 리스너 시작\n" +
+                totalDis, Toast.LENGTH_SHORT).show();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -77,20 +78,24 @@ public class DistanceListenerService extends Service {
                 if (prevLoc !=null) {
                     currDis =prevLoc.distanceTo(location);
                 }
+
                 prevLoc = location;
+
                 if (mySpeed>0 && mySpeed <4.5) {
-                    Toast.makeText(DistanceListenerService.this, currDis +"", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DistanceListenerService.this, totalDis +"저장", Toast.LENGTH_SHORT).show();
                     totalDis += currDis;
+                    sessionManager.setDistanceDayChecked(sessionManager.getUserId(), totalDis);
                 }
 
-/*
-                if (totalDis >= 500 ) { ///////////일정 거리 이상이면 포인트 갱신
+                ///////////////테스트
+                if (totalDis >= 100 ) { ///////////일정 거리 이상이면 포인트 갱신
                     PointManager.addPointData(sessionManager.getUserId(), 10,
-                        2, "500미터 달성", DistanceListenerService.this);
-                    mNotification = buildNotification("걷기 달성!", "500m 걸었어요! 야호!");
+                        2, "100미터 달성", DistanceListenerService.this);
+                    mNotification = buildNotification("걷기 달성!", "100m 걸었어요! 야호!");
                     mNotification.notify();
-                }*/
-                sessionManager.setDistanceDayChecked(sessionManager.getUserId(), totalDis);
+                }
+
+
             }else {
                 //문제 발생
                 Toast.makeText(DistanceListenerService.this, "location null", Toast.LENGTH_SHORT).show();

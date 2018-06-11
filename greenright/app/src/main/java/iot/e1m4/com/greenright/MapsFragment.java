@@ -46,6 +46,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.roughike.bottombar.BottomBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,7 +63,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         GoogleMap.OnMarkerClickListener,
-        LocationListener {
+        LocationListener,
+        MainActivity.onKeyBackPressedListener{
 
     private static final String TAG = "googlemap_example";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
@@ -470,6 +472,16 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+    }
 
+    @Override
+    public void onBack() {
+        BottomBar bottomBar = getActivity().findViewById(R.id.bottomBar);
+        bottomBar.selectTabAtPosition(0);
 
+    }
 }

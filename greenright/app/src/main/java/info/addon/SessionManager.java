@@ -52,10 +52,7 @@ public class SessionManager {
     }
 
 
-    public void setDistanceDayChecked(String userId, double distance) {
-        editor.putFloat(userId+AppConfig.DISTANCE_CHECK_DISTANCE, (float) distance);
-        editor.commit();
-    }
+
 
 
     public void dayReset(){
@@ -84,7 +81,10 @@ public class SessionManager {
 
     }
 
-
+    public void setDistanceDayChecked(String userId, double distance) {
+        editor.putFloat(userId + AppConfig.DISTANCE_CHECK_DISTANCE, (float) distance);
+        editor.commit();
+    }
     public void setBeaconChecked(String beaconKey) {
         editor.putBoolean(beaconKey, true).commit();
     }
@@ -97,6 +97,9 @@ public class SessionManager {
     }
     public boolean isFirstOn() {return pref.getBoolean(KEY_SHOWN, false);}
     public double getDistanceDayChecked(String userId) {
+        return pref.getFloat(userId + AppConfig.DISTANCE_CHECK_DISTANCE, 0);
+    }
+    public double getDistance(String userId) {
         double result = (int) (pref.getFloat(userId + AppConfig.DISTANCE_CHECK_DISTANCE, 0)/100);
         return result/10;
     }

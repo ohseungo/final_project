@@ -54,53 +54,6 @@ public class MainFragment extends Fragment {
         return layout;
     }
 
-    private void userUpdate() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.FIND_USER,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //////////////성공//////////////////////
-                        try {
-                            Toast.makeText(getActivity(), "성공", Toast.LENGTH_SHORT).show();
-                            userHead.setText(URLDecoder.decode(new JSONObject(response).getString("userName")
-                                    , "UTF-8"));
-                            return;
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        ///////////////////실패/////////////////////////////////
-                        Toast.makeText(getActivity(), "실패", Toast.LENGTH_SHORT).show();
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("userId", sessionManager.getUserId());
-                return params;
-            }
-        };
-        AppController.getInstance().
-                addToRequestQueue(stringRequest);
-        return;
-    /*    View layout=inflater.inflate(R.layout.fragment_main, container, false);
-        airBtn=layout.findViewById(R.id.airBtn);
-        airBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String stationName="역삼동";
-                getWeather(stationName);
-
-            }
-        });
-        return layout;*/
-    }
 
     public static  void getWeather(String name){
 

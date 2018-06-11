@@ -50,6 +50,7 @@ import info.app.AppController;
  */
 public class MarketFragment extends Fragment{
 
+    private final String TAG = getClass().getSimpleName();
 
     private ListView mListView=null;
     private ListViewAdapter mAdapter=null;
@@ -122,9 +123,9 @@ public class MarketFragment extends Fragment{
                  try (InputStream is =new URL(AppConfig.REQUEST_URL + "/images/product/"
                          + jArray.getJSONObject(i).getString("productImage")).openStream()) {
                      bm = BitmapFactory.decodeStream(is);
-                     publishProgress(jsonArrays[0].getJSONObject(i), bm);
                  }
                 }
+                publishProgress(jsonArrays[0].getJSONObject(i), bm);
             }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -175,6 +176,7 @@ public class MarketFragment extends Fragment{
 
             }
         });
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
 
@@ -276,4 +278,10 @@ public class MarketFragment extends Fragment{
         super.onDestroy();
         if (mTask !=null)  mTask.cancel(true);
         }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
+    }
 }

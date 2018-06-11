@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return user;
             }
         };
-
+        stringRequest.setTag(TAG);
         //요청 서버로 보낸다
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
@@ -208,12 +208,15 @@ public class RegisterActivity extends AppCompatActivity {
                 return user;
             }
         };
-        
+        stringRequest.setTag(TAG);
         //요청 서버로 보낸다
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
     }
 
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
+    }
 }
