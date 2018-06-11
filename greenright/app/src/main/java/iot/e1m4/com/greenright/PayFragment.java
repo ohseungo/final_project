@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 /**
@@ -36,6 +38,7 @@ public class PayFragment extends Fragment {
     private Fragment simplePayFragment;
 
     FragmentTransaction transaction;
+    private static Typeface typeface;
 
     public PayFragment() {
         // Required empty public constructor
@@ -59,6 +62,12 @@ public class PayFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_pay, container, false);
+
+        if(typeface == null) {
+            typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/yoon350.ttf");
+        }
+        setGlobalFont(layout);
 
         //각 버튼 눌렀을 때 옮겨지는 fragment 연결
         cardFragment=new CardFragment();
@@ -176,5 +185,20 @@ public class PayFragment extends Fragment {
             return PAGE_NUMBER;
         }
     }*/
+   private void setGlobalFont(View view) {
+       if(view != null) {
+           if(view instanceof ViewGroup) {
+               ViewGroup viewGroup = (ViewGroup)view;
+               int vgCnt = viewGroup.getChildCount();
+               for(int i = 0; i<vgCnt; i++) {
+                   View v = viewGroup.getChildAt(i);
+                   if(v instanceof TextView) {
+                       ((TextView) v).setTypeface(typeface);
+                   }
+                   setGlobalFont(v);
+               }
+           }
+       }
+   }
 
 }

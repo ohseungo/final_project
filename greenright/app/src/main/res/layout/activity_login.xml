@@ -9,67 +9,6 @@
     tools:context=".LoginActivity"
     android:weightSum="5">
 
-    <!--<ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:srcCompat="@drawable/worldwide" />
-
-    <TextView
-        android:id="@+id/logoTv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:fontFamily="@font/yoon360"
-        android:gravity="center"
-        android:text="@string/logoTv"
-        android:textColor="#ffffff"
-        android:textSize="25dp" />
-
-    <EditText
-        android:id="@+id/userid"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/id_shape"
-        android:drawablePadding="15dp"
-        android:drawableStart="@drawable/ic_account_circle"
-        android:ems="10"
-        android:hint="@string/useridHint"
-        android:inputType="textPersonName"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/id_shape"
-        android:drawablePadding="15dp"
-        android:drawableStart="@drawable/ic_lock_outline"
-        android:ems="10"
-        android:hint="@string/pwHint"
-        android:inputType="textPassword"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff" />
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/point_shape3"
-        android:textColor="#ffffff"
-        android:onClick="loginBtn"
-        android:text="@string/loginBtn" />
-
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#ffffff"
-        android:onClick="goToRegister"
-        android:text="@string/register"
-        android:textColor="#313131" />
--->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -93,7 +32,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:fontFamily="@font/yoon360"
             android:gravity="center"
             android:text="@string/logoTv"
             android:textStyle="bold"

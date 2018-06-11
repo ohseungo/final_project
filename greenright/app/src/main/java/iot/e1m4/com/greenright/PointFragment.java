@@ -3,6 +3,7 @@ package iot.e1m4.com.greenright;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -56,7 +58,7 @@ public class PointFragment extends Fragment {
 
     android.widget.ListView mListView=null;
     ListViewAdapter mAdapter=null;
-
+    private static Typeface typeface;
 
     SessionManager mSessionManager;
     @Override
@@ -65,6 +67,11 @@ public class PointFragment extends Fragment {
         // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_point, container, false);
 
+        if(typeface == null) {
+            typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/yoon350.ttf");
+        }
+        setGlobalFont(layout);
         pieChart = layout.findViewById(R.id.piechart);
 
         pieChart.setUsePercentValues(true);
@@ -94,8 +101,6 @@ public class PointFragment extends Fragment {
         return layout;
     }
 
-    private static String[] pointTypeList = {null, "일회용 수거", "도보 이용", "대중교통 이용", "환경 영상 시청"};
-
     private void makePieEntry(final String userId) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT_BY_TYPE,
                 new Response.Listener<String>() {
@@ -109,7 +114,7 @@ public class PointFragment extends Fragment {
                             for (int i =0; i<jsonArray.length(); i++) {
                                 object = jsonArray.getJSONObject(i);
                                 yValues.add(new PieEntry(Integer.parseInt(object.getString("greenPointValue")),
-                                        pointTypeList[object.getInt("greenPointType")]));
+                                        object.getString("greenPointType")));
                             }
 
                             com.github.mikephil.charting.components.Legend l = pieChart.getLegend();
@@ -193,22 +198,27 @@ public class PointFragment extends Fragment {
 
                             for (int i =0; i<jsonArray.length(); i++) {
                                 object = jsonArray.getJSONObject(i);
-                                if (object.getInt("greenPointType") == -1) continue;
                                 try {
 
                                     switch(object.getInt("greenPointType")){
                                         case 1:
                                             img=getResources().getDrawable(R.drawable.ic_recycle);
+                                            break;
                                         case 2:
                                             img=getResources().getDrawable(R.drawable.ic_walking);
+                                            break;
                                         case 3:
                                             img=getResources().getDrawable(R.drawable.ic_bus);
+                                            break;
                                         case 4:
                                             img=getResources().getDrawable(R.drawable.ic_video);
+                                            break;
                                         case 5:
                                             img=getResources().getDrawable(R.drawable.ic_tumbler);
+                                            break;
                                             default:
                                                 img=getResources().getDrawable(R.drawable.ic_star);
+                                                break;
                                     }
                                     mAdapter.addItem(img,
                                             URLDecoder.decode(object.getString("greenPointContent"),"UTF-8") ,
@@ -283,6 +293,8 @@ public class PointFragment extends Fragment {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if(convertView==null){
+
+
             holder=new ViewHolder();
 
             LayoutInflater inflater= (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -336,6 +348,20 @@ public class PointFragment extends Fragment {
 
 
 }
-
+    private void setGlobalFont(View view) {
+        if(view != null) {
+            if(view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup)view;
+                int vgCnt = viewGroup.getChildCount();
+                for(int i = 0; i<vgCnt; i++) {
+                    View v = viewGroup.getChildAt(i);
+                    if(v instanceof TextView) {
+                        ((TextView) v).setTypeface(typeface);
+                    }
+                    setGlobalFont(v);
+                }
+            }
+        }
+    }
 
 }

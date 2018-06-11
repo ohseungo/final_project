@@ -31,7 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:fontFamily="@font/nanum_bold"
             android:gravity="center"
             android:text="@string/logoTv"
             android:textColor="#ffffff"
@@ -43,7 +42,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:fontFamily="@font/nanum"
             android:gravity="center"
             android:text="@string/introLogo"
             android:textColor="#ffffff"
@@ -70,7 +68,6 @@
             android:layout_weight="1"
             android:background="@drawable/point_shape4"
             android:onClick="btnRegister"
-            android:fontFamily="@font/nanum"
             android:text="@string/registerBtn"
             android:layout_marginTop="20dp"
             android:layout_marginStart="5dp"
@@ -86,7 +83,6 @@
             android:layout_margin="5dp"
             android:background="@drawable/point_shape3"
             android:onClick="btnLogin"
-            android:fontFamily="@font/nanum"
             android:text="@string/loginBtn"
             android:textColor="#ffffff" />
 

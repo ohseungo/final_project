@@ -58,6 +58,7 @@ public class WalkFragment extends Fragment {
 
     private LineChart lineChart;
     private SessionManager sessionManager;
+    private static Typeface typeface;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +73,12 @@ public class WalkFragment extends Fragment {
 
 
         View layout=inflater.inflate(R.layout.fragment_walk, container, false);
+
+        if(typeface == null) {
+            typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/yoon350.ttf");
+        }
+        setGlobalFont(layout);
 
         currDis = layout.findViewById(R.id.currTv);
         goalDis = layout.findViewById(R.id.goalTv);
@@ -254,5 +261,21 @@ public class WalkFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
 
+    }
+
+    private void setGlobalFont(View view) {
+        if(view != null) {
+            if(view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup)view;
+                int vgCnt = viewGroup.getChildCount();
+                for(int i = 0; i<vgCnt; i++) {
+                    View v = viewGroup.getChildAt(i);
+                    if(v instanceof TextView) {
+                        ((TextView) v).setTypeface(typeface);
+                    }
+                    setGlobalFont(v);
+                }
+            }
+        }
     }
 }

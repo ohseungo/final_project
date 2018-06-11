@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ public class CurrentOrderFragment extends Fragment {
 
     ListView mListView=null;
     ListViewAdapter mAdapter=null;
+    private static Typeface typeface;
     public CurrentOrderFragment() {
         // Required empty public constructor
     }

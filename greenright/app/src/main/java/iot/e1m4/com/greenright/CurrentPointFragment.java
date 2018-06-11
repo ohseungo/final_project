@@ -2,6 +2,7 @@ package iot.e1m4.com.greenright;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -40,6 +41,7 @@ public class CurrentPointFragment extends Fragment {
     ListViewAdapter mAdapter=null;
     TextView mCurrPoint;
     SessionManager sessionManager;
+    private static Typeface typeface;
     public CurrentPointFragment() {
         // Required empty public constructor
     }

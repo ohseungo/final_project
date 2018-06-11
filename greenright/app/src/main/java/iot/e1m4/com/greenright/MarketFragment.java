@@ -3,6 +3,7 @@ package iot.e1m4.com.greenright;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -44,6 +45,7 @@ public class MarketFragment extends Fragment {
 
     private ListView mListView=null;
     private ListViewAdapter mAdapter=null;
+    private static Typeface typeface;
 
     public MarketFragment() {
         // Required empty public constructor
@@ -55,6 +57,12 @@ public class MarketFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_market, container, false);
+
+        if(typeface == null) {
+            typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/yoon350.ttf");
+        }
+        setGlobalFont(layout);
         mListView=layout.findViewById(R.id.productList);
 
         mAdapter=new ListViewAdapter(getActivity());
@@ -62,7 +70,7 @@ public class MarketFragment extends Fragment {
 
         //데이터 입력은 이곳에서~~~~
         marketListUpdate();
-        /*mAdapter.addItem(getResources().getDrawable(R.drawable.p1),"체리열매 발아키트","[커피팟]","12,000");
+      /*  mAdapter.addItem(getResources().getDrawable(R.drawable.p1),"체리열매 발아키트","[커피팟]","12,000");
         mAdapter.addItem(getResources().getDrawable(R.drawable.p2),"토트백","[FREiTAG]","229,000");
         mAdapter.addItem(getResources().getDrawable(R.drawable.p3),"데일리 썸머 파우치 3size","[Dadume]","22,000");
         mAdapter.addItem(getResources().getDrawable(R.drawable.p4),"빈티지 가랜드","[Dadume]","16,000");
@@ -218,5 +226,21 @@ public class MarketFragment extends Fragment {
             mAdapter.notifyDataSetChanged();
         }
 
+    }
+
+    private void setGlobalFont(View view) {
+        if(view != null) {
+            if(view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup)view;
+                int vgCnt = viewGroup.getChildCount();
+                for(int i = 0; i<vgCnt; i++) {
+                    View v = viewGroup.getChildAt(i);
+                    if(v instanceof TextView) {
+                        ((TextView) v).setTypeface(typeface);
+                    }
+                    setGlobalFont(v);
+                }
+            }
+        }
     }
 }

@@ -1,14 +1,16 @@
 package iot.e1m4.com.greenright;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaCas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+
 import info.addon.SessionManager;
 
-public class IntroLoginActivity extends AppCompatActivity {
+public class IntroLoginActivity extends BaseActivity {
 
 
     @Override
@@ -42,5 +44,6 @@ public class IntroLoginActivity extends AppCompatActivity {
         startActivity(intent);
         return;
     }
+
 
 }

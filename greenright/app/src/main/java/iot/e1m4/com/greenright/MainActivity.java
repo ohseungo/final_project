@@ -1,5 +1,6 @@
 package iot.e1m4.com.greenright;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -330,6 +331,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 }
 
 
