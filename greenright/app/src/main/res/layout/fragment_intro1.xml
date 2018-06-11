@@ -26,7 +26,6 @@
             android:layout_height="match_parent"
             android:text="@string/introText1"
             android:lineSpacingExtra="8dp"
-            android:fontFamily="@font/yoon340"
             android:textColor="#ffffff"
             android:textSize="30dp"
             android:textStyle="bold"

@@ -1,8 +1,10 @@
 package iot.e1m4.com.greenright;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -27,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,16 +48,25 @@ public class HomeFragment extends Fragment {
     TextView mTotalPoint;
     SessionManager sessionManager;
     TextView userHead;
+    private static Typeface typeface;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_home, container, false);
+
+        if(typeface == null) {
+            typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/yoon350.ttf");
+        }
+        setGlobalFont(layout);
+
         sessionManager = new SessionManager(getActivity());
         mTotalPoint = layout.findViewById(R.id.pointTv);
         getTotalPoint(sessionManager.getUserId());
         userHead = layout.findViewById(R.id.mainUser);
         userUpdate();
+
 
         return layout;
     }
@@ -124,9 +136,27 @@ public class HomeFragment extends Fragment {
         return;
     }
 
+
     @Override
     public void onStop() {
         super.onStop();
         AppController.getInstance().cancelPendingRequests(TAG);
     }
+
+    private void setGlobalFont(View view) {
+        if(view != null) {
+            if(view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup)view;
+                int vgCnt = viewGroup.getChildCount();
+                for(int i = 0; i<vgCnt; i++) {
+                    View v = viewGroup.getChildAt(i);
+                    if(v instanceof TextView) {
+                        ((TextView) v).setTypeface(typeface);
+                    }
+                    setGlobalFont(v);
+                }
+            }
+        }
+    }
+
 }

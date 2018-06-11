@@ -9,128 +9,6 @@
     tools:context=".RegisterActivity"
     android:weightSum="10">
 
-   <!-- <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:srcCompat="@drawable/worldwide" />
-
-    <TextView
-        android:id="@+id/logoTv"
-        android:layout_width=match_parent"
-        android:layout_height="0dp"
-        android:fontFamily="@font/yoon360"
-        android:gravity="center"
-        android:text="@string/logoTv"
-        android:textColor="#ffffff"
-        android:textSize="25dp" />
-
-    <EditText
-        android:id="@+id/register_id_edit"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:background="@drawable/id_shape"
-        android:drawablePadding="15dp"
-        android:drawableStart="@drawable/ic_account_circle"
-        android:hint="@string/regiId"
-        android:inputType="textPersonName"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff" />
-
-
-    <Button
-        android:id="@+id/register_id_check"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:background="@drawable/point_shape3"
-        android:text="@string/register_id_check"
-        android:onClick="checkIdDup"
-        android:textColor="#ffffff" />
-
-    <EditText
-        android:id="@+id/register_pw_edit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/id_shape"
-        android:drawablePadding="15dp"
-        android:drawableStart="@drawable/ic_lock_outline"
-        android:hint="@string/regipw"
-        android:inputType="textPassword"
-        android:textColor="#ffffff""/>
-
-    <EditText
-        android:id="@+id/register_pw_check_edit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/id_shape"
-        android:drawablePadding="15dp"
-        android:drawableStart="@drawable/ic_lock_outline"
-        android:hint="@string/regirepw"
-        android:inputType="textPassword"
-        android:paddingStart="15dp"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff"/>
-
-    <EditText
-        android:id="@+id/register_email_edit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/id_shape"
-        android:drawablePadding="15dp"
-        android:drawableStart="@drawable/ic_email"
-        android:hint="@string/regiEmail"
-        android:inputType="textEmailAddress"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"/>
-
-    <EditText
-        android:id="@+id/register_name_edit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/id_shape"
-        android:drawablePadding="15dp"
-        android:hint="@string/regiName"
-        android:inputType="textPersonName"
-        android:paddingStart="15dp"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff"/>
-
-    <EditText
-        android:id="@+id/register_phone_edit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/id_shape"
-        android:drawablePadding="15dp"
-        android:drawableStart="@drawable/ic_phone_android"
-        android:hint="@string/regi_phone"
-        android:inputType="phone"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff"/>
-
-    <EditText
-        android:id="@+id/register_car_edit"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/id_shape"
-        android:drawablePadding="15dp"
-        android:drawableStart="@drawable/ic_directions_car"
-        android:hint="@string/regi_car"
-        android:inputType="textPersonName"
-        android:paddingStart="15dp"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff"/>
-
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/point_shape3"
-        android:onClick="userRegister"
-        android:text="@string/registerBtn"
-        android:textColor="#ffffff"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -151,7 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:fontFamily="@font/yoon360"
             android:gravity="center"
             android:text="@string/logoTv"
             android:textColor="#ffffff"

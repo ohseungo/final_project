@@ -1,12 +1,14 @@
 package iot.e1m4.com.greenright;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -23,6 +25,8 @@ public class MypageFragment extends Fragment {
     Fragment mCurrentPointFragment=new CurrentPointFragment();
     Fragment mCurrentOrderFragment=new CurrentOrderFragment();
     Fragment mEditFragment=new EditFragment();
+    private static Typeface typeface;
+
     public MypageFragment() {
         // Required empty public constructor
     }
@@ -33,6 +37,13 @@ public class MypageFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View layout=inflater.inflate(R.layout.fragment_mypage, container, false);
+
+        if(typeface == null) {
+            typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/yoon350.ttf");
+        }
+        setGlobalFont(layout);
+
         mPointBtn=layout.findViewById(R.id.pointBtn);
         mPointBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +75,20 @@ public class MypageFragment extends Fragment {
         return layout;
     }
 
-
+    private void setGlobalFont(View view) {
+        if(view != null) {
+            if(view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup)view;
+                int vgCnt = viewGroup.getChildCount();
+                for(int i = 0; i<vgCnt; i++) {
+                    View v = viewGroup.getChildAt(i);
+                    if(v instanceof TextView) {
+                        ((TextView) v).setTypeface(typeface);
+                    }
+                    setGlobalFont(v);
+                }
+            }
+        }
+    }
 
 }

@@ -8,80 +8,6 @@
     android:background="#f4f7f8"
     android:weightSum="5">
 
-    <!-- TODO: Update blank fragment layout -->
-
-
-<!--    <RelativeLayout
-        android:id="@+id/relative1"
-        android:layout_width="match_parent"
-        android:layout_height="198dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="#ffffff"
-      android:layout_margin="5dp" >
-
-        <TextView
-            android:id="@+id/walkTv1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:text="@string/walkTv1"
-            android:fontFamily="@font/yoon330"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/currTv"
-            android:layout_width="130dp"
-            android:layout_height="73dp"
-            android:layout_alignParentStart="true"
-            android:id="@+id/walkTv2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_below="@+id/walkTv1"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/yoon360"
-            android:gravity="center"
-            android:text="@string/walkTv2"
-            android:textColor="#f27340"
-            android:textSize="40dp" />
-
-        <TextView
-            android:id="@+id/walkTv3"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="@string/walkTv3"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:fontFamily="@font/yoon330"/>
-
-        <TextView
-<<<<<<< HEAD
-            android:id="@+id/goalTv"
-            android:layout_width="130dp"
-            android:layout_height="73dp"
-            android:layout_alignStart="@+id/walkTv3"
-            android:layout_below="@+id/walkTv1"
-            android:layout_marginEnd="15dp"
-            android:fontFamily="@font/yoon360"
-            android:gravity="center"
-            android:text="@string/walkTv4"
-            android:textColor="#71a0cd"
-            android:textSize="40dp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="242dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/relative1"
-        android:layout_margin="5dp"
-        android:background="#ffffff">
-
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </RelativeLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -104,14 +30,12 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/walkTv1"
-                android:fontFamily="@font/yoon330"
                 android:textSize="20dp" />
             <TextView
                 android:id="@+id/currTv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/yoon360"
                 android:gravity="center_horizontal"
                 android:text="@string/walkTv2"
                 android:textColor="#d6ccd4"
@@ -132,8 +56,7 @@
                 android:layout_weight="1"
                 android:text="@string/walkTv3"
                 android:textSize="20dp"
-                android:gravity="center"
-                android:fontFamily="@font/yoon330"/>
+                android:gravity="center"/>
             <TextView
                 android:id="@+id/goalTv"
                 android:layout_width="match_parent"
@@ -142,7 +65,6 @@
                 android:text="@string/walkTv4"
                 android:textColor="#bdcebe"
                 android:textSize="40dp"
-                android:fontFamily="@font/yoon360"
                 android:gravity="center_horizontal"/>
         </LinearLayout>
     </LinearLayout>

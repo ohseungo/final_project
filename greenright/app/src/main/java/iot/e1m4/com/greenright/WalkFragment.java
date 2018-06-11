@@ -60,6 +60,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
     private LineChart lineChart;
     private SessionManager sessionManager;
     private final String TAG = getClass().getSimpleName();
+    private static Typeface typeface;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,12 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
 
 
         View layout=inflater.inflate(R.layout.fragment_walk, container, false);
+
+        if(typeface == null) {
+            typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/yoon350.ttf");
+        }
+        setGlobalFont(layout);
 
         currDis = layout.findViewById(R.id.currTv);
         goalDis = layout.findViewById(R.id.goalTv);
@@ -267,5 +274,21 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
     public void onStop() {
         super.onStop();
         AppController.getInstance().cancelPendingRequests(TAG);
+    }
+
+    private void setGlobalFont(View view) {
+        if (view != null) {
+            if (view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) view;
+                int vgCnt = viewGroup.getChildCount();
+                for (int i = 0; i < vgCnt; i++) {
+                    View v = viewGroup.getChildAt(i);
+                    if (v instanceof TextView) {
+                        ((TextView) v).setTypeface(typeface);
+                    }
+                    setGlobalFont(v);
+                }
+            }
+        }
     }
 }

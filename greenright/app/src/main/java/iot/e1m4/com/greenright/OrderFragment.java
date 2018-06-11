@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -22,14 +24,15 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
 import info.addon.SessionManager;
 import info.app.AppConfig;
 import info.app.AppController;
+
+import android.widget.TextView;
+
 
 
 /**
@@ -39,6 +42,7 @@ public class OrderFragment extends Fragment {
 
     FragmentTransaction transaction;
     Button payBtn;
+    private static Typeface typeface;
 
     EditText mOrderName;
     EditText mOrderPhone;
@@ -57,6 +61,13 @@ public class OrderFragment extends Fragment {
         // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_order, container, false);
         mSessionManager = new SessionManager(getActivity());
+
+        if(typeface == null) {
+            typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/yoon350.ttf");
+        }
+        setGlobalFont(layout);
+
         //주문자 정보와 동일 체크 버튼:isEqualCheck
         Toast.makeText(getActivity(), getArguments().getString("productId"), Toast.LENGTH_SHORT).show();
 
@@ -134,4 +145,19 @@ public class OrderFragment extends Fragment {
     }
 
 
+    private void setGlobalFont(View view) {
+        if(view != null) {
+            if(view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup)view;
+                int vgCnt = viewGroup.getChildCount();
+                for(int i = 0; i<vgCnt; i++) {
+                    View v = viewGroup.getChildAt(i);
+                    if(v instanceof TextView) {
+                        ((TextView) v).setTypeface(typeface);
+                    }
+                    setGlobalFont(v);
+                }
+            }
+        }
+    }
 }
