@@ -26,6 +26,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.roughike.bottombar.BottomBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +48,7 @@ import info.app.AppController;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PointFragment extends Fragment {
+public class PointFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
 
 
     private final String TAG = getClass().getSimpleName();
@@ -99,6 +100,7 @@ public class PointFragment extends Fragment {
         return layout;
     }
 
+    private String[] pointType = {null, "일회용 수거", "걷기", "대중교통 이용", "환경 프로모션"};
     private void makePieEntry(final String userId) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT_BY_TYPE,
                 new Response.Listener<String>() {
@@ -111,8 +113,9 @@ public class PointFragment extends Fragment {
 
                             for (int i =0; i<jsonArray.length(); i++) {
                                 object = jsonArray.getJSONObject(i);
+                                if (Integer.parseInt(object.getString("greenPointType")) <0) continue;
                                 yValues.add(new PieEntry(Integer.parseInt(object.getString("greenPointValue")),
-                                        object.getString("greenPointType")));
+                                       pointType[Integer.parseInt(object.getString("greenPointType"))]));
                             }
 
                             com.github.mikephil.charting.components.Legend l = pieChart.getLegend();
@@ -170,14 +173,7 @@ public class PointFragment extends Fragment {
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
         ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
-/////////////////////////////////
-       /* yValues.add(new PieEntry(34f,"컵수거"));
-        yValues.add(new PieEntry(23f,"걷기"));
-        yValues.add(new PieEntry(14f,"대중교통"));
-        yValues.add(new PieEntry(35f,"그린영상"));
-        yValues.add(new PieEntry(40f,"텀블러"));
-*/
-        //////////////////////////////////
+
 
 
     }
@@ -230,9 +226,7 @@ public class PointFragment extends Fragment {
                             mAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
-
                         }
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -349,6 +343,7 @@ public class PointFragment extends Fragment {
         super.onStop();
         AppController.getInstance().cancelPendingRequests(TAG);
     }
+
     private void setGlobalFont(View view) {
         if(view != null) {
             if(view instanceof ViewGroup) {
@@ -364,5 +359,19 @@ public class PointFragment extends Fragment {
             }
         }
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+    }
+
+    @Override
+    public void onBack() {
+        BottomBar bottomBar = getActivity().findViewById(R.id.bottomBar);
+        bottomBar.selectTabAtPosition(0);
+
+    }
+
 
 }

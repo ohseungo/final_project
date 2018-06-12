@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -38,8 +39,8 @@ import android.widget.TextView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrderFragment extends Fragment {
-
+public class OrderFragment extends Fragment implements MainActivity.onKeyBackPressedListener {
+    private final String TAG = getClass().getSimpleName();
     FragmentTransaction transaction;
     Button payBtn;
     private static Typeface typeface;
@@ -139,6 +140,7 @@ public class OrderFragment extends Fragment {
                 return params;
             }
         };
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
         return;
@@ -159,5 +161,23 @@ public class OrderFragment extends Fragment {
                 }
             }
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+    }
+
+    @Override
+    public void onBack() {
+        getFragmentManager().beginTransaction().replace(R.id.contentContainer,new MarketFragment()).commit();
+        return;
     }
 }

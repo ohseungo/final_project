@@ -68,7 +68,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
         LocationListener,
         MainActivity.onKeyBackPressedListener{
 
-    private static final String TAG = "googlemap_example";
+    private final String TAG = getClass().getSimpleName();
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
     private static final int UPDATE_INTERVAL_MS = 15000;
@@ -227,6 +227,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
             }
         };
 
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
     }
@@ -268,7 +269,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                 return map;
             }
         };
-
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
     }
@@ -283,8 +284,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     public void onStop() {
         super.onStop();
         mapView.onStop();
-        if ( googleApiClient != null && googleApiClient.isConnected())
-            googleApiClient.disconnect();
+        if ( googleApiClient != null && googleApiClient.isConnected()) googleApiClient.disconnect();
+        AppController.getInstance().cancelPendingRequests(TAG);
     }
 
     @Override
@@ -377,7 +378,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
         updateLocationUI();
         getDeviceLocation(DEFAULT_ZOOM);
-
     }
 
 

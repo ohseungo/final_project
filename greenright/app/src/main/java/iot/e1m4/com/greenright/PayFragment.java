@@ -1,6 +1,9 @@
 package iot.e1m4.com.greenright;
 
 
+import android.app.Activity;
+import android.app.Instrumentation;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +23,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
+
+import org.json.JSONException;
+
+import java.math.BigDecimal;
+
+import info.app.AppConfig;
 
 
 /**
@@ -40,14 +56,24 @@ public class PayFragment extends Fragment {
     FragmentTransaction transaction;
     private static Typeface typeface;
 
-    public PayFragment() {
-        // Required empty public constructor
-    }
+
+    public static final int PAYPAL_REQUEST_CODE = 7171;
+
+    private static PayPalConfiguration config =
+            new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
+            .clientId(AppConfig.PAYPAL_CLIENT_ID);
+
+    Button payBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+
+        //paypal 서비스 이용하기
+        Intent intent = new Intent(getActivity(), PayPalService.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        getActivity().startService(intent);
     }
 
     @Override
@@ -124,8 +150,54 @@ public class PayFragment extends Fragment {
         배송비 넣는 텍스트뷰:deliveryPrice
         총 결제 금액 넣는 텍스트뷰:finalPrice */
 
+        payBtn = layout.findViewById(R.id.payBtn);
+        payBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                processPayment();
+            }
+        });
         return layout;
     }
+
+    private void processPayment() {
+        payAmount = String.valueOf(1);
+        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(payAmount)), "USD"
+                                    ,"샀다!", PayPalPayment.PAYMENT_INTENT_SALE);
+        Intent intent = new Intent(getActivity(), PaymentActivity.class);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
+        startActivityForResult(intent, PAYPAL_REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==PAYPAL_REQUEST_CODE) {
+            if (resultCode== getActivity().RESULT_OK) {
+                PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+                if (confirmation !=null) {
+                    try {
+                        String paymentDetails = confirmation.toJSONObject().toString(4);
+                        startActivity(new Intent(getActivity(),PaymentDetails.class)
+                                        .putExtra("PaymentDetails", paymentDetails)
+                                        .putExtra("PaymentAmount", payAmount));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            else if(resultCode== Activity.RESULT_CANCELED){
+                Toast.makeText(getActivity(), "취소됨", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if(resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+            Toast.makeText(getActivity(), "안됨", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private String payAmount="";
     private class PagerAdapter extends FragmentStatePagerAdapter{
 
         private int PAGE_NUMBER;
@@ -201,4 +273,9 @@ public class PayFragment extends Fragment {
        }
    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().stopService(new Intent(getActivity(), PayPalService.class));
+    }
 }

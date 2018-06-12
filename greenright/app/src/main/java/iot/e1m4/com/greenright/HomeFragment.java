@@ -84,7 +84,6 @@ public class HomeFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                         Toast.makeText(getActivity(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
 
                     }
                 }){
@@ -107,12 +106,9 @@ public class HomeFragment extends Fragment {
                     public void onResponse(String response) {
                         //////////////성공//////////////////////
                         try {
-                            userHead.setText(URLDecoder.decode(new JSONObject(response).getString("userName")
-                                    , "UTF-8"));
+                            userHead.setText(new JSONObject(response).getString("userName"));
                             return;
                         } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
                     }

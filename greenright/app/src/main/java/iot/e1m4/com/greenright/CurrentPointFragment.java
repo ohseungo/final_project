@@ -19,7 +19,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.roughike.bottombar.BottomBar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +38,8 @@ import info.app.AppController;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CurrentPointFragment extends Fragment {
-
+public class CurrentPointFragment extends Fragment implements MainActivity.onKeyBackPressedListener {
+    private final String TAG = getClass().getSimpleName();
 
     Button mPointSaveBtn;
     Button mMarketBtn;
@@ -63,10 +69,9 @@ public class CurrentPointFragment extends Fragment {
         mAdapter=new ListViewAdapter(getActivity());
         mListView.setAdapter(mAdapter);
 
-        mAdapter.addItem("그린 마켓","2000P","2018-06-07");
-        mAdapter.addItem("한국 민속촌","1000P","2018-05-31");
-        mAdapter.addItem("그린 마켓","3500P","2018-05-23");
-        mAdapter.addItem("그린 마켓","2000P","2018-05-14");
+        getPointList(sessionManager.getUserId());
+
+
 
         //버튼 이동
         mPointSaveBtn=layout.findViewById(R.id.pointSaveBtn);
@@ -86,6 +91,55 @@ public class CurrentPointFragment extends Fragment {
         });
         return layout;
     }
+
+
+    private void getPointList(final String userId) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject object;
+                            for (int i =0; i<jsonArray.length(); i++) {
+                                object = jsonArray.getJSONObject(i);
+                                if(Integer.parseInt(object.getString("greenPointType"))>0) continue;
+                                mAdapter.addItem(object.getString("greenPointContent") ,
+                                            object.getString("greenPointValue") + " point",
+                                            object.getString("greenPointDate")
+                                            );
+                            }
+                            mAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", userId);
+                return params;
+            }
+
+
+        };
+        stringRequest.setTag(TAG);
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+
+    }
+
+
+
 
     private class ViewHolder{
         public TextView mUseTitle;
@@ -187,10 +241,27 @@ public class CurrentPointFragment extends Fragment {
                 return params;
             }
         };
-
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
     }
 
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+    }
+
+    @Override
+    public void onBack() {
+        getFragmentManager().beginTransaction().replace(R.id.contentContainer,new MypageFragment()).commit();
+        return;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
+    }
 }

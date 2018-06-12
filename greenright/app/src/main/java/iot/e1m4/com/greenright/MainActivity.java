@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
 
         tempView = mNagivationView.getHeaderView(0);
         userHead = tempView.findViewById(R.id.nav_header_userId);
-        userUpdate();
+
     }
 
     private void userUpdate() {
@@ -229,12 +229,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         //////////////성공//////////////////////
                         try {
-                            userHead.setText(URLDecoder.decode(new JSONObject(response).getString("userName")
-                            , "UTF-8")+ " 님 안녕하세요");
+                            userHead.setText(new JSONObject(response).getString("userName")+ " 님 안녕하세요");
                             return;
                         } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
                     }
@@ -297,12 +294,12 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.contentContainer, new PointFragment()).commit();
                 return;
             }
-            if(getIntent().getAction().equals(BeaconListenerService.NOTIFICATION_ID_VIDEO)) { //비디오 알림 타고 들어왔을 경우
+           /* if(getIntent().getAction().equals(BeaconListenerService.NOTIFICATION_ID_VIDEO)) { //비디오 알림 타고 들어왔을 경우
                 Intent intent = new Intent(MainActivity.this, PopUpVideo.class);
                 startActivity(intent);
                 return;
             }
-
+*/
         }
     }
 
@@ -319,9 +316,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     protected void onStart() {
         super.onStart();
+        userUpdate();
         Intent distanceListenerIntent = new Intent(this, DistanceListenerService.class);
         startService(distanceListenerIntent);
 

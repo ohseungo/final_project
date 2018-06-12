@@ -11,6 +11,11 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:name="info.app.AppController"
         android:allowBackup="true"
@@ -28,7 +33,7 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".RegisterActivity" />
 
         <meta-data
@@ -41,15 +46,14 @@
         <activity
             android:name=".IntroLoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
-        <activity android:name=".PopUpVideo"
+        <activity
+            android:name=".PopUpVideo"
             android:theme="@style/AppTheme.PopUpTheme" />
 
         <service
             android:name=".BeaconListenerService"
             android:enabled="true"
             android:exported="false" />
-
         <service
             android:name=".DistanceListenerService"
             android:enabled="true"
@@ -57,8 +61,11 @@
         <service
             android:name=".DayResetService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
+        <activity
+            android:name=".PaymentDetails"
+            android:label="@string/title_activity_payment_details"></activity>
     </application>
 
 </manifest>

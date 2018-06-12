@@ -29,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.roughike.bottombar.BottomBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,7 +50,7 @@ import info.app.AppController;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MarketFragment extends Fragment{
+public class MarketFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
 
     private final String TAG = getClass().getSimpleName();
 
@@ -57,14 +58,18 @@ public class MarketFragment extends Fragment{
     private ListViewAdapter mAdapter=null;
     private static Typeface typeface;
 
-    public MarketFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        return;
+        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+    }
+
+    @Override
+    public void onBack() {
+        BottomBar bottomBar = getActivity().findViewById(R.id.bottomBar);
+        bottomBar.selectTabAtPosition(0);
+
     }
 
     private OrderFragment mOrderFragment;
@@ -87,13 +92,6 @@ public class MarketFragment extends Fragment{
         //데이터 입력은 이곳에서~~~~
         marketListUpdate();
 
-      /*  mAdapter.addItem(getResources().getDrawable(R.drawable.p1),"체리열매 발아키트","[커피팟]","12,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p2),"토트백","[FREiTAG]","229,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p3),"데일리 썸머 파우치 3size","[Dadume]","22,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p4),"빈티지 가랜드","[Dadume]","16,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p5),"점퍼 us슬리브 스트라이프 스웻 티셔츠","[RE:CODE]","98,000");
-        mAdapter.addItem(getResources().getDrawable(R.drawable.p6),"pet bag 프린트 점퍼 푸푸 가방","[RE:CODE]","49,000");
-*/
       //주문 화면으로 이동
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

@@ -11,21 +11,36 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import info.addon.SessionManager;
+import info.app.AppConfig;
+import info.app.AppController;
 
 
-public class CurrentOrderFragment extends Fragment {
+public class CurrentOrderFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
 
 
     ListView mListView=null;
     ListViewAdapter mAdapter=null;
     private static Typeface typeface;
-    public CurrentOrderFragment() {
-        // Required empty public constructor
-    }
+    private SessionManager sessionManager;
 
-
+    private final String TAG = getClass().getSimpleName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,13 +50,59 @@ public class CurrentOrderFragment extends Fragment {
         mListView=layout.findViewById(R.id.orderList);
         mAdapter=new ListViewAdapter(getActivity());
         mListView.setAdapter(mAdapter);
-
-        mAdapter.addItem("2018-05-23","(총 1개 품목)", "점퍼 슬리브 스트라이프 스웻 티셔츠","20180516-000193","98000","입금확인");
+        sessionManager = new SessionManager(getActivity());
+       /* mAdapter.addItem("2018-05-23","(총 1개 품목)", "점퍼 슬리브 스트라이프 스웻 티셔츠","20180516-000193","98000","입금확인");
         mAdapter.addItem("2018-05-16","(총 2개 품목)", "체리열매 발아키트","20180516-000192","12000","배송중");
         mAdapter.addItem("2018-05-08","(총 1개 품목)", "빈티지 가랜드","20180516-000184","25000","배송완료");
         mAdapter.addItem("2018-04-27","(총 3개 품목)", "pet bag 프린트 점퍼 푸푸 가방","20180516-000122","34500","배송완료");
-
+*/
+        getOrderList(sessionManager.getUserId());
         return layout;
+    }
+
+    private String[] purchaseStatus = {"배송완료", "주문확인", "입금확인", "배송중"};
+
+    private void getOrderList(final String userId) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_ORDER_LIST,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject object;
+                            for (int i =0; i<jsonArray.length(); i++) {
+                                object = jsonArray.getJSONObject(i);
+                                mAdapter.addItem(object.getString("purchaseDate"),
+                                        "(총 "+ object.getString("purchaseCount")+ "개 품목)",
+                                        object.getString("productName"),
+                                        object.getString("purchaseId"),
+                                        object.getString("productValue"),
+                                        purchaseStatus[Integer.parseInt(object.getString("purchaseStatus"))]
+                                );
+
+                            }
+                            mAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", userId);
+                return params;
+            }
+        };
+        stringRequest.setTag(TAG);
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
     }
 
     private class ViewHolder{
@@ -77,6 +138,10 @@ public class CurrentOrderFragment extends Fragment {
         public long getItemId(int i) {
             return i;
         }
+
+
+
+
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
@@ -132,6 +197,25 @@ public class CurrentOrderFragment extends Fragment {
         public void dataChange(){
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+    }
+
+    @Override
+    public void onBack() {
+        getFragmentManager().beginTransaction().replace(R.id.contentContainer,new MypageFragment()).commit();
+        return;
     }
 
 }

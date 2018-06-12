@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -17,12 +18,13 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.roughike.bottombar.BottomBar;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SaveFragment extends Fragment {
+public class SaveFragment extends Fragment implements  MainActivity.onKeyBackPressedListener{
 
     private static Typeface typeface;
 
@@ -90,5 +92,18 @@ public class SaveFragment extends Fragment {
                 }
             }
         }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+    }
+
+    @Override
+    public void onBack() {
+        BottomBar bottomBar = getActivity().findViewById(R.id.bottomBar);
+        bottomBar.selectTabAtPosition(0);
+
     }
 }

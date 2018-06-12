@@ -126,10 +126,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
     private void getLineChart(String response, View layout) {
         List<Entry> entries=new ArrayList<>();
         lineChart=layout.findViewById(R.id.chart);
-        if (response.equals("") || response == null || response.equals("[]")) {
-            entries.add(new Entry(6, (int) sessionManager.getDistance(sessionManager.getUserId())));
-        }
-        else {
+        entries.add(new Entry(6, (int) sessionManager.getDistance(sessionManager.getUserId())));
             try {
                 JSONArray jArray = new JSONArray(response);
                 for (int i = 0; i < jArray.length(); i++) {
@@ -140,7 +137,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
+
 
         LineDataSet lineDataSet=new LineDataSet(entries,"이동거리");
         lineDataSet.setLineWidth(2);

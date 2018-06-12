@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -32,7 +33,7 @@ import info.app.AppConfig;
 import info.app.AppController;
 
 
-public class EditFragment extends Fragment {
+public class EditFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
 
 
     private final String TAG = getClass().getSimpleName();
@@ -177,5 +178,17 @@ public class EditFragment extends Fragment {
     public void onStop() {
         super.onStop();
         AppController.getInstance().cancelPendingRequests(TAG);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+    }
+
+    @Override
+    public void onBack() {
+        getFragmentManager().beginTransaction().replace(R.id.contentContainer,new MypageFragment()).commit();
+        return;
     }
 }

@@ -56,14 +56,11 @@ public class PointManager {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                try {
                      params.put("userId", userId);
                      params.put("greenPointValue", String.valueOf(pointValue));
                      params.put("greenPointType", String.valueOf(pointType));
-                    params.put("greenPointContent", URLEncoder.encode(pointContent, "UTF-8"));
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
+                    params.put("greenPointContent",pointContent);
+
                 return params;
             }
         };

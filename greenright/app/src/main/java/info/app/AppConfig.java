@@ -18,6 +18,8 @@ public class AppConfig {
             "http://192.168.10.18:9090/greenRight_server/list_product.do";
     public static final String URL_BOX_LIST =
             "http://192.168.10.18:9090/greenRight_server/list_box.do";
+    public static final String URL_ORDER_LIST =
+            "http://192.168.10.18:9090/greenRight_server/list_order.do";
 
     public static final String ADD_POINT =
             "http://192.168.10.18:9090/greenRight_server/add_point.do";
@@ -34,6 +36,10 @@ public class AppConfig {
 
 
     public static final String DISTANCE_CHECK_DISTANCE = "greenright_distance";
+    public static final String PAYPAL_CLIENT_ID = "AQbrqxOlkcaZPBjAHPxlfgi6AyXJJvUq2ckqM3gr7bihpOVrF3sG0yBG5KtHHyLPb8DNiBqwXcfFPyz1";
+
     public static final String TOTAL_POINT = "http://192.168.10.18:9090/greenRight_server/total_point.do";
 
+
 }
+

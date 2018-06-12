@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="@string/userName"
+            android:text=""
             android:textSize="20sp"
             android:gravity="center"/>
     </LinearLayout>
