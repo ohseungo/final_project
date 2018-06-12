@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainFragment"
     android:orientation="vertical"
+    android:background="#282c32"
     android:weightSum="10">
 
 
@@ -29,6 +30,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="29dp"
+            android:cropToPadding="false"
             android:src="@drawable/profile" />
 
         <TextView
@@ -70,6 +72,7 @@
                     android:layout_weight="2"
                     android:text="@string/currentPoint"
                     android:gravity="center"
+                    android:textColor="#46bc62"
                     android:textSize="25dp"
                     android:textStyle="bold"/>
 
@@ -79,6 +82,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="보유 포인트"
+                    android:textColor="#ffffff"
                     android:gravity="center_horizontal"
                     />
             </LinearLayout>
@@ -97,6 +101,7 @@
                     android:layout_weight="2"
                     android:text="@string/totalCup"
                     android:gravity="center"
+                    android:textColor="#46bc62"
                     android:textSize="25dp"
                     android:textStyle="bold"/>
 
@@ -106,6 +111,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:text="누적 재활용 컵 수"
+                    android:textColor="#ffffff"
                     android:gravity="center_horizontal"
                     />
             </LinearLayout>
@@ -127,6 +133,7 @@
                 android:gravity="center"
                 android:textSize="20dp"
                 android:layout_margin="5dp"
+                android:textColor="#46bc62"
                 android:textStyle="bold"/>
 
             <HorizontalScrollView

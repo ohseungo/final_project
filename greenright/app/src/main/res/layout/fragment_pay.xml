@@ -84,7 +84,8 @@
         android:layout_weight="1"
         android:layout_margin="5dp"
         android:orientation="horizontal"
-        android:weightSum="3">
+        android:weightSum="3"
+        >
 
 
         <TextView
@@ -93,7 +94,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="포인트 사용"
+            android:textSize="15dp"
             android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_check"
+            android:drawablePadding="4dp"
             android:paddingStart="5dp"/>
 
         <LinearLayout
