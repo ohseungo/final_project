@@ -11,24 +11,50 @@
         <result column="productId" property="productId"/>
         <result column="userId" property="userId"/>
         <result column="purchaseType" property="purchaseType"/>
-        <result column="userAddress" property="userAddress"/>
         <result column="productValue" property="productValue"/>
         <result column="userName" property="userName"/>
         <result column="purchasePoint" property="purchasePoint"/>
     </resultMap>
-    <select id="selectPurchaseListWithMultipleCondition" parameterType="map" resultMap="PurchaseResultMap">
-        select p.purchaseId, u.userName, p.purchaseType, d.productValue, p.purchasePoint ,p.userAddress, p.purchaseStatus
-        from purchase p, userinfo u, product d
+<select id="selectPurchaseListWithMultipleCondition" parameterType="map" resultType="Purchase">
+        select p.purchaseId, p.purchaseCount, u.userName, d.productName, p.purchaseDate, p.purchaseType, d.productValue, p.purchasePoint, de.deliveryAddress, p.purchaseStatus
+        from purchase p, userinfo u, product d, delivery de
         <where>
          p.userId=u.userId
          and
          p.productId=d.productId
+         and
+         p.purchaseId=de.purchaseId
         <if test="compId!=null">
-            and p.compId=#{id}
+            and p.compId=#{compId}
         </if>
         <if test="userId!=null">
-            and u.userId=#{id}
+            and u.userId=#{userId}
         </if>
         </where>
+        order by p.purchaseDate, p.purchaseId
     </select>
+   <select id="searchPurchaseList" parameterType="Purchase" resultType="Purchase">
+      select p.purchaseId, p.purchaseCount, u.userName, d.productName, p.purchaseDate, p.purchaseType, d.productValue, p.purchasePoint, de.deliveryAddress, p.purchaseStatus
+        from purchase p, userinfo u, product d, delivery de
+        <where>
+         p.userId=u.userId
+         and
+         p.productId=d.productId
+         and
+         p.purchaseId=de.purchaseId
+        <if test="compId!=null">
+            and p.compId=#{compId}
+        </if>
+        <if test="purchaseId!=null and purchaseId!=''">
+            and p.purchaseId=#{purchaseId}
+        </if>
+        <if test="userName!=null and userName!=''">
+            and u.userName=#{userName}
+        </if>
+         <if test="purchaseStatus!=null and purchaseStatus!=-1">
+            and p.purchaseStatus=#{purchaseStatus}
+        </if>
+        </where>
+        order by p.purchaseDate, p.purchaseId
+   </select>
 </mapper>

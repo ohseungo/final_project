@@ -11,4 +11,5 @@ public interface PurchaseService {
 	Purchase searchPurchase(String purchaseId);
 	void changePurchase(Purchase purchase);
 	void removePurchase(String purchaseId);
+	List<Purchase> searchPurchaseList(Purchase purchase);
 }

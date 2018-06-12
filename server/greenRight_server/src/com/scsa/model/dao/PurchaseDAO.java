@@ -12,5 +12,5 @@ public interface PurchaseDAO {
 	
 	void updatePurchase(Purchase purchase);
 	void deletePurchase(String purchaseId);
-	
+	List<Purchase> searchPurchaseList(Purchase purchase);
 }

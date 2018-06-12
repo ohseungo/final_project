@@ -8,7 +8,6 @@
 </head>
 <body>
 <form action="./add_product.do" method="post" enctype="multipart/form-data">
-          <input name="productId" type="text" class="form-control" id="productId" placeholder="상품번호를 입력하세요">
           <input name="productFile" type="file" class="form-control" id="productFile" placeholder="상품이미지를 추가하세요">
           <input name="productName" type="text" class="form-control" id="productName" placeholder="상품명을 입력하세요">
           <input name="productContent" type="text" class="form-control" id="productContent" placeholder="상품종류를 입력하세요">

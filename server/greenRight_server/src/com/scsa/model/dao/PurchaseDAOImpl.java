@@ -36,4 +36,8 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 	public void deletePurchase(String purchaseId) {
 	}
 	
+	@Override
+	public List<Purchase> searchPurchaseList(Purchase purchase) {
+		return sqlSession.selectList("purchase.searchPurchaseList", purchase);
+	}
 }

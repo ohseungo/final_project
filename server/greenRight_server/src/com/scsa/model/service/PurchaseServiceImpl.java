@@ -37,4 +37,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public void removePurchase(String purchaseId) {
 	}
 
+	@Override
+	public List<Purchase> searchPurchaseList(Purchase purchase) {
+		return purchaseDao.searchPurchaseList(purchase);
+	}
+	
 }

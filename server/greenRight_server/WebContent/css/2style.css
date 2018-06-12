@@ -69,7 +69,7 @@ hr {
 	width: 70px;
 	text-align: center;
 	position: relative;
-	background: #C54DAA;
+	background: #080c4f;
 	margin: 0 auto;
 	margin-bottom: 20px;
 	border: 0;
@@ -80,12 +80,12 @@ hr {
 	transition: all 0.8s;
 }
 #menu.navbar-default {
-	background-color: rgba(248, 248, 248, 0);
-	border-color: rgba(231, 231, 231, 0);
+ 	background-color: rgba(248, 248, 248, 0);
+	/* border-color: rgba(231, 231, 231, 1); */	
 }
 #menu a.navbar-brand {
 	font-size: 18px;
-	color: rgba(0,0,0,0.9);
+	/* color: rgba(0,0,0,0.9); */
 	font-weight: 500;
 	text-transform: uppercase;
 }
@@ -149,7 +149,7 @@ hr {
 	width: 100%;
 	padding: 0;
 	background: url(../img/intro-bg1.jpg) no-repeat right bottom;
-	background-color: #e5e5e5;
+	background-color: #e5e5e5; 
  	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;

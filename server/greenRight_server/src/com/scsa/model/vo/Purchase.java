@@ -9,17 +9,40 @@ public class Purchase{
 	private String productId;
 	private String userId;
 	private int purchaseType;
-	private String userAddress;
 	private int productValue;
 	private String userName;
 	private int purchasePoint;
+	private String productName;
+	private String compId;
+	private String deliveryAddress;
 	
 	
+	
+	public String getCompId() {
+		return compId;
+	}
+	public void setCompId(String compId) {
+		this.compId = compId;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	public Purchase() {
 		super();
 	}
+	
+	public String getDeliveryAddress() {
+		return deliveryAddress;
+	}
+	public void setDeliveryAddress(String deliveryAddress) {
+		this.deliveryAddress = deliveryAddress;
+	}
 	public Purchase(String purchaseId, int purchaseCount, String purchaseStatus, String purchaseDate, String productId,
-			String userId, int purchaseType, String userAddress, int productValue, String userName, int purchasePoint) {
+			String userId, int purchaseType, int productValue, String userName, int purchasePoint,
+			String productName) {
 		super();
 		this.purchaseId = purchaseId;
 		this.purchaseCount = purchaseCount;
@@ -28,22 +51,16 @@ public class Purchase{
 		this.productId = productId;
 		this.userId = userId;
 		this.purchaseType = purchaseType;
-		this.userAddress = userAddress;
 		this.productValue = productValue;
 		this.userName = userName;
 		this.purchasePoint = purchasePoint;
+		this.productName = productName;
 	}
 	public int getPurchaseType() {
 		return purchaseType;
 	}
 	public void setPurchaseType(int purchaseType) {
 		this.purchaseType = purchaseType;
-	}
-	public String getUserAddress() {
-		return userAddress;
-	}
-	public void setUserAddress(String userAddress) {
-		this.userAddress = userAddress;
 	}
 	public int getProductValue() {
 		return productValue;
@@ -98,6 +115,13 @@ public class Purchase{
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	@Override
+	public String toString() {
+		return "Purchase [purchaseId=" + purchaseId + ", purchaseCount=" + purchaseCount + ", purchaseStatus="
+				+ purchaseStatus + ", purchaseDate=" + purchaseDate + ", productId=" + productId + ", userId=" + userId
+				+ ", purchaseType=" + purchaseType + ", productValue=" + productValue
+				+ ", userName=" + userName + ", purchasePoint=" + purchasePoint + "]";
 	}
 	
 	
