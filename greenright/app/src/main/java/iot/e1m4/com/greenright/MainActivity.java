@@ -1,5 +1,6 @@
 package iot.e1m4.com.greenright;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     MarketFragment mMarketFragment;
     MypageFragment mMypageFragment;
 
-
+    private ProgressDialog pDialog;
     private SessionManager sessionManager;
 
     PointFragment mPointFragment= new PointFragment();
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         sessionManager = new SessionManager(this);
 
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
         //tool bar 관련
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -223,12 +226,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void userUpdate() {
+        pDialog.setMessage("회원 정보를 받아오는 중...");
+        showDialog();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.FIND_USER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         //////////////성공//////////////////////
                         try {
+                            hideDialog();
                             userHead.setText(new JSONObject(response).getString("userName")+ " 님 안녕하세요");
                             return;
                         } catch (JSONException e) {
@@ -240,6 +246,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                      public void onErrorResponse(VolleyError error) {
                     ///////////////////실패/////////////////////////////////
+                        hideDialog();
                     Toast.makeText(MainActivity.this, "회원 정보 요청 중 문제 발생", Toast.LENGTH_SHORT).show();
             }
         }){
@@ -355,6 +362,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void showDialog() {
+        if (!pDialog.isShowing()){
+            pDialog.show();
+        }
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing()){
+            pDialog.dismiss();
+        }
+    }
 }
 
 

@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -58,6 +59,7 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
     private ListViewAdapter mAdapter=null;
     private static Typeface typeface;
 
+    private ProgressDialog pDialog;
 
     @Override
     public void onAttach(Context context) {
@@ -78,7 +80,8 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_market, container, false);
-
+        pDialog = new ProgressDialog(getActivity());
+        pDialog.setCancelable(false);
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
                     "fonts/yoon350.ttf");
@@ -98,18 +101,16 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id){
                 Product mData = mAdapter.mListData.get(position);
-                /*Bundle extras=new Bundle();
-                extras.putString("pname",mData.getpName1());
-                extras.putString("company",mData.getCompany());
-                extras.putString("price",mData.getPrice1());
 
-                Intent intent = new Intent(getActivity(), OrderFragment.class);
-                intent.putExtras(extras);
-                startActivity(intent);*/
-                //Toast.makeText(getActivity(), mData.getpId() +"", Toast.LENGTH_SHORT).show();
                 mOrderFragment = new OrderFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("productId", mData.getpId());
+                PaymentInfo paymentInfo = new PaymentInfo();
+                paymentInfo.setProductId(mData.getpId());
+                paymentInfo.setProductName(mData.getpName1());
+                paymentInfo.setProductValue(mData.getPrice1());
+                paymentInfo.setCompId(mData.getpCompanyId());
+                //bundle.putString("productId", mData.getpId());
+                bundle.putParcelable("PaymentInfo", paymentInfo);
                 mOrderFragment.setArguments(bundle);
                 getFragmentManager().beginTransaction().replace(R.id.contentContainer,mOrderFragment).commit();
 
@@ -130,10 +131,10 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
             for (int i=0; i<jArray.length(); i++){
                 if (jArray.getJSONObject(i).getString("productImage") == null ||
                         jArray.getJSONObject(i).getString("productImage").equals("null") ||
-                jArray.getJSONObject(i).getString("productImage").trim().equals("")) bm = null;
+                jArray.getJSONObject(i).getString("productImage").trim().equals(""))
+                    bm =BitmapFactory.decodeResource(getResources(), R.drawable.ic_shopping_bag) ;
                 else {
-                 /*   Log.e("확인", AppConfig.REQUEST_URL + "/images/product/"
-                            +jsonArrays[0].getJSONObject(i).getString("productImage"));*/
+
                  try (InputStream is =new URL(AppConfig.REQUEST_URL + "/images/product/"
                          + jArray.getJSONObject(i).getString("productImage")).openStream()) {
                      bm = BitmapFactory.decodeStream(is);
@@ -160,17 +161,27 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
                 mAdapter.addItem(new BitmapDrawable(getResources(), bm),
                         object.getString("productName"),
                         object.getString("compName"),
-                        object.getString("productValue"), object.getString("productId"));
+                        object.getString("productValue")
+                        , object.getString("productId")
+                        ,object.getString("compId"));
                 mAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
         }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            hideDialog();
+        }
     }
 
     private MarketTask mTask;
     private void marketListUpdate() {
+        pDialog.setMessage("상품 정보를 받아오는 중...");
+        showDialog();
         StringRequest  stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_PRODUCT_LIST,
                 new Response.Listener<String>() {
                     @Override
@@ -260,13 +271,13 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
 
             holder.pName1.setText(mData.getpName1());
             holder.company.setText(mData.getCompany());
-            holder.price1.setText(mData.getPrice1());
+            holder.price1.setText(String.format("%,d", Integer.parseInt(mData.getPrice1()) ) + "원");
 
 
             return view;
 
         }
-        public void addItem(Drawable image1,String mName1,String mCompany, String mPrice1, String mPid){
+        public void addItem(Drawable image1,String mName1,String mCompany, String mPrice1, String mPid, String mCompId){
             Product addInfo = null;
             addInfo = new Product();
             addInfo.setDrawable1(image1);
@@ -274,6 +285,7 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
             addInfo.setCompany(mCompany);
             addInfo.setPrice1(mPrice1);
             addInfo.setpId(mPid);
+            addInfo.setpCompanyId(mCompId);
 
             mListData.add(addInfo);
         }
@@ -312,6 +324,19 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
                     setGlobalFont(v);
                 }
             }
+        }
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing()){
+            pDialog.show();
+        }
+    }
+
+
+    private void hideDialog() {
+        if (pDialog.isShowing()){
+            pDialog.dismiss();
         }
     }
 }

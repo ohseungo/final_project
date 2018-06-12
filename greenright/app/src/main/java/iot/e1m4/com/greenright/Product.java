@@ -9,7 +9,7 @@ public class Product {
     private String company;
     private String price1;
     private String pId;
-
+    private String pCompanyId;
 
     public Product() {
     }
@@ -59,5 +59,13 @@ public class Product {
 
     public void setpId(String pId) {
         this.pId = pId;
+    }
+
+    public String getpCompanyId() {
+        return pCompanyId;
+    }
+
+    public void setpCompanyId(String pCompanyId) {
+        this.pCompanyId = pCompanyId;
     }
 }

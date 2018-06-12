@@ -39,11 +39,12 @@ public class DistanceListenerService extends Service {
 
     private NotificationManager mNotificationManager;
     private Notification mNotification;
+    private final String TAG = getClass().getSimpleName();
 
-    double mySpeed, maxSpeed;
-    Location prevLoc;
-    double currDis;
-    double totalDis;
+    private double mySpeed, maxSpeed;
+    private Location prevLoc;
+    private double currDis;
+    private double totalDis;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         sessionManager = new SessionManager(this);
@@ -90,7 +91,7 @@ public class DistanceListenerService extends Service {
                 ///////////////테스트
                 if (totalDis >= 100 ) { ///////////일정 거리 이상이면 포인트 갱신
                     PointManager.addPointData(sessionManager.getUserId(), 10,
-                        2, "100미터 달성", DistanceListenerService.this);
+                        2, "100미터 달성", DistanceListenerService.this, TAG);
                     mNotification = buildNotification("걷기 달성!", "100m 걸었어요! 야호!");
                     mNotification.notify();
                 }

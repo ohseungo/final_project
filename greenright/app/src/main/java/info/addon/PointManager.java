@@ -32,7 +32,7 @@ public class PointManager {
     }
 
     public static boolean addPointData(final String userId, final int pointValue,
-                                       final int pointType, final String pointContent, final Context context) {
+                                       final int pointType, final String pointContent, final Context context, String tag) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.ADD_POINT,
                 new Response.Listener<String>() {
                     @Override
@@ -64,6 +64,7 @@ public class PointManager {
                 return params;
             }
         };
+        stringRequest.setTag(tag);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
         return true;

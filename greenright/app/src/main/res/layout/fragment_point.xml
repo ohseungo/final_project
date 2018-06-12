@@ -62,8 +62,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:text="적립내역"
-                android:gravity="center"
-                android:background="@drawable/border"/>
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/textView36"
@@ -71,8 +70,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="적립포인트"
-                android:gravity="center"
-                android:background="@drawable/border"/>
+                android:gravity="center"/>
         </LinearLayout>
         <ListView
             android:id="@+id/mList"

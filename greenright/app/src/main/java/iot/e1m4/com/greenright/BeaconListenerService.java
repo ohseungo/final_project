@@ -34,8 +34,7 @@ public class BeaconListenerService extends Service {
     public static String NOTIFICATION_ID = "beacon_listen_notification";
     public static String NOTIFICATION_ID_VIDEO = "video_notification";
 
-    public BeaconListenerService() {
-    }
+    private final String TAG = getClass().getSimpleName();
     SessionManager sessionManager;
     @Override
     public void onCreate() {
@@ -110,7 +109,7 @@ public class BeaconListenerService extends Service {
                             sessionManager.setBeaconChecked("ohseungo-s-notification-g6m");
                             PointManager.addPointData(sessionManager.getUserId(),
                                     30, 3, "대중교통 이용",
-                                    BeaconListenerService.this);
+                                    BeaconListenerService.this, TAG);
                         }
                         return null;
                     }
@@ -153,4 +152,9 @@ public class BeaconListenerService extends Service {
         proximityObserver.start();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        AppController.getInstance().cancelPendingRequests(TAG);
+    }
 }

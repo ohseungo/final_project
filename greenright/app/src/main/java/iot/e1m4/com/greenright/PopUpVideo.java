@@ -14,10 +14,12 @@ import android.widget.VideoView;
 
 import info.addon.PointManager;
 import info.addon.SessionManager;
+import info.app.AppController;
 
 public class PopUpVideo extends Activity{
     private VideoView mVideoView;
     private SessionManager sessionManager;
+    private final String TAG = getClass().getSimpleName();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,7 @@ public class PopUpVideo extends Activity{
             public void onCompletion(MediaPlayer mp) {
                 Toast.makeText(PopUpVideo.this, "15 포인트 추가!", Toast.LENGTH_SHORT).show();
                 PointManager.addPointData(sessionManager.getUserId(), 15, 4, "환경 영상 시청",
-                        PopUpVideo.this);
+                        PopUpVideo.this, TAG);
                 Intent intent = new Intent(PopUpVideo.this, MainActivity.class).setAction(BeaconListenerService.NOTIFICATION_ID);
                 startActivity(intent);
                 finish();
@@ -81,6 +83,12 @@ public class PopUpVideo extends Activity{
     protected void onPause() {
         super.onPause();
         finish();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        AppController.getInstance().cancelPendingRequests(TAG);
     }
 
     @Override

@@ -2,7 +2,10 @@ package iot.e1m4.com.greenright;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Instrumentation;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,16 +18,25 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
@@ -34,14 +46,18 @@ import com.paypal.android.sdk.payments.PaymentConfirmation;
 import org.json.JSONException;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
+import info.addon.SessionManager;
 import info.app.AppConfig;
+import info.app.AppController;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PayFragment extends Fragment {
+public class PayFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
 
     private Button cardBtn;
     private Button accountBtn;
@@ -57,19 +73,33 @@ public class PayFragment extends Fragment {
     private static Typeface typeface;
 
 
+    private EditText pointUse;
+    private int availableUse;
+    private TextView availablePoint;
+    private TextView checkUsePoint;
+
+    private TextView orderPrice;
+    private TextView useGreenPoint;
+    private TextView deliveryPrice;
+    private int totalPrice;
+    private TextView finalPrice;
+
+    private PaymentInfo mPaymentInfo;
+    private SessionManager sessionManager;
     public static final int PAYPAL_REQUEST_CODE = 7171;
 
+    private boolean pointChecked = false;
     private static PayPalConfiguration config =
             new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
             .clientId(AppConfig.PAYPAL_CLIENT_ID);
 
     Button payBtn;
-
+    private final String TAG = getClass().getSimpleName();
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-
+        sessionManager = new SessionManager(getActivity());
         //paypal 서비스 이용하기
         Intent intent = new Intent(getActivity(), PayPalService.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
@@ -83,11 +113,13 @@ public class PayFragment extends Fragment {
 
     }
 
+    private int point =0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_pay, container, false);
+
 
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
@@ -146,9 +178,73 @@ public class PayFragment extends Fragment {
         pager=layout.findViewById(R.id.pager);
         pager.setAdapter(new PagerAdapter(getActivity().getSupportFragmentManager(),3));
 
-   /*   상품금액 넣는 텍스트뷰:orderPrice
-        배송비 넣는 텍스트뷰:deliveryPrice
-        총 결제 금액 넣는 텍스트뷰:finalPrice */
+
+        mPaymentInfo = getArguments().getParcelable("PaymentInfo");
+
+
+       pointUse = layout.findViewById(R.id.pointUse);
+       availablePoint = layout.findViewById(R.id.availablePoint);
+       checkUsePoint = layout.findViewById(R.id.checkUsePoint);
+
+        orderPrice = layout.findViewById(R.id.orderPrice);
+        deliveryPrice = layout.findViewById(R.id.deliveryPrice);
+        useGreenPoint = layout.findViewById(R.id.useGreenPoint);
+        finalPrice = layout.findViewById(R.id.finalPrice);
+       /////////////////////포인트를 바꿀 경우////////////////////////////////
+       pointUse.addTextChangedListener(new TextWatcher() {
+           @Override
+           public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+           }
+
+           @Override
+           public void onTextChanged(CharSequence s, int start, int before, int count) {
+           }
+
+           @Override
+           public void afterTextChanged(Editable s) {
+                try{
+                    point = Integer.parseInt(pointUse.getText().toString().trim());
+                    if (point > availableUse) {
+                        pointChecked = false;
+                        useGreenPoint.setText( "0원");
+                        checkUsePoint.setText("포인트 부족");
+                        point =0;
+                        return;
+                    }
+                    pointChecked = true;
+                    checkUsePoint.setText("");
+                    useGreenPoint.setText(point + "원");
+                    return;
+                }catch(NumberFormatException e) {
+                    if (pointUse.getText().toString().trim().equals("")){
+                        point = 0;
+                        pointChecked = true;
+                        checkUsePoint.setText("");
+                        useGreenPoint.setText(point + "원");
+                        return;
+                    }else {
+                        pointChecked = false;
+                        useGreenPoint.setText("0원");
+                        checkUsePoint.setText("포인트 부족");
+                        point = 0;
+                        return;
+                    }
+                }finally {
+                    getTotalPrice();
+                }
+
+           }
+       });
+
+
+
+        orderPrice.setText(String.format("%,d", Integer.parseInt( mPaymentInfo.getProductValue())  )
+                + "원");
+
+        ///final Price 계산
+        getTotalPrice();
+
+        getTotalPoint(sessionManager.getUserId());
 
         payBtn = layout.findViewById(R.id.payBtn);
         payBtn.setOnClickListener(new View.OnClickListener() {
@@ -160,10 +256,46 @@ public class PayFragment extends Fragment {
         return layout;
     }
 
+    private void getTotalPrice() {
+        totalPrice = Integer.parseInt( mPaymentInfo.getProductValue()) - point;
+        finalPrice.setText(String.format("%,d", totalPrice  )
+                + "원");
+    }
+
+    private void getTotalPoint(final String userId) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.TOTAL_POINT,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response ==null || response.equals("")) response = "0";
+                        availablePoint.setText("가용포인트(" + response + ")");
+                        availableUse = Integer.parseInt(response);
+                        return;
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", userId);
+                return params;
+            }
+        };
+        stringRequest.setTag(TAG);
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+    }
+
+
     private void processPayment() {
-        payAmount = String.valueOf(1);
-        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(payAmount)), "USD"
-                                    ,"샀다!", PayPalPayment.PAYMENT_INTENT_SALE);
+        //샀다에 구매 아이템 정보가 들어간다
+        PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf( (double) (totalPrice/110) /10.0 )), "USD"
+                                    ,mPaymentInfo.getProductName() + " 구매", PayPalPayment.PAYMENT_INTENT_SALE);
         Intent intent = new Intent(getActivity(), PaymentActivity.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
@@ -180,7 +312,8 @@ public class PayFragment extends Fragment {
                         String paymentDetails = confirmation.toJSONObject().toString(4);
                         startActivity(new Intent(getActivity(),PaymentDetails.class)
                                         .putExtra("PaymentDetails", paymentDetails)
-                                        .putExtra("PaymentAmount", payAmount));
+                                        .putExtra("PaymentAmount", String.format("%,d", totalPrice  ))
+                                         .putExtra("PaymentItem", "상품이름")) ;
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -197,7 +330,7 @@ public class PayFragment extends Fragment {
     }
 
 
-    private String payAmount="";
+
     private class PagerAdapter extends FragmentStatePagerAdapter{
 
         private int PAGE_NUMBER;
@@ -231,32 +364,6 @@ public class PayFragment extends Fragment {
         }
     }
 
-   /* private class PagerAdapter extends FragmentPagerAdapter{
-
-        private int PAGE_NUMBER;
-        public PagerAdapter(FragmentManager fm, int count){
-            super(fm);
-            PAGE_NUMBER=count;
-        }
-
-
-        //해당되는 fragment리턴
-        @Override
-        public Fragment getItem(int position) {
-            if(position==0){
-                return cardFragment;
-            }else if(position==1){
-                return accountFragment;
-            }else{
-                return simplePayFragment;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return PAGE_NUMBER;
-        }
-    }*/
    private void setGlobalFont(View view) {
        if(view != null) {
            if(view instanceof ViewGroup) {
@@ -277,5 +384,29 @@ public class PayFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         getActivity().stopService(new Intent(getActivity(), PayPalService.class));
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+    }
+
+    @Override
+    public void onBack() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("마켓 화면으로 돌아갑니다")
+                .setCancelable(false)
+                .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        getFragmentManager().beginTransaction().replace(R.id.contentContainer,new MarketFragment()).commit();
+                        return;
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        return;
     }
 }

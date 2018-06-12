@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -45,6 +46,7 @@ import info.app.AppController;
 public class HomeFragment extends Fragment {
 
     private final String TAG = getClass().getSimpleName();
+    private ProgressDialog pDialog;
     TextView mTotalPoint;
     SessionManager sessionManager;
     TextView userHead;
@@ -60,7 +62,8 @@ public class HomeFragment extends Fragment {
                     "fonts/yoon350.ttf");
         }
         setGlobalFont(layout);
-
+        pDialog = new ProgressDialog(getActivity());
+        pDialog.setCancelable(false);
         sessionManager = new SessionManager(getActivity());
         mTotalPoint = layout.findViewById(R.id.pointTv);
         getTotalPoint(sessionManager.getUserId());
@@ -72,10 +75,13 @@ public class HomeFragment extends Fragment {
     }
 
     private void getTotalPoint(final String userId) {
+        pDialog.setMessage("포인트 정보를 받아오는 중...");
+        showDialog();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.TOTAL_POINT,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        hideDialog();
                         if (response ==null || response.equals("")) response = "0";
                         mTotalPoint.setText("P " + response);
                         return;
@@ -84,6 +90,7 @@ public class HomeFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        hideDialog();
 
                     }
                 }){
@@ -94,17 +101,21 @@ public class HomeFragment extends Fragment {
                 return params;
             }
         };
-
+        stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
     }
 
+
     private void userUpdate() {
+        pDialog.setMessage("회원 정보를 받아오는 중...");
+        showDialog();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.FIND_USER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         //////////////성공//////////////////////
+                        hideDialog();
                         try {
                             userHead.setText(new JSONObject(response).getString("userName"));
                             return;
@@ -117,6 +128,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         ///////////////////실패/////////////////////////////////
+                        hideDialog();
                     }
                 }){
             @Override
@@ -152,6 +164,21 @@ public class HomeFragment extends Fragment {
                     setGlobalFont(v);
                 }
             }
+        }
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing()){
+            pDialog.show();
+        }
+    }
+
+    /**
+     * 로그인 다이얼로그 끝냄
+     */
+    private void hideDialog() {
+        if (pDialog.isShowing()){
+            pDialog.dismiss();
         }
     }
 

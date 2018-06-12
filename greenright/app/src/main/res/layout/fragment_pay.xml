@@ -109,18 +109,38 @@
 
 
             <EditText
-                    android:id="@+id/textView37"
+                    android:id="@+id/pointUse"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.6"
+                    android:inputType="numberDecimal"
                     android:background="@drawable/border"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <TextView
                     android:id="@+id/availablePoint"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_width="94dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.4"
-                    android:text="가용포인트(2000)" />
+                    android:text="가용포인트(0)" />
+
+                <TextView
+                    android:id="@+id/checkUsePoint"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:textColor="#ff0000"
+                    android:text=""
+                    android:textAllCaps="false" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

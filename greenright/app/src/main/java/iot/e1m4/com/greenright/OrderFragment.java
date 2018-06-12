@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
     Button payBtn;
     private static Typeface typeface;
 
+    private ProgressDialog pDialog;
     EditText mOrderName;
     EditText mOrderPhone;
     EditText mOrderEmail;
@@ -56,11 +58,16 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
 
     SessionManager mSessionManager;
     PayFragment mPayFragment;
+
+    PaymentInfo mPaymentInfo;
+
+    TextView orderProductName;
+    TextView orderProductPrice;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_order, container, false);
+        pDialog = new ProgressDialog(getActivity());
         mSessionManager = new SessionManager(getActivity());
 
         if(typeface == null) {
@@ -70,16 +77,31 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
         setGlobalFont(layout);
 
         //주문자 정보와 동일 체크 버튼:isEqualCheck
-        Toast.makeText(getActivity(), getArguments().getString("productId"), Toast.LENGTH_SHORT).show();
+        mPaymentInfo = getArguments().getParcelable("PaymentInfo");
+        //Toast.makeText(getActivity(), mPaymentInfo.toString(), Toast.LENGTH_SHORT).show();
 
         payBtn=layout.findViewById(R.id.orderTitle);
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String deliveryName = mDeliveryName.getText().toString();
+                String deliveryPhone = mDeliveryPhone.getText().toString();
+                String deliveryAddress = mDeliveryAddress.getText().toString();
+
+                if (deliveryName.isEmpty() || deliveryPhone.isEmpty() || deliveryAddress.isEmpty()) {
+                    Toast.makeText(getActivity(), "수령인 정보를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 mPayFragment= new PayFragment();
                 Bundle args = new Bundle();
                 ////필요한 정보 넣기
                 /////
+                mPaymentInfo.setDeliveryName(deliveryName);
+                mPaymentInfo.setDeliveryAddress(deliveryAddress);
+                mPaymentInfo.setDeliveryPhone(deliveryPhone);
+
+                args.putParcelable("PaymentInfo", mPaymentInfo);
                 mPayFragment.setArguments(args);
                 getFragmentManager().beginTransaction().replace(R.id.contentContainer,mPayFragment).commit();
             }
@@ -92,6 +114,13 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
         mDeliveryName = layout.findViewById(R.id.deliveryName);
         mDeliveryPhone = layout.findViewById(R.id.deliveryPhone);
         mDeliveryAddress = layout.findViewById(R.id.deliveryAddress);
+
+
+        orderProductName = layout.findViewById(R.id.orderProductName);
+        orderProductPrice = layout.findViewById(R.id.orderProductPrice);
+        orderProductName.setText(mPaymentInfo.getProductName());
+        orderProductPrice.setText(String.format("%,d", Integer.parseInt( mPaymentInfo.getProductValue())  )
+                + "원");
 
         mCheckBox = layout.findViewById(R.id.isEqualCheck);
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -111,11 +140,14 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
 
 
     private void userUpdate() {
+        pDialog.setMessage("회원 정보를 받아오는 중...");
+        showDialog();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.FIND_USER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         //////////////성공//////////////////////
+                        hideDialog();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             mOrderName.setText(jsonObject.getString("userName"));
@@ -131,6 +163,7 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         ///////////////////실패/////////////////////////////////
+                        hideDialog();
                     }
                 }){
             @Override
@@ -179,5 +212,17 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
     public void onBack() {
         getFragmentManager().beginTransaction().replace(R.id.contentContainer,new MarketFragment()).commit();
         return;
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing()){
+            pDialog.show();
+        }
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing()){
+            pDialog.dismiss();
+        }
     }
 }
