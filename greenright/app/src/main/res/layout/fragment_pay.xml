@@ -292,7 +292,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.7"
         android:textColor="@color/white"
-        android:background="@drawable/border2"
+        android:background="@drawable/point_shape3"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:text="@string/payBtn" />
