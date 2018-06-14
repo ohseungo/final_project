@@ -204,7 +204,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                                 storeLatLng = new LatLng(jObject.getDouble("recycleBoxLat"),
                                         jObject.getDouble("recycleBoxLong"));
                                 mMap.addMarker(new MarkerOptions().position(storeLatLng)
-                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 
                             }
                         } catch (JSONException e) {
@@ -248,7 +248,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                                 jObject =jArray.getJSONObject(i);
                                 storeLatLng = new LatLng(jObject.getDouble("storeLat"), jObject.getDouble("storeLong"));
                                 mMap.addMarker(new MarkerOptions().position(storeLatLng)
-                                        .title(jObject.getString("storeName")));
+                                        .title(jObject.getString("storeName"))
+                                        .snippet("카페"));
 
                             }
                         } catch (JSONException e) {
@@ -372,7 +373,13 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
             if ( googleApiClient == null) {
                 buildGoogleApiClient();
             }
-
+            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    marker.showInfoWindow();
+                    return false;
+                }
+            });
             mMap.setMyLocationEnabled(true);
         }
 

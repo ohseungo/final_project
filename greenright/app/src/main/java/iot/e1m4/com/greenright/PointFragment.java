@@ -191,7 +191,7 @@ public class PointFragment extends Fragment implements MainActivity.onKeyBackPre
                             JSONObject object;
 
 
-                            for (int i =0; i<jsonArray.length(); i++) {
+                            L: for (int i =0; i<jsonArray.length(); i++) {
                                 object = jsonArray.getJSONObject(i);
                                 try {
 
@@ -213,7 +213,8 @@ public class PointFragment extends Fragment implements MainActivity.onKeyBackPre
                                             break;
                                             default:
                                                 img=getResources().getDrawable(R.drawable.ic_star);
-                                                break;
+                                                continue L;
+
                                     }
                                     mAdapter.addItem(img,
                                             URLDecoder.decode(object.getString("greenPointContent"),"UTF-8") ,

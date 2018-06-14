@@ -18,10 +18,6 @@ public class SimplePayFragment extends Fragment {
 
     private static Typeface typeface;
 
-    public SimplePayFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,13 +30,18 @@ public class SimplePayFragment extends Fragment {
         // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_simple_pay, container, false);
 
+
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
                     "fonts/yoon350.ttf");
         }
         setGlobalFont(layout);
+
         return layout;
     }
+
+
+
     private void setGlobalFont(View view) {
         if(view != null) {
             if(view instanceof ViewGroup) {

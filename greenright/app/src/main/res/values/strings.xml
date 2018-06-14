@@ -109,5 +109,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="paypalPayBtn">PayPal</string>
+    <string name="postcode">우편번호 검색</string>
 
 </resources>

@@ -40,7 +40,6 @@ public class MainFragment extends Fragment {
     TextView userHead;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

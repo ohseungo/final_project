@@ -14,12 +14,12 @@
         android:layout_weight="3" >
 
     <RadioButton
-        android:id="@+id/gpaybtn"
+        android:id="@+id/paypalPaybtn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="5dp"
-        android:text="@string/gpayBtn" />
+        android:text="@string/paypalPayBtn" />
 
     <RadioButton
         android:id="@+id/kakaopaybtn"

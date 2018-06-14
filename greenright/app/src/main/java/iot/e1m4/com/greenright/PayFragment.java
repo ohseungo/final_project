@@ -88,7 +88,7 @@ public class PayFragment extends Fragment implements MainActivity.onKeyBackPress
     private SessionManager sessionManager;
     public static final int PAYPAL_REQUEST_CODE = 7171;
 
-    private boolean pointChecked = false;
+    private boolean pointChecked = true;
     private static PayPalConfiguration config =
             new PayPalConfiguration().environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
             .clientId(AppConfig.PAYPAL_CLIENT_ID);
@@ -250,7 +250,12 @@ public class PayFragment extends Fragment implements MainActivity.onKeyBackPress
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                processPayment();
+                if (pointChecked){
+                    processPayment();
+                }else {
+                    Toast.makeText(getActivity(), "사용 포인트를 확인해주세요", Toast.LENGTH_SHORT).show();
+                }
+                return;
             }
         });
         return layout;
@@ -313,19 +318,42 @@ public class PayFragment extends Fragment implements MainActivity.onKeyBackPress
                         startActivity(new Intent(getActivity(),PaymentDetails.class)
                                         .putExtra("PaymentDetails", paymentDetails)
                                         .putExtra("PaymentAmount", String.format("%,d", totalPrice  ))
-                                         .putExtra("PaymentItem", "상품이름")) ;
-
+                                         .putExtra("PurchasePoint", point)
+                                        .putExtra("PaymentInfo", mPaymentInfo));
+                                            //마지막 구매 정보
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             }
             else if(resultCode== Activity.RESULT_CANCELED){
-                Toast.makeText(getActivity(), "취소됨", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage("결제가 취소되었습니다")
+                        .setCancelable(false)
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         }
         else if(resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
-            Toast.makeText(getActivity(), "안됨", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("결제 중 문제가 발생하였습니다")
+                    .setCancelable(false)
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            return;
+                        }
+                    });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
 
@@ -397,7 +425,7 @@ public class PayFragment extends Fragment implements MainActivity.onKeyBackPress
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("마켓 화면으로 돌아갑니다")
                 .setCancelable(false)
-                .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         getFragmentManager().beginTransaction().replace(R.id.contentContainer,new MarketFragment()).commit();

@@ -5,8 +5,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +54,7 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
     EditText mOrderEmail;
     EditText mDeliveryName;
     EditText mDeliveryPhone;
-    EditText mDeliveryAddress;
+    TextView mDeliveryAddress;
 
     CheckBox mCheckBox;
 
@@ -63,9 +65,12 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
 
     TextView orderProductName;
     TextView orderProductPrice;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.e(TAG,"onCreateView called....");
         View layout=inflater.inflate(R.layout.fragment_order, container, false);
         pDialog = new ProgressDialog(getActivity());
         mSessionManager = new SessionManager(getActivity());
@@ -100,7 +105,7 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
                 mPaymentInfo.setDeliveryName(deliveryName);
                 mPaymentInfo.setDeliveryAddress(deliveryAddress);
                 mPaymentInfo.setDeliveryPhone(deliveryPhone);
-
+                mPaymentInfo.setUserId(mSessionManager.getUserId());
                 args.putParcelable("PaymentInfo", mPaymentInfo);
                 mPayFragment.setArguments(args);
                 getFragmentManager().beginTransaction().replace(R.id.contentContainer,mPayFragment).commit();
@@ -133,7 +138,15 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
                 }
             }
         });
+        mDeliveryAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().add(R.id.contentContainer,new PostCodeFragment()).commit();
+                return;
+            }
+        });
         userUpdate();
+
 
         return layout;
     }

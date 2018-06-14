@@ -26,6 +26,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,6 +51,7 @@ public class HomeFragment extends Fragment {
     TextView mTotalPoint;
     SessionManager sessionManager;
     TextView userHead;
+    TextView totalCup;
     private static Typeface typeface;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,10 +70,54 @@ public class HomeFragment extends Fragment {
         mTotalPoint = layout.findViewById(R.id.pointTv);
         getTotalPoint(sessionManager.getUserId());
         userHead = layout.findViewById(R.id.mainUser);
+        totalCup = layout.findViewById(R.id.totalCup);
         userUpdate();
+        getTotalDisp(sessionManager.getUserId());
 
 
         return layout;
+    }
+
+    private void getTotalDisp(final String userId) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject object;
+                            int count = 0;
+                            for (int i =0; i<jsonArray.length(); i++) {
+                                object = jsonArray.getJSONObject(i);
+                                if (object.getString("greenPointType").equals(1)) count++;
+                            }
+                            totalCup.setText(String.valueOf(count));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("userId", userId);
+                return params;
+            }
+
+
+        };
+        stringRequest.setTag(TAG);
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+
     }
 
     private void getTotalPoint(final String userId) {
@@ -181,5 +227,12 @@ public class HomeFragment extends Fragment {
             pDialog.dismiss();
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        hideDialog();
+    }
+
 
 }

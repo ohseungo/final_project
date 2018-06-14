@@ -105,6 +105,7 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
                 mOrderFragment = new OrderFragment();
                 Bundle bundle = new Bundle();
                 PaymentInfo paymentInfo = new PaymentInfo();
+
                 paymentInfo.setProductId(mData.getpId());
                 paymentInfo.setProductName(mData.getpName1());
                 paymentInfo.setProductValue(mData.getPrice1());
@@ -112,7 +113,7 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
                 //bundle.putString("productId", mData.getpId());
                 bundle.putParcelable("PaymentInfo", paymentInfo);
                 mOrderFragment.setArguments(bundle);
-                getFragmentManager().beginTransaction().replace(R.id.contentContainer,mOrderFragment).commit();
+                getFragmentManager().beginTransaction().replace(R.id.contentContainer,mOrderFragment, "ORDER_PAGE").commit();
 
             }
         });

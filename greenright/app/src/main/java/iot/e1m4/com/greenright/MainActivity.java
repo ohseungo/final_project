@@ -118,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
                 item.setChecked(true);
                 mDrawerLayout.closeDrawers();
 
@@ -226,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void userUpdate() {
-        pDialog.setMessage("회원 정보를 받아오는 중...");
+        pDialog.setMessage("회원 이름 정보를 받아오는 중...");
         showDialog();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.FIND_USER,
                 new Response.Listener<String>() {
@@ -295,10 +294,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        AppController.activityResumed();
         if(getIntent().getAction()!= null){
             if(getIntent().getAction().equals(BeaconListenerService.NOTIFICATION_ID)) { //알림 타고 들어왔을 경우
                 transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.contentContainer, new PointFragment()).commit();
+                return;
+            }else if (getIntent().getAction().equals("GOTOORDER")) {//order 에서
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.contentContainer, new CurrentOrderFragment()).commit();
                 return;
             }
            /* if(getIntent().getAction().equals(BeaconListenerService.NOTIFICATION_ID_VIDEO)) { //비디오 알림 타고 들어왔을 경우
@@ -308,6 +312,13 @@ public class MainActivity extends AppCompatActivity {
             }
 */
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        AppController.activityPaused();
+        return;
     }
 
     @Override
@@ -358,7 +369,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         AppController.getInstance().cancelPendingRequests(TAG);
-
+        hideDialog();
     }
 
 

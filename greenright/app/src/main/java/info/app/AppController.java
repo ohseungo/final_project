@@ -28,7 +28,7 @@ public class AppController extends Application{
     private RequestQueue mRequestQueue;
     private static AppController mInstance;
 
-
+    private static boolean activityVisible;
     private EstimoteCloudCredentials cloudCredentials;
     private SessionManager mSessionManager;
 
@@ -66,5 +66,19 @@ public class AppController extends Application{
             mRequestQueue.cancelAll(tag);
         }
     }
+
+    public static boolean isActivityVisible() {
+        return activityVisible;
+    }
+
+    public static void activityResumed() {
+        activityVisible = true;
+    }
+
+    public static void activityPaused() {
+        activityVisible = false;
+    }
+
+
 
 }
