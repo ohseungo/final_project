@@ -54,21 +54,21 @@
                 android:id="@+id/pointBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/pointBtn"
-                android:background="#86af45"
                 android:layout_margin="20dp"
-                android:textColor="#ffffff"/>
+                android:layout_weight="1"
+                android:background="#254341"
+                android:text="@string/pointBtn"
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/orderBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/orderBtn"
-                android:background="#d6ccd4"
                 android:layout_margin="20dp"
-                android:textColor="#ffffff"/>
+                android:layout_weight="1"
+                android:background="#43aa8d"
+                android:text="@string/orderBtn"
+                android:textColor="#ffffff" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,21 +81,21 @@
                 android:id="@+id/updateBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#bdcebe"
-                android:text="@string/updateBtn"
                 android:layout_margin="20dp"
-                android:textColor="#ffffff"/>
+                android:layout_weight="1"
+                android:background="#ff6f5a"
+                android:text="@string/updateBtn"
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/deleteBtn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/cancelBtn"
-                android:background="#eca1a6"
                 android:layout_margin="20dp"
-                android:textColor="#ffffff"/>
+                android:layout_weight="1"
+                android:background="#b2b09b"
+                android:text="@string/cancelBtn"
+                android:textColor="#ffffff" />
         </LinearLayout>
     </LinearLayout>
 <!--    <LinearLayout

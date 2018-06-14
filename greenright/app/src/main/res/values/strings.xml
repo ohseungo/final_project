@@ -12,7 +12,7 @@
     <string name="register_pw_check">패스워드 체크</string>
     <string name="register_name">이름</string>
     <string name="register_email">이메일</string>
-    <string name="registerBtn">C R E A T E  &#160; &#160;A C C O U N T</string>
+    <string name="registerBtn">SIGN UP</string>
     <string name="register_phone">핸드폰번호</string>
     <string name="register_car">소유차량 (있는 경우)</string>
 
@@ -34,13 +34,13 @@
     <string name="pointTv">P  56,200</string>
     <string name="mainnews">GREEN NEWS</string>
     <string name="logoTv">G R E E N R I G H T</string>
-    <string name="loginBtn">L O G I N</string>
+    <string name="loginBtn">LOG IN</string>
 
     <string name="map_update_store">S E A R C H</string>
 
     <string name="introLogo">Less Pollution, The Best Solution</string>
     <string name="useridHint">Username</string>
-    <string name="pwHint">●●●●●●●●</string>
+    <string name="pwHint">Password</string>
     <string name="register">R E G I S T E R</string>
     <string name="walkTv1">T O D A Y\nS T E P S</string>
     <string name="walkTv2">5325</string>
@@ -57,14 +57,14 @@
     <string name="action_settings">Settings</string>
     <string name="month">이번달 포인트 적립 현황</string>
     <string name="pointList">적립 내역</string>
-    <string name="regiId">Your ID</string>
-    <string name="regipw">Your Password</string>
+    <string name="regiId">ID</string>
+    <string name="regipw">Password</string>
     <string name="regirepw">Repeat Password</string>
-    <string name="regiEmail">Your Email</string>
-    <string name="regiName">Your Name</string>
+    <string name="regiEmail">Email</string>
+    <string name="regiName">Name</string>
     <string name="ispossible">사용 가능</string>
-    <string name="regi_phone">Your Phone</string>
-    <string name="regi_car">If you have a car, input your car Number</string>
+    <string name="regi_phone">Phone</string>
+    <string name="regi_car">Car Number</string>
     <string name="pointContent">컵 수거 완료 포인트 적립</string>
     <string name="pointDate">2018.05.31</string>
     <string name="pointWon">100Point</string>
