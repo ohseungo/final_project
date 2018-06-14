@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -74,7 +76,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     private static final int UPDATE_INTERVAL_MS = 15000;
     private static final int FASTEST_UPDATE_INTERVAL_MS = 15000;
 
-    private static final int DEFAULT_ZOOM = 15;
+    private static final int DEFAULT_ZOOM = 20;
     private final LatLng DEFAULT_LOCATION = new LatLng(37.500763, 127.036842);
 
     private GoogleMap mMap = null;
@@ -188,6 +190,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
 
     static StringRequest stringRequest;
+
     private void viewCupListMarker() {
         stringRequest = new StringRequest(Request.Method.GET, AppConfig.URL_BOX_LIST,
                 new Response.Listener<String>() {
@@ -204,7 +207,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                                 storeLatLng = new LatLng(jObject.getDouble("recycleBoxLat"),
                                         jObject.getDouble("recycleBoxLong"));
                                 mMap.addMarker(new MarkerOptions().position(storeLatLng)
-                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
 
                             }
                         } catch (JSONException e) {
@@ -228,8 +231,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
         };
 
         stringRequest.setTag(TAG);
-        AppController.getInstance().
-                addToRequestQueue(stringRequest);
+        AppController.getInstance().addToRequestQueue(stringRequest);
     }
 
 

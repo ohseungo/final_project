@@ -1,6 +1,7 @@
 package iot.e1m4.com.greenright;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -48,10 +49,7 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
     TextView mCurrPoint;
     SessionManager sessionManager;
     private static Typeface typeface;
-    public CurrentPointFragment() {
-        // Required empty public constructor
-    }
-
+    ProgressDialog pDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,9 +58,9 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
         View layout=inflater.inflate(R.layout.fragment_current_point, container, false);
 
         sessionManager = new SessionManager(getActivity());
-
+        pDialog = new ProgressDialog(getActivity());
         mCurrPoint = layout.findViewById(R.id.currPoint);
-        getTotalPoint(sessionManager.getUserId());
+
 
         //포인트 사용 내역 리스트
         mListView=layout.findViewById(R.id.pointUseList);
@@ -94,7 +92,6 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
 
 
     private void getPointList(final String userId) {
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT,
                 new Response.Listener<String>() {
                     @Override
@@ -102,14 +99,17 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             JSONObject object;
+                            int total = 0;
                             for (int i =0; i<jsonArray.length(); i++) {
                                 object = jsonArray.getJSONObject(i);
+                                total += Integer.parseInt(object.getString("greenPointValue"));
                                 if(Integer.parseInt(object.getString("greenPointType"))>0) continue;
                                 mAdapter.addItem(object.getString("greenPointContent") ,
-                                            object.getString("greenPointValue") + " point",
+                                        (Integer.parseInt(object.getString("greenPointValue")) *(-1)) + " point",
                                             object.getString("greenPointDate")
                                             );
                             }
+                            mCurrPoint.setText("P " +total);
                             mAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -217,6 +217,7 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
             mAdapter.notifyDataSetChanged();
         }
     }
+
     private void getTotalPoint(final String userId) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.TOTAL_POINT,
                 new Response.Listener<String>() {
@@ -263,5 +264,18 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
     public void onStop() {
         super.onStop();
         AppController.getInstance().cancelPendingRequests(TAG);
+    }
+
+
+    private void hideDialog() {
+        if (pDialog.isShowing()){
+            pDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        hideDialog();
     }
 }

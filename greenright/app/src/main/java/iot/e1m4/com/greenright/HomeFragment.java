@@ -224,9 +224,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    /**
-     * 로그인 다이얼로그 끝냄
-     */
+
     private void hideDialog() {
         if (pDialog.isShowing()){
             pDialog.dismiss();
