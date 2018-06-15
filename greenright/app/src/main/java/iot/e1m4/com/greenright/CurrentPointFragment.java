@@ -52,10 +52,17 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
     private static Typeface typeface;
     ProgressDialog pDialog;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout=inflater.inflate(R.layout.fragment_current_point, container, false);
+
+        if(typeface == null) {
+            typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/nanumsquareB.otf");
+        }
+        setGlobalFont(layout);
 
         sessionManager = new SessionManager(getActivity());
         pDialog = new ProgressDialog(getActivity());
@@ -241,5 +248,20 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
     public void onDestroyView() {
         super.onDestroyView();
         hideDialog();
+    }
+    private void setGlobalFont(View view) {
+        if(view != null) {
+            if(view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup)view;
+                int vgCnt = viewGroup.getChildCount();
+                for(int i = 0; i<vgCnt; i++) {
+                    View v = viewGroup.getChildAt(i);
+                    if(v instanceof TextView) {
+                        ((TextView) v).setTypeface(typeface);
+                    }
+                    setGlobalFont(v);
+                }
+            }
+        }
     }
 }

@@ -32,7 +32,7 @@ import info.addon.SessionManager;
 import info.app.AppConfig;
 import info.app.AppController;
 
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseEngActivity {
     private String TAG = getClass().getSimpleName();
     private EditText idEt;
     private EditText pwEt;

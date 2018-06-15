@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/app_name"
-                android:textColor="#86af45"
+                android:textColor="#000"
                 android:textSize="20sp" />
         </FrameLayout>
 

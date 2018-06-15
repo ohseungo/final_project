@@ -79,7 +79,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
 
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
-                    "fonts/yoon350.ttf");
+                    "fonts/nanumsquareB.otf");
         }
         setGlobalFont(layout);
 

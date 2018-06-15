@@ -14,7 +14,7 @@ public class BaseEngActivity extends AppCompatActivity {
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         if(typeface == null) {
-            typeface = Typeface.createFromAsset(this.getAssets(), "fonts/florsn17.ttf");
+            typeface = Typeface.createFromAsset(this.getAssets(), "fonts/regular.otf");
         }
         setGlobalFont(getWindow().getDecorView());
     }

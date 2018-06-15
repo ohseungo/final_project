@@ -123,7 +123,7 @@ public class PayFragment extends Fragment implements MainActivity.onKeyBackPress
 
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
-                    "fonts/yoon350.ttf");
+                    "fonts/nanumsquareB.otf");
         }
         setGlobalFont(layout);
 

@@ -58,7 +58,7 @@ public class MypageFragment extends Fragment implements MainActivity.onKeyBackPr
 
         if (typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
-                    "fonts/yoon350.ttf");
+                    "fonts/nanumsquareB.otf");
         }
         setGlobalFont(layout);
         sessionManager = new SessionManager(getActivity());

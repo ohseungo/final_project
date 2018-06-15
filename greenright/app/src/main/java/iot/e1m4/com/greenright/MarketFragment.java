@@ -85,7 +85,7 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
         pDialog.setCancelable(false);
         if (typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
-                    "fonts/yoon350.ttf");
+                    "fonts/nanumsquareB.otf");
         }
         setGlobalFont(layout);
         mListView = layout.findViewById(R.id.productList);

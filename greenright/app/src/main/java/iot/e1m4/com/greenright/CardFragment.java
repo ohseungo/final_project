@@ -37,7 +37,7 @@ public class CardFragment extends Fragment {
         View layout=inflater.inflate(R.layout.fragment_card, container, false);
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
-                    "fonts/yoon350.ttf");
+                    "fonts/nanumsquareB.otf");
         }
         setGlobalFont(layout);
 

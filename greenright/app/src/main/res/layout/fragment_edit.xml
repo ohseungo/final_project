@@ -8,28 +8,145 @@
     android:weightSum="10">
 
 
-    <TextView
-        android:id="@+id/textView24"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
-        android:text="회원 정보 수정"
-        android:gravity="center"
-        android:textColor="#000"
-        android:textSize="20sp"/>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7.5"
+        android:layout_weight="9.3"
         android:orientation="vertical"
         android:layout_margin="5dp"
         android:background="#ffffff"
-        android:weightSum="7">
+        android:weightSum="10.5">
 
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="이름"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:textColor="#000"/>
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/nameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_margin="5dp"/>
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="아이디"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:textColor="#000"/>
+
+        <TextView
+            android:id="@+id/editUserId"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:text="" />
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="비밀번호"
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_margin="5dp"/>
+
+        <EditText
+            android:id="@+id/passEdit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:layout_margin="5dp"/>
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="비밀번호 확인"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:textColor="#000"/>
+
+        <EditText
+            android:id="@+id/passConfirmEdit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="이메일"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:textColor="#000"/>
+
+        <EditText
+            android:id="@+id/emailEdit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:layout_margin="5dp"/>
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="연락처"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:textColor="#000"/>
+
+        <EditText
+            android:id="@+id/phoneEdit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="phone"
+            android:layout_margin="5dp"/>
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:text="차번호"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:textColor="#000"/>
+
+        <EditText
+            android:id="@+id/carEdit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_margin="5dp"/>
+
+       <!-- <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -65,25 +182,7 @@
             android:orientation="horizontal"
             android:weightSum="4">
 
-            <TextView
-                android:id="@+id/textView28"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="아이디"
-                android:gravity="center"
-                android:background="#bdcebe"
-                android:layout_margin="5dp"
-                android:textColor="#ffffff"/>
 
-            <TextView
-                android:id="@+id/editUserId"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:gravity="center_vertical"
-                android:paddingStart="10dp"
-                android:text="" />
 
         </LinearLayout>
         <LinearLayout
@@ -93,26 +192,7 @@
             android:orientation="horizontal"
             android:weightSum="4">
 
-            <TextView
-                android:id="@+id/textView30"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="비밀번호"
-                android:gravity="center"
-                android:background="#bdcebe"
-                android:layout_margin="5dp"
-                android:textColor="#ffffff"/>
 
-            <EditText
-                android:id="@+id/passEdit"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:background="@drawable/border"
-                android:layout_margin="5dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -121,26 +201,7 @@
             android:orientation="horizontal"
             android:weightSum="4">
 
-            <TextView
-                android:id="@+id/textView32"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="비밀번호 확인"
-                android:gravity="center"
-                android:background="#bdcebe"
-                android:layout_margin="5dp"
-                android:textColor="#ffffff"/>
 
-            <EditText
-                android:id="@+id/passConfirmEdit"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:background="@drawable/border"
-                android:layout_margin="5dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -149,26 +210,6 @@
             android:orientation="horizontal"
             android:weightSum="4">
 
-            <TextView
-                android:id="@+id/textView33"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="이메일"
-                android:gravity="center"
-                android:background="#bdcebe"
-                android:layout_margin="5dp"
-                android:textColor="#ffffff"/>
-
-            <EditText
-                android:id="@+id/emailEdit"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:background="@drawable/border"
-                android:layout_margin="5dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -177,26 +218,7 @@
             android:orientation="horizontal"
             android:weightSum="4">
 
-            <TextView
-                android:id="@+id/textView34"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="연락처"
-                android:gravity="center"
-                android:background="#bdcebe"
-                android:layout_margin="5dp"
-                android:textColor="#ffffff"/>
 
-            <EditText
-                android:id="@+id/phoneEdit"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:ems="10"
-                android:inputType="phone"
-                android:background="@drawable/border"
-                android:layout_margin="5dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -205,34 +227,15 @@
             android:orientation="horizontal"
             android:weightSum="4">
 
-            <TextView
-                android:id="@+id/textView35"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="차번호"
-                android:gravity="center"
-                android:background="#bdcebe"
-                android:layout_margin="5dp"
-                android:textColor="#ffffff"/>
 
-            <EditText
-                android:id="@+id/carEdit"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:background="@drawable/border"
-                android:layout_margin="5dp"/>
-        </LinearLayout>
+        </LinearLayout>-->
     </LinearLayout>
 
     <Button
         android:id="@+id/editBtn"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.7"
         android:layout_margin="5dp"
         android:textSize="20sp"
         android:text="수정완료"

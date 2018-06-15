@@ -75,7 +75,7 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
 
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
-                    "fonts/yoon350.ttf");
+                    "fonts/nanumsquareB.otf");
         }
         setGlobalFont(layout);
 

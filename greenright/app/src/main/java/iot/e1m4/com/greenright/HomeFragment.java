@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
 
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
-                    "fonts/yoon350.ttf");
+                    "fonts/nanumsquareB.otf");
         }
         setGlobalFont(layout);
         pDialog = new ProgressDialog(getActivity());
