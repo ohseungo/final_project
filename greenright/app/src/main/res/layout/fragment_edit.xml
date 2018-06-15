@@ -15,7 +15,7 @@
         android:layout_weight="1.5"
         android:text="회원 정보 수정"
         android:gravity="center"
-        android:textColor="#ffffff"
+        android:textColor="#000"
         android:textSize="20sp"/>
 
 
@@ -240,6 +240,6 @@
         android:layout_gravity="center"
         android:paddingStart="20sp"
         android:paddingEnd="20sp"
-        android:background="@drawable/border2"/>
+        android:background="@drawable/point_shape3"/>
 
 </LinearLayout>

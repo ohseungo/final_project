@@ -88,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
         //actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
 
-        //actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        //actionBar.setCustomView(R.layout.custom_bar);
-        //actionBar.setBackgroundDrawable(new ColorDrawable(0xFFffffff));
 
         for (String key : sessionManager.getPref().getAll().keySet()) {
             Log.e("TAG", key + " " + sessionManager.getPref().getAll().get(key));

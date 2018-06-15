@@ -106,7 +106,7 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
                                 object = jsonArray.getJSONObject(i);
                                 if(Integer.parseInt(object.getString("greenPointType"))>0) continue;
                                 mAdapter.addItem(object.getString("greenPointContent") ,
-                                            object.getString("greenPointValue") + " point",
+                                            Integer.parseInt(object.getString("greenPointValue"))*-1 + " point",
                                             object.getString("greenPointDate")
                                             );
                             }
