@@ -30,6 +30,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/walkTv1"
+                android:textColor="#000"
+                android:textStyle="bold"
                 android:textSize="20dp" />
             <TextView
                 android:id="@+id/currTv"
@@ -38,7 +40,7 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:text="@string/walkTv2"
-                android:textColor="#d6ccd4"
+                android:textColor="#37c997"
                 android:textSize="40dp" />
 
         </LinearLayout>
@@ -56,6 +58,8 @@
                 android:layout_weight="1"
                 android:text="@string/walkTv3"
                 android:textSize="20dp"
+                android:textColor="#000"
+                android:textStyle="bold"
                 android:gravity="center"/>
             <TextView
                 android:id="@+id/goalTv"
@@ -63,7 +67,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="@string/walkTv4"
-                android:textColor="#bdcebe"
+                android:textColor="#ff5778"
                 android:textSize="40dp"
                 android:gravity="center_horizontal"/>
         </LinearLayout>

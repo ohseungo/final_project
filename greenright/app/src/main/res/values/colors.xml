@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#86af45</color>
-    <color name="orange">#86af45</color>
+    <color name="orange">#ff5778</color>
     <color name="basic">#e6e6e6</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
@@ -12,4 +12,5 @@
     <color name="c3">#bdcebe</color>
     <color name="c4">#eca1a6</color>
     <color name="c5">#e6e6e6</color>
+
 </resources>

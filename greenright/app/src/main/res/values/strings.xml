@@ -42,9 +42,9 @@
     <string name="useridHint">Username</string>
     <string name="pwHint">Password</string>
     <string name="register">R E G I S T E R</string>
-    <string name="walkTv1">T O D A Y\nS T E P S</string>
+    <string name="walkTv1">Today Steps</string>
     <string name="walkTv2">5325</string>
-    <string name="walkTv3">G O A L\nS T E P S</string>
+    <string name="walkTv3">Goal Steps</string>
     <string name="walkTv4">10000</string>
     <string name="nav_menu_1">내 정보</string>
     <string name="nav_menu_2">포인트 내역</string>

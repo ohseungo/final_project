@@ -19,7 +19,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:weightSum="5"
-            android:background="#86af45">
+            android:background="#37c997">
 
             <TextView
                 android:id="@+id/orderDate"

@@ -142,8 +142,8 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
         LineDataSet lineDataSet=new LineDataSet(entries,"이동거리");
         lineDataSet.setLineWidth(2);
         lineDataSet.setCircleRadius(6);
-        lineDataSet.setCircleColor(Color.parseColor("#86af45"));
-        lineDataSet.setColor(Color.parseColor("#86af45"));
+        lineDataSet.setCircleColor(Color.parseColor("#ff5778"));
+        lineDataSet.setColor(Color.parseColor("#ff5778"));
         lineDataSet.setDrawCircleHole(true);
         lineDataSet.setDrawCircles(true);
         lineDataSet.setDrawHorizontalHighlightIndicator(false);

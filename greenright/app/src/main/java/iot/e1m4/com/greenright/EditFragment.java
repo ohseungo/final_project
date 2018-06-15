@@ -4,6 +4,8 @@ package iot.e1m4.com.greenright;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +52,8 @@ public class EditFragment extends Fragment implements MainActivity.onKeyBackPres
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment\
+
         sessionManager = new SessionManager(getActivity());
         View layout = inflater.inflate(R.layout.fragment_edit, container, false);
         nameEdit = layout.findViewById(R.id.nameEdit);
