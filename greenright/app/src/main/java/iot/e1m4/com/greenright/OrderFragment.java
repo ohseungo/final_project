@@ -53,7 +53,7 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
     EditText mDeliveryName;
     EditText mDeliveryPhone;
     TextView mDeliveryAddress;
-
+    EditText mDetailAddress;
     CheckBox mCheckBox;
 
     SessionManager mSessionManager;
@@ -89,9 +89,10 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
                 String deliveryName = mDeliveryName.getText().toString();
                 String deliveryPhone = mDeliveryPhone.getText().toString();
                 String deliveryAddress = mDeliveryAddress.getText().toString();
-
-                if (deliveryName.isEmpty() || deliveryPhone.isEmpty() || deliveryAddress.isEmpty()) {
-                    Toast.makeText(getActivity(), "수령인 정보를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                String detallAddress = mDetailAddress.getText().toString();
+                if (deliveryName.isEmpty() || deliveryPhone.isEmpty() || deliveryAddress.isEmpty()
+                            || detallAddress.isEmpty()) {
+                    Toast.makeText(getActivity(), "수령인 정보를 정확히 입력해주세요", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -99,7 +100,7 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
                 Bundle args = new Bundle();
 
                 mPaymentInfo.setDeliveryName(deliveryName);
-                mPaymentInfo.setDeliveryAddress(deliveryAddress);
+                mPaymentInfo.setDeliveryAddress(deliveryAddress + "\n" + detallAddress);
                 mPaymentInfo.setDeliveryPhone(deliveryPhone);
                 mPaymentInfo.setUserId(mSessionManager.getUserId());
                 args.putParcelable("PaymentInfo", mPaymentInfo);
@@ -115,6 +116,7 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
         mDeliveryName = layout.findViewById(R.id.deliveryName);
         mDeliveryPhone = layout.findViewById(R.id.deliveryPhone);
         mDeliveryAddress = layout.findViewById(R.id.deliveryAddress);
+        mDetailAddress = layout.findViewById(R.id.detailAddress);
 
         orderProductName = layout.findViewById(R.id.orderProductName);
         orderProductPrice = layout.findViewById(R.id.orderProductPrice);

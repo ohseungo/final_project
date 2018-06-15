@@ -87,7 +87,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
         goalDis = layout.findViewById(R.id.goalTv);
         currDis.setText(  sessionManager.getDistance(sessionManager.getUserId()) +
                 "km");
-        goalDis.setText(10 + "km");
+        goalDis.setText(5 + "km");
         getLineData(layout, sessionManager.getUserId());
 
 
@@ -126,7 +126,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
     private void getLineChart(String response, View layout) {
         List<Entry> entries=new ArrayList<>();
         lineChart=layout.findViewById(R.id.chart);
-        entries.add(new Entry(6, (int) sessionManager.getDistance(sessionManager.getUserId())));
+
             try {
                 JSONArray jArray = new JSONArray(response);
                 for (int i = 0; i < jArray.length(); i++) {
@@ -137,8 +137,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
+        entries.add(new Entry(6, (int) sessionManager.getDistance(sessionManager.getUserId())));
         LineDataSet lineDataSet=new LineDataSet(entries,"이동거리");
         lineDataSet.setLineWidth(2);
         lineDataSet.setCircleRadius(6);
@@ -176,7 +175,7 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
         yLAxis.setTextColor(Color.BLACK);
 
         yLAxis.setAxisMinimum(0);
-        yLAxis.setAxisMaximum(200);
+        yLAxis.setAxisMaximum(10);
         YAxis yRAxis = lineChart.getAxisRight();
         yRAxis.setDrawLabels(false);
         yRAxis.setDrawAxisLine(false);
@@ -184,50 +183,10 @@ public class WalkFragment extends Fragment implements MainActivity.onKeyBackPres
 
         lineChart.setDoubleTapToZoomEnabled(false);
         lineChart.setDrawGridBackground(false);
-        lineChart.animateY(40, Easing.EasingOption.EaseInCubic);
+        lineChart.animateY(2, Easing.EasingOption.EaseInCubic);
         lineChart.animateX(1);
         lineChart.invalidate();
     }
-
-/*
-    private List<Entry> getLineList(final String userId){
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.VIEW_POINT,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            JSONObject object;
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("userId", userId);
-                return params;
-            }
-
-
-        };
-        stringRequest.setTag(TAG);
-        AppController.getInstance().
-                addToRequestQueue(stringRequest);
-        return null;
-    }*/
 
 
 

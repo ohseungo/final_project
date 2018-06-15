@@ -52,7 +52,6 @@ public class PaymentDetails extends AppCompatActivity{
         txtItem = findViewById(R.id.txtItem);
         Intent intent = getIntent();
 
-        Toast.makeText(this, getIntent().getParcelableExtra("PaymentInfo").toString(), Toast.LENGTH_SHORT).show();
         mPaymentInfo = getIntent().getParcelableExtra("PaymentInfo");
         pDialog=new ProgressDialog(this);
 

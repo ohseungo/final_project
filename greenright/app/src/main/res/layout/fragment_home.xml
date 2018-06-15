@@ -153,22 +153,19 @@
                         android:id="@+id/news1"
                         android:layout_width="200dip"
                         android:layout_height="190dip"
-                        android:gravity="center"
-                        app:srcCompat="@drawable/p1" />
+                        android:gravity="center" />
 
                     <ImageView
                         android:id="@+id/news2"
                         android:layout_width="200dip"
                         android:layout_height="190dip"
-                        android:gravity="center"
-                        app:srcCompat="@drawable/p2" />
+                        android:gravity="center" />
 
                     <ImageView
                         android:id="@+id/news3"
                         android:layout_width="200dip"
                         android:layout_height="190dip"
-                        android:gravity="center"
-                        app:srcCompat="@drawable/p3" />
+                        android:gravity="center"/>
                 </LinearLayout>
             </HorizontalScrollView>
         </LinearLayout>

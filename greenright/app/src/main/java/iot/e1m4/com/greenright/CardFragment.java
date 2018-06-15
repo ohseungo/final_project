@@ -35,11 +35,13 @@ public class CardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_card, container, false);
+
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
                     "fonts/yoon350.ttf");
         }
         setGlobalFont(layout);
+
 
         //스피너 생성 및 어댑터 연결
         String[]str=getResources().getStringArray(R.array.spinnerArray);

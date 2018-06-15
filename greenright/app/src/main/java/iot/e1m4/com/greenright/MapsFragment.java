@@ -37,6 +37,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -152,8 +153,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
         super.onCreate(savedInstanceState);
     }
 
-    Button storeListViewBtn;
-    Button cupListViewBtn;
+    ImageButton storeListViewBtn;
+    ImageButton cupListViewBtn;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -167,7 +168,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
         mapView = (MapView)layout.findViewById(R.id.map);
         mapView.getMapAsync(this);
-        storeListViewBtn = (Button) layout.findViewById(R.id.storeListViewButton);
+        storeListViewBtn = (ImageButton) layout.findViewById(R.id.storeListViewButton);
         storeListViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,7 +177,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                 viewStoreListMarker();
             }
         });
-        cupListViewBtn = (Button) layout.findViewById(R.id.cupListViewButton);
+        cupListViewBtn = (ImageButton) layout.findViewById(R.id.cupListViewButton);
         cupListViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

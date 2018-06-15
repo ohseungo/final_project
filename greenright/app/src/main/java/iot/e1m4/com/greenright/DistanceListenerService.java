@@ -53,14 +53,14 @@ public class DistanceListenerService extends Service {
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mLocationListner = new SpeedoActionListener();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(DistanceListenerService.this, "안됨", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(DistanceListenerService.this, "안됨", Toast.LENGTH_SHORT).show();
             //permission 없음
         }else {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListner);
             mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListner);
         }
-        Toast.makeText(this, "거리 리스너 시작\n" +
-                totalDis, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "거리 리스너 시작\n" +
+         //       totalDis, Toast.LENGTH_SHORT).show();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -110,13 +110,13 @@ public class DistanceListenerService extends Service {
         @Override
         public void onProviderDisabled(String provider) {
             // TODO Auto-generated method stub
-            Toast.makeText(DistanceListenerService.this, "거리 측정 안됨", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(DistanceListenerService.this, "거리 측정 안됨", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onProviderEnabled(String provider) {
             // TODO Auto-generated method stub
-            Toast.makeText(DistanceListenerService.this, "거리 측정 가능", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(DistanceListenerService.this, "거리 측정 가능", Toast.LENGTH_SHORT).show();
         }
 
         @Override

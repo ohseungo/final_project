@@ -145,10 +145,13 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.e(TAG, "JSONArray 에러 어싱크");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+                Log.e(TAG, "JSONArray 에러 URL");
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.e(TAG, "JSONArray 에러 IO");
             }
             return null;
         }
@@ -194,6 +197,7 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
                             mTask.execute(jsonArray);
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.e(TAG, "JSONArray 에러");
                         }
                     }
                 }, new Response.ErrorListener() {

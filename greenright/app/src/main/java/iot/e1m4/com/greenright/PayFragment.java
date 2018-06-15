@@ -80,6 +80,7 @@ public class PayFragment extends Fragment implements MainActivity.onKeyBackPress
 
     private TextView orderPrice;
     private TextView useGreenPoint;
+    private int deliveryPrice1=2500;
     private TextView deliveryPrice;
     private int totalPrice;
     private TextView finalPrice;
@@ -190,6 +191,8 @@ public class PayFragment extends Fragment implements MainActivity.onKeyBackPress
         deliveryPrice = layout.findViewById(R.id.deliveryPrice);
         useGreenPoint = layout.findViewById(R.id.useGreenPoint);
         finalPrice = layout.findViewById(R.id.finalPrice);
+        deliveryPrice = layout.findViewById(R.id.deliveryPrice);
+        deliveryPrice.setText(String.format("%,d", deliveryPrice1) + "원");
        /////////////////////포인트를 바꿀 경우////////////////////////////////
        pointUse.addTextChangedListener(new TextWatcher() {
            @Override
@@ -262,7 +265,7 @@ public class PayFragment extends Fragment implements MainActivity.onKeyBackPress
     }
 
     private void getTotalPrice() {
-        totalPrice = Integer.parseInt( mPaymentInfo.getProductValue()) - point;
+        totalPrice = Integer.parseInt( mPaymentInfo.getProductValue()) - point + deliveryPrice1;
         finalPrice.setText(String.format("%,d", totalPrice  )
                 + "원");
     }

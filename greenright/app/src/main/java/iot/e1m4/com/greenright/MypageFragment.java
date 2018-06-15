@@ -99,7 +99,7 @@ public class MypageFragment extends Fragment implements MainActivity.onKeyBackPr
     ///회원 삭제//////////
     private void deleteUser(String userId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("회원 탈퇴 ㄱㄱ?")
+        builder.setMessage("정말 탈퇴하시겠습니까?")
                 .setCancelable(false)
                 .setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
