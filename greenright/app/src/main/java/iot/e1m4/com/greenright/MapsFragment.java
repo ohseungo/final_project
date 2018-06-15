@@ -76,7 +76,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     private static final int UPDATE_INTERVAL_MS = 15000;
     private static final int FASTEST_UPDATE_INTERVAL_MS = 15000;
 
-    private static final int DEFAULT_ZOOM = 20;
+    private static final int DEFAULT_ZOOM = 17;
     private final LatLng DEFAULT_LOCATION = new LatLng(37.500763, 127.036842);
 
     private GoogleMap mMap = null;

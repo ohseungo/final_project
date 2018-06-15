@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,26 +42,20 @@ public class CurrentOrderFragment extends Fragment implements MainActivity.onKey
     private SessionManager sessionManager;
 
     private final String TAG = getClass().getSimpleName();
-
+    private String[] purchaseStatus = {"배송완료", "주문확인", "입금확인", "배송중"};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_current_order, container, false);
         mListView=layout.findViewById(R.id.orderList);
         mAdapter=new ListViewAdapter(getActivity());
         mListView.setAdapter(mAdapter);
         sessionManager = new SessionManager(getActivity());
-       /* mAdapter.addItem("2018-05-23","(총 1개 품목)", "점퍼 슬리브 스트라이프 스웻 티셔츠","20180516-000193","98000","입금확인");
-        mAdapter.addItem("2018-05-16","(총 2개 품목)", "체리열매 발아키트","20180516-000192","12000","배송중");
-        mAdapter.addItem("2018-05-08","(총 1개 품목)", "빈티지 가랜드","20180516-000184","25000","배송완료");
-        mAdapter.addItem("2018-04-27","(총 3개 품목)", "pet bag 프린트 점퍼 푸푸 가방","20180516-000122","34500","배송완료");
-*/
+
         getOrderList(sessionManager.getUserId());
         return layout;
     }
 
-    private String[] purchaseStatus = {"배송완료", "주문확인", "입금확인", "배송중"};
 
     private void getOrderList(final String userId) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_ORDER_LIST,
@@ -90,7 +85,7 @@ public class CurrentOrderFragment extends Fragment implements MainActivity.onKey
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Log.e(TAG, "주문 목록 실패");
                     }
                 }){
             @Override

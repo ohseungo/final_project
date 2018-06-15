@@ -21,9 +21,7 @@ import info.app.AppController;
 public class PointManager {
 
     private static String TAG = PointManager.class.getSimpleName();
-
     private static PointManager mInstance;
-
     public static PointManager getInstance() {
         if (mInstance == null ){
             mInstance = new PointManager();
@@ -38,7 +36,7 @@ public class PointManager {
                     @Override
                     public void onResponse(String response) {
                         if (response.equals("true")){
-                            Toast.makeText(context, "포인트 성공", Toast.LENGTH_SHORT).show();
+                           Log.e(TAG, "포인트 성공");
                         }else {
                             Log.e(TAG,"포인트 이력 추가 실패" );
                         }

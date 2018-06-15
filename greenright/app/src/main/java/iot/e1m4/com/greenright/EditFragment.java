@@ -35,7 +35,6 @@ import info.app.AppController;
 
 public class EditFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
 
-
     private final String TAG = getClass().getSimpleName();
 
     SessionManager sessionManager;
@@ -118,6 +117,7 @@ public class EditFragment extends Fragment implements MainActivity.onKeyBackPres
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         ///////////////////실패/////////////////////////////////
+                        Log.e(TAG, "회원 정보 실패");
                     }
                 }){
             @Override
@@ -146,7 +146,7 @@ public class EditFragment extends Fragment implements MainActivity.onKeyBackPres
                             getFragmentManager().beginTransaction().replace(R.id.contentContainer, new HomeFragment()).commit();
                             return;
                         }else{
-                            Toast.makeText(getActivity(), "헐", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "회원 정보 수정 실패", Toast.LENGTH_SHORT).show();
                         }
 
                     }

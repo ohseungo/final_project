@@ -53,11 +53,7 @@ public class LoginActivity extends BaseActivity {
 
         session = new SessionManager(getApplicationContext());
 
-      /*  if (session.isLoggedIn()) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }*/
+
 
         idTv.requestFocus();
     }
@@ -69,19 +65,23 @@ public class LoginActivity extends BaseActivity {
     public void loginBtn(View view) {
         String userId = idTv.getText().toString().trim();
         String password = pwTv.getText().toString().trim();
+/*
 
         if (userId.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "빈 칸을 채워주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "빈 칸이 있습니다", Toast.LENGTH_SHORT).show();
             idTv.requestFocus();
             return;
         }if (password.isEmpty()){
-            Toast.makeText(getApplicationContext(), "빈 칸을 채워주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "빈 칸이 있습니다", Toast.LENGTH_SHORT).show();
             pwTv.requestFocus();
             return;
         }else {
             login(userId, password);
         }
-
+*/
+        if (!userId.isEmpty() && !password.isEmpty()) {
+            login(userId, password);
+        }
 
 
     }
@@ -159,15 +159,6 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 회원가입 버튼 온클릭 이벤트
-     * @param view
-     */
-    public void goToRegister(View view) {
-        //회원가입 하러 가자
-        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     protected void onStop() {

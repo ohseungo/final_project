@@ -37,8 +37,6 @@ import info.app.AppController;
 
 import android.widget.TextView;
 
-
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -81,9 +79,8 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
         }
         setGlobalFont(layout);
 
-        //주문자 정보와 동일 체크 버튼:isEqualCheck
+
         mPaymentInfo = getArguments().getParcelable("PaymentInfo");
-        //Toast.makeText(getActivity(), mPaymentInfo.toString(), Toast.LENGTH_SHORT).show();
 
         payBtn=layout.findViewById(R.id.orderTitle);
         payBtn.setOnClickListener(new View.OnClickListener() {
@@ -100,8 +97,7 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
 
                 mPayFragment= new PayFragment();
                 Bundle args = new Bundle();
-                ////필요한 정보 넣기
-                /////
+
                 mPaymentInfo.setDeliveryName(deliveryName);
                 mPaymentInfo.setDeliveryAddress(deliveryAddress);
                 mPaymentInfo.setDeliveryPhone(deliveryPhone);
@@ -119,7 +115,6 @@ public class OrderFragment extends Fragment implements MainActivity.onKeyBackPre
         mDeliveryName = layout.findViewById(R.id.deliveryName);
         mDeliveryPhone = layout.findViewById(R.id.deliveryPhone);
         mDeliveryAddress = layout.findViewById(R.id.deliveryAddress);
-
 
         orderProductName = layout.findViewById(R.id.orderProductName);
         orderProductPrice = layout.findViewById(R.id.orderProductPrice);

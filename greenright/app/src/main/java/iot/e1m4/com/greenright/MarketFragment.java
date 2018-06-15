@@ -51,12 +51,12 @@ import info.app.AppController;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MarketFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
+public class MarketFragment extends Fragment implements MainActivity.onKeyBackPressedListener {
 
     private final String TAG = getClass().getSimpleName();
 
-    private ListView mListView=null;
-    private ListViewAdapter mAdapter=null;
+    private ListView mListView = null;
+    private ListViewAdapter mAdapter = null;
     private static Typeface typeface;
 
     private ProgressDialog pDialog;
@@ -64,7 +64,7 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+        ((MainActivity) context).setmOnKeyBackPressedListener(this);
     }
 
     @Override
@@ -75,31 +75,32 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
     }
 
     private OrderFragment mOrderFragment;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View layout=inflater.inflate(R.layout.fragment_market, container, false);
+        View layout = inflater.inflate(R.layout.fragment_market, container, false);
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
-        if(typeface == null) {
+        if (typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
                     "fonts/yoon350.ttf");
         }
         setGlobalFont(layout);
-        mListView=layout.findViewById(R.id.productList);
+        mListView = layout.findViewById(R.id.productList);
 
-        mAdapter=new ListViewAdapter(getActivity());
+        mAdapter = new ListViewAdapter(getActivity());
         mListView.setAdapter(mAdapter);
 
         //데이터 입력은 이곳에서~~~~
         marketListUpdate();
 
-      //주문 화면으로 이동
+        //주문 화면으로 이동
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id){
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Product mData = mAdapter.mListData.get(position);
 
                 mOrderFragment = new OrderFragment();
@@ -113,7 +114,7 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
                 //bundle.putString("productId", mData.getpId());
                 bundle.putParcelable("PaymentInfo", paymentInfo);
                 mOrderFragment.setArguments(bundle);
-                getFragmentManager().beginTransaction().replace(R.id.contentContainer,mOrderFragment, "ORDER_PAGE").commit();
+                getFragmentManager().beginTransaction().replace(R.id.contentContainer, mOrderFragment, "ORDER_PAGE").commit();
 
             }
         });
@@ -129,20 +130,19 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
         protected Void doInBackground(JSONArray... jsonArrays) {
             try {
                 JSONArray jArray = jsonArrays[0];
-            for (int i=0; i<jArray.length(); i++){
-                if (jArray.getJSONObject(i).getString("productImage") == null ||
-                        jArray.getJSONObject(i).getString("productImage").equals("null") ||
-                jArray.getJSONObject(i).getString("productImage").trim().equals(""))
-                    bm =BitmapFactory.decodeResource(getResources(), R.drawable.ic_shopping_bag) ;
-                else {
-
-                 try (InputStream is =new URL(AppConfig.REQUEST_URL + "/images/product/"
-                         + jArray.getJSONObject(i).getString("productImage")).openStream()) {
-                     bm = BitmapFactory.decodeStream(is);
-                 }
+                for (int i = 0; i < jArray.length(); i++) {
+                    if (jArray.getJSONObject(i).getString("productImage") == null ||
+                            jArray.getJSONObject(i).getString("productImage").equals("null") ||
+                            jArray.getJSONObject(i).getString("productImage").trim().equals(""))
+                        bm = BitmapFactory.decodeResource(getResources(), R.drawable.ic_shopping_bag);
+                    else {
+                        try (InputStream is = new URL(AppConfig.REQUEST_URL + "/images/product/"
+                                + jArray.getJSONObject(i).getString("productImage")).openStream()) {
+                            bm = BitmapFactory.decodeStream(is);
+                        }
+                    }
+                    publishProgress(jsonArrays[0].getJSONObject(i), bm);
                 }
-                publishProgress(jsonArrays[0].getJSONObject(i), bm);
-            }
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (MalformedURLException e) {
@@ -164,7 +164,7 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
                         object.getString("compName"),
                         object.getString("productValue")
                         , object.getString("productId")
-                        ,object.getString("compId"));
+                        , object.getString("compId"));
                 mAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -180,17 +180,18 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
     }
 
     private MarketTask mTask;
+
     private void marketListUpdate() {
         pDialog.setMessage("상품 정보를 받아오는 중...");
         showDialog();
-        StringRequest  stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_PRODUCT_LIST,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_PRODUCT_LIST,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
                             JSONArray jsonArray = new JSONArray(response);
-                         mTask = new MarketTask();
-                         mTask.execute(jsonArray);
+                            mTask = new MarketTask();
+                            mTask.execute(jsonArray);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -208,25 +209,23 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
 
     }
 
-    public class ViewHolder{
-
+    public class ViewHolder {
         public ImageView pImage1;
         public TextView pName1;
         public TextView company;
         public TextView price1;
-
-
     }
 
-    public class ListViewAdapter extends BaseAdapter{
+    public class ListViewAdapter extends BaseAdapter {
 
-        private Context mContext=null;
-        private ArrayList<Product> mListData=new ArrayList<Product>();
+        private Context mContext = null;
+        private ArrayList<Product> mListData = new ArrayList<Product>();
 
-        public ListViewAdapter(Context mContext){
+        public ListViewAdapter(Context mContext) {
             super();
-            this.mContext=mContext;
+            this.mContext = mContext;
         }
+
         @Override
         public int getCount() {
             return mListData.size();
@@ -245,40 +244,41 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             ViewHolder holder;
-            if(view == null){
-                holder=new ViewHolder();
+            if (view == null) {
+                holder = new ViewHolder();
 
-                LayoutInflater inflater= (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view=inflater.inflate(R.layout.productlist_item, null);
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.productlist_item, null);
 
-                holder.pImage1=view.findViewById(R.id.pImage1);
-                holder.pName1=view.findViewById(R.id.pname1);
-                holder.company=view.findViewById(R.id.company);
-                holder.price1=view.findViewById(R.id.price1);
+                holder.pImage1 = view.findViewById(R.id.pImage1);
+                holder.pName1 = view.findViewById(R.id.pname1);
+                holder.company = view.findViewById(R.id.company);
+                holder.price1 = view.findViewById(R.id.price1);
 
                 view.setTag(holder);
-            }else{
-                holder= (ViewHolder) view.getTag();
+            } else {
+                holder = (ViewHolder) view.getTag();
             }
 
-            Product mData=mListData.get(i);
+            Product mData = mListData.get(i);
 
-            if(mData.getDrawable1()!=null){
+            if (mData.getDrawable1() != null) {
                 holder.pImage1.setVisibility(View.VISIBLE);
                 holder.pImage1.setImageDrawable(mData.getDrawable1());
-            }else{
+            } else {
                 holder.pImage1.setVisibility(View.GONE);
             }
 
             holder.pName1.setText(mData.getpName1());
             holder.company.setText(mData.getCompany());
-            holder.price1.setText(String.format("%,d", Integer.parseInt(mData.getPrice1()) ) + "원");
+            holder.price1.setText(String.format("%,d", Integer.parseInt(mData.getPrice1())) + "원");
 
 
             return view;
 
         }
-        public void addItem(Drawable image1,String mName1,String mCompany, String mPrice1, String mPid, String mCompId){
+
+        public void addItem(Drawable image1, String mName1, String mCompany, String mPrice1, String mPid, String mCompId) {
             Product addInfo = null;
             addInfo = new Product();
             addInfo.setDrawable1(image1);
@@ -291,11 +291,12 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
             mListData.add(addInfo);
         }
 
-        public void remove(int position){
+        public void remove(int position) {
             mListData.remove(position);
             dataChange();
         }
-        public void dataChange(){
+
+        public void dataChange() {
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -303,8 +304,8 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mTask !=null)  mTask.cancel(true);
-        }
+        if (mTask != null) mTask.cancel(true);
+    }
 
     @Override
     public void onStop() {
@@ -313,13 +314,13 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
     }
 
     private void setGlobalFont(View view) {
-        if(view != null) {
-            if(view instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup)view;
+        if (view != null) {
+            if (view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) view;
                 int vgCnt = viewGroup.getChildCount();
-                for(int i = 0; i<vgCnt; i++) {
+                for (int i = 0; i < vgCnt; i++) {
                     View v = viewGroup.getChildAt(i);
-                    if(v instanceof TextView) {
+                    if (v instanceof TextView) {
                         ((TextView) v).setTypeface(typeface);
                     }
                     setGlobalFont(v);
@@ -329,14 +330,14 @@ public class MarketFragment extends Fragment implements MainActivity.onKeyBackPr
     }
 
     private void showDialog() {
-        if (!pDialog.isShowing()){
+        if (!pDialog.isShowing()) {
             pDialog.show();
         }
     }
 
 
     private void hideDialog() {
-        if (pDialog.isShowing()){
+        if (pDialog.isShowing()) {
             pDialog.dismiss();
         }
     }

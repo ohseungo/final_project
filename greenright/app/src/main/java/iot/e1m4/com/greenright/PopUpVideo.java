@@ -26,7 +26,7 @@ public class PopUpVideo extends Activity{
         setContentView(R.layout.popup_view);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("그린 영상을 시청하시겠습니까? \n 영상 시청시 15포인트 적립!")
+        builder.setMessage("그린 영상을 시청하시겠습니까? \n 영상 시청시 50포인트 적립!")
                 .setCancelable(false)
                 .setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
@@ -58,8 +58,8 @@ public class PopUpVideo extends Activity{
         mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                Toast.makeText(PopUpVideo.this, "15 포인트 추가!", Toast.LENGTH_SHORT).show();
-                PointManager.addPointData(sessionManager.getUserId(), 15, 4, "환경 영상 시청",
+                Toast.makeText(PopUpVideo.this, "50 포인트 추가!", Toast.LENGTH_SHORT).show();
+                PointManager.addPointData(sessionManager.getUserId(), 50, 4, "환경 영상 시청",
                         PopUpVideo.this, TAG);
                 Intent intent = new Intent(PopUpVideo.this, MainActivity.class).setAction(BeaconListenerService.NOTIFICATION_ID);
                 startActivity(intent);

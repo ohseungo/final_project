@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     MarketFragment mMarketFragment;
     MypageFragment mMypageFragment;
 
+    private String userName = null;
     private ProgressDialog pDialog;
     private SessionManager sessionManager;
 
@@ -65,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout mDrawerLayout;
     View tempView;
     NavigationView mNagivationView;
-
 
     TextView userHead;
 
@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
         mNagivationView =findViewById(R.id.navigationView);
         NavigationView navigationView=findViewById(R.id.navigationView);
 
-        //user id 입력하는 곳 = nav_header_userId
 
         DayResetManager.setDayResetAlarm(this);
         ///알람 시작
@@ -148,10 +147,8 @@ public class MainActivity extends AppCompatActivity {
                                 return;
                             }
                         }).create().show();
-
                         break;
                 }
-
                 return true;
             }
         });
@@ -164,16 +161,12 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.contentContainer, mWalkFragment);
                 }else if(tabId==R.id.tab_cup){
                     transaction.replace(R.id.contentContainer, mMapsFragment);
-
                 }else if(tabId==R.id.tab_main){
                     transaction.replace(R.id.contentContainer, mHomeFragment);
-
                 }else if(tabId==R.id.tab_barcode){
                     transaction.replace(R.id.contentContainer,mSaveFragment);
-
                 }else if(tabId==R.id.tab_green_market){
                     transaction.replace(R.id.contentContainer, mMarketFragment);
-
                 }
                 //transaction.addToBackStack(null);
                 transaction.commit();
@@ -188,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
                         transaction=getSupportFragmentManager().beginTransaction();
                         if(tabId==R.id.tab_co2){
                             transaction.replace(R.id.contentContainer, mWalkFragment);
-
                         }else if(tabId==R.id.tab_cup){
                             transaction.replace(R.id.contentContainer, mMapsFragment);
                         }else if(tabId==R.id.tab_main){
@@ -199,13 +191,10 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this,DayResetService.class);
                             startService(intent);
 */
-
                           /*  Intent intent = new Intent(MainActivity.this, PopUpVideo.class);
                             startActivity(intent);*/
                             transaction.replace(R.id.contentContainer, mHomeFragment);
-
                         }else if (tabId== R.id.tab_green_market) {
-                            /////////테스트////////////////
                             transaction.replace(R.id.contentContainer, mMarketFragment);
                         }
                         transaction.commit();
@@ -218,13 +207,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent1 = new Intent(this, BeaconListenerService.class);
         startService(intent1);
 
-
         tempView = mNagivationView.getHeaderView(0);
         userHead = tempView.findViewById(R.id.nav_header_userId);
 
     }
 
     private void userUpdate() {
+        if (userName != null) return;
         pDialog.setMessage("회원 이름 정보를 받아오는 중...");
         showDialog();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.FIND_USER,
@@ -234,7 +223,8 @@ public class MainActivity extends AppCompatActivity {
                         //////////////성공//////////////////////
                         try {
                             hideDialog();
-                            userHead.setText(new JSONObject(response).getString("userName")+ " 님 안녕하세요");
+                            userName = new JSONObject(response).getString("userName");
+                            userHead.setText(userName+ " 님 안녕하세요");
                             return;
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -246,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
                      public void onErrorResponse(VolleyError error) {
                     ///////////////////실패/////////////////////////////////
                         hideDialog();
-                    Toast.makeText(MainActivity.this, "회원 정보 요청 중 문제 발생", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "회원 정보 문제 발생");
             }
         }){
             @Override
@@ -264,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void logout() {
         sessionManager.setLogin(false, null);
+        userName = null;
         startActivity(new Intent(this, IntroLoginActivity.class));
         finish();
         return;
@@ -277,7 +268,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    ////???//
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id=item.getItemId();
@@ -305,12 +295,7 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.contentContainer, new CurrentOrderFragment()).commit();
                 return;
             }
-           /* if(getIntent().getAction().equals(BeaconListenerService.NOTIFICATION_ID_VIDEO)) { //비디오 알림 타고 들어왔을 경우
-                Intent intent = new Intent(MainActivity.this, PopUpVideo.class);
-                startActivity(intent);
-                return;
-            }
-*/
+
         }
     }
 

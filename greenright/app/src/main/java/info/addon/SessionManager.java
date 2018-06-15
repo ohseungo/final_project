@@ -60,7 +60,7 @@ public class SessionManager {
         boolean isLoggedIn = isLoggedIn();
         editor.clear().commit();
 
-        ///////// 데이터 이외의 회원 정보 관련 데이터는 유지한다 ////////
+        ///////// 리셋 데이터 이외의 회원 정보 관련 데이터는 유지한다 ////////
         editor.putBoolean(KEY_SHOWN, true).commit();
         editor.putBoolean(KEY_LOGGEDIN,isLoggedIn).commit();
         editor.putString(KEY_USERID, userId).commit();
@@ -68,7 +68,7 @@ public class SessionManager {
         return;
     }
 
-
+/*
     public int getRequestCode(){
         if (pref.getInt(getUserId(), 0 ) ==0) { //한 아이디에 설정이 안되어있을 경우 부여 한다
             editor.putInt(getUserId(), pref.getInt(KEY_ALARM_BASE_REQUEST_CODE, 0));
@@ -79,7 +79,7 @@ public class SessionManager {
         editor.commit();
         return pref.getInt(getUserId(), 0);
 
-    }
+    }*/
 
     public void setDistanceDayChecked(String userId, double distance) {
         editor.putFloat(userId + AppConfig.DISTANCE_CHECK_DISTANCE, (float) distance);

@@ -1,12 +1,12 @@
 package iot.e1m4.com.greenright;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +30,6 @@ import info.addon.SessionManager;
 import info.app.AppConfig;
 import info.app.AppController;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -42,9 +41,9 @@ public class MypageFragment extends Fragment implements MainActivity.onKeyBackPr
     Button mOrderBtn;
     Button mUpdateBtn;
     Button mDeleteBtn;
-    Fragment mCurrentPointFragment=new CurrentPointFragment();
-    Fragment mCurrentOrderFragment=new CurrentOrderFragment();
-    Fragment mEditFragment=new EditFragment();
+    Fragment mCurrentPointFragment = new CurrentPointFragment();
+    Fragment mCurrentOrderFragment = new CurrentOrderFragment();
+    Fragment mEditFragment = new EditFragment();
     private static Typeface typeface;
 
     SessionManager sessionManager;
@@ -53,36 +52,36 @@ public class MypageFragment extends Fragment implements MainActivity.onKeyBackPr
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
-        View layout=inflater.inflate(R.layout.fragment_mypage, container, false);
 
-        if(typeface == null) {
+        View layout = inflater.inflate(R.layout.fragment_mypage, container, false);
+
+        if (typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
                     "fonts/yoon350.ttf");
         }
         setGlobalFont(layout);
         sessionManager = new SessionManager(getActivity());
 
-        mPointBtn=layout.findViewById(R.id.pointBtn);
+        mPointBtn = layout.findViewById(R.id.pointBtn);
         mPointBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.contentContainer,mCurrentPointFragment).commit();
+                getFragmentManager().beginTransaction().replace(R.id.contentContainer, mCurrentPointFragment).commit();
             }
         });
-        mOrderBtn=layout.findViewById(R.id.orderBtn);
+        mOrderBtn = layout.findViewById(R.id.orderBtn);
         mOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.contentContainer,mCurrentOrderFragment).commit();
+                getFragmentManager().beginTransaction().replace(R.id.contentContainer, mCurrentOrderFragment).commit();
             }
         });
-        mUpdateBtn=layout.findViewById(R.id.updateBtn);
+        mUpdateBtn = layout.findViewById(R.id.updateBtn);
         mUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.contentContainer,mEditFragment).commit();
+                getFragmentManager().beginTransaction().replace(R.id.contentContainer, mEditFragment).commit();
             }
         });
         mDeleteBtn = layout.findViewById(R.id.deleteBtn);
@@ -135,9 +134,9 @@ public class MypageFragment extends Fragment implements MainActivity.onKeyBackPr
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        ///////////////////실패/////////////////////////////////
+                        Log.e(TAG,"회원정보 업뎃 실패");
                     }
-                }){
+                }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -152,13 +151,13 @@ public class MypageFragment extends Fragment implements MainActivity.onKeyBackPr
     }
 
     private void setGlobalFont(View view) {
-        if(view != null) {
-            if(view instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup)view;
+        if (view != null) {
+            if (view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) view;
                 int vgCnt = viewGroup.getChildCount();
-                for(int i = 0; i<vgCnt; i++) {
+                for (int i = 0; i < vgCnt; i++) {
                     View v = viewGroup.getChildAt(i);
-                    if(v instanceof TextView) {
+                    if (v instanceof TextView) {
                         ((TextView) v).setTypeface(typeface);
                     }
                     setGlobalFont(v);
@@ -170,7 +169,7 @@ public class MypageFragment extends Fragment implements MainActivity.onKeyBackPr
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        ((MainActivity)context).setmOnKeyBackPressedListener(this);
+        ((MainActivity) context).setmOnKeyBackPressedListener(this);
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,6 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View layout=inflater.inflate(R.layout.fragment_current_point, container, false);
 
         sessionManager = new SessionManager(getActivity());
@@ -119,7 +119,7 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "포인트 갱신 실패");
 
                     }
                 }){
@@ -129,17 +129,12 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
                 params.put("userId", userId);
                 return params;
             }
-
-
         };
         stringRequest.setTag(TAG);
         AppController.getInstance().
                 addToRequestQueue(stringRequest);
 
     }
-
-
-
 
     private class ViewHolder{
         public TextView mUseTitle;
@@ -212,41 +207,10 @@ public class CurrentPointFragment extends Fragment implements MainActivity.onKey
             dataChange();
         }
 
-
         public void dataChange(){
             mAdapter.notifyDataSetChanged();
         }
     }
-
-    private void getTotalPoint(final String userId) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.TOTAL_POINT,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        if (response ==null || response.equals("")) response = "0";
-                        mCurrPoint.setText("P " + response);
-                        return;
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("userId", userId);
-                return params;
-            }
-        };
-        stringRequest.setTag(TAG);
-        AppController.getInstance().
-                addToRequestQueue(stringRequest);
-    }
-
 
     @Override
     public void onAttach(Context context) {

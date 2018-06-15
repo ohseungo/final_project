@@ -1,17 +1,14 @@
 package iot.e1m4.com.greenright;
 
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 
 import com.estimote.proximity_sdk.proximity.ProximityAttachment;
@@ -19,7 +16,6 @@ import com.estimote.proximity_sdk.proximity.ProximityObserver;
 import com.estimote.proximity_sdk.proximity.ProximityObserverBuilder;
 import com.estimote.proximity_sdk.proximity.ProximityZone;
 
-import info.addon.AppHelper;
 import info.addon.PointManager;
 import info.addon.SessionManager;
 import info.app.AppController;
@@ -44,9 +40,9 @@ public class BeaconListenerService extends Service {
     public void onCreate() {
         super.onCreate();
         this.notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        this.inNotification = buildNotification("대중교통 이용", "대중교통 이용으로 30포인트가 추가되었습니다!"
+        this.inNotification = buildNotification("버스 이용", "대중교통 이용으로 50포인트가 추가되었습니다!"
                                                 ,NOTIFICATION_ID, MainActivity.class);
-        this.videoNotification = buildNotification("영상 감지", "영상을 시청하면 15포인트 추가!"
+        this.videoNotification = buildNotification("영상 감지", "영상을 시청하면 50포인트 추가!"
                                                 ,NOTIFICATION_ID_VIDEO, PopUpVideo.class);
         //this.outNotification = buildNotification("bye", "bye bye");
         sessionManager = new SessionManager(this);
@@ -112,24 +108,14 @@ public class BeaconListenerService extends Service {
                             if(AppController.isActivityVisible()) {
                                 ///대중교통 / 앱 켜져있음
                                 Log.e(TAG, "비콘감지1");
-                               /* AlertDialog.Builder builder = new AlertDialog.Builder(BeaconListenerService.this);
-                                builder.setMessage("대중교통 이용으로 포인트가 적립되었습니다")
-                                        .setCancelable(false)
-                                        .setPositiveButton("네", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                return;
-                                            }
-                                        });
-                                AlertDialog dialog = builder.create();
-                                dialog.show();*/
 
                             }else{
-                                notificationManager.notify(1, inNotification);
+
                                 Log.e(TAG, "비콘감지 꺼져있을떄1");
                             }
+                            notificationManager.notify(1, inNotification);
                             PointManager.addPointData(sessionManager.getUserId(),
-                                    30, 3, "대중교통 이용",
+                                    50, 3, "대중교통 이용",
                                     BeaconListenerService.this, TAG);
                             sessionManager.setBeaconChecked("ohseungo-s-notification-g6m");
                         }
@@ -158,7 +144,9 @@ public class BeaconListenerService extends Service {
                             if(AppController.isActivityVisible()) {
                                 //앱이 켜져 있을 때
                                 Log.e(TAG, "비콘감지2");
-
+                                Intent intent = new Intent(BeaconListenerService.this, PopUpVideo.class)
+                                            .setAction(NOTIFICATION_ID_VIDEO).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
                             }else {
                                 notificationManager.notify(2, videoNotification);
                                 Log.e(TAG, "비콘감지2 꺼져있을때");

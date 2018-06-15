@@ -4,8 +4,11 @@ package iot.e1m4.com.greenright;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,8 +36,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +62,11 @@ public class HomeFragment extends Fragment {
     SessionManager sessionManager;
     TextView userHead;
     TextView totalCup;
+
+    ImageView news1;
+    ImageView news2;
+    ImageView news3;
+
     private static Typeface typeface;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,9 +88,10 @@ public class HomeFragment extends Fragment {
         totalCup = layout.findViewById(R.id.totalCup);
         userUpdate();
         getTotalDisp(sessionManager.getUserId());
-
-
-
+        news1 = layout.findViewById(R.id.news1);
+        news2 = layout.findViewById(R.id.news2);
+        news3 = layout.findViewById(R.id.news3);
+        marketListUpdate();
 
         return layout;
     }
@@ -194,6 +207,88 @@ public class HomeFragment extends Fragment {
                 addToRequestQueue(stringRequest);
         return;
     }
+
+    private MarketTask mTask;
+    private void marketListUpdate() {
+        pDialog.setMessage("상품 정보를 받아오는 중...");
+        showDialog();
+        StringRequest  stringRequest = new StringRequest(Request.Method.POST, AppConfig.URL_PRODUCT_LIST,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            mTask = new MarketTask();
+                            mTask.execute(jsonArray);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                ///리스트 가져오기 실패
+
+            }
+        });
+        stringRequest.setTag(TAG);
+        AppController.getInstance().
+                addToRequestQueue(stringRequest);
+    }
+
+
+    class MarketTask extends AsyncTask<JSONArray, Object, Void> {
+        Bitmap[] bm = new Bitmap[3];
+
+        @Override
+        protected Void doInBackground(JSONArray... jsonArrays) {
+            try {
+                JSONArray jArray = jsonArrays[0];
+
+                for (int i=0; i<3; i++){
+                    if (i+1 > jArray.length()) {
+                        bm[i] = null;
+                        continue;
+                    }
+                    if (jArray.getJSONObject(i).getString("productImage") == null ||
+                            jArray.getJSONObject(i).getString("productImage").equals("null") ||
+                            jArray.getJSONObject(i).getString("productImage").trim().equals("")) {
+                        bm[i] = null ;
+                    }
+                    else {
+
+                        try (InputStream is =new URL(AppConfig.REQUEST_URL + "/images/product/"
+                                + jArray.getJSONObject(i).getString("productImage")).openStream()) {
+                            bm[i] = BitmapFactory.decodeStream(is);
+                        }
+                    }
+                    publishProgress(bm);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Object... objects) {
+            super.onProgressUpdate(objects);
+            news1.setImageBitmap(bm[0]);
+            news2.setImageBitmap(bm[1]);
+            news3.setImageBitmap(bm[2]);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            hideDialog();
+        }
+    }
+
 
 
     @Override

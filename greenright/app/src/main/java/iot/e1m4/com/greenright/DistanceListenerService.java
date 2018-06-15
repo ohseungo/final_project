@@ -89,13 +89,16 @@ public class DistanceListenerService extends Service {
                 }
 
                 ///////////////테스트
-                if (totalDis >= 100 ) { ///////////일정 거리 이상이면 포인트 갱신
+                if (totalDis >= 50 ) { ///////////일정 거리 이상이면 포인트 갱신
                     PointManager.addPointData(sessionManager.getUserId(), 10,
-                        2, "100미터 달성", DistanceListenerService.this, TAG);
-                    mNotification = buildNotification("걷기 달성!", "100m 걸었어요! 야호!");
+                        2, "50미터 달성", DistanceListenerService.this, TAG);
+                    mNotification = buildNotification("걷기 달성!", "50m 걸었어요! 야호!");
                     mNotification.notify();
                 }
 
+
+
+                ///거리 측정 메소드
 
             }else {
                 //문제 발생

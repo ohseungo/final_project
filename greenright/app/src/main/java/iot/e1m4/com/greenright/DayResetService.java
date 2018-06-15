@@ -24,7 +24,6 @@ import info.app.AppConfig;
 import info.app.AppController;
 
 public class DayResetService extends Service {
-
     @Override
     public IBinder onBind(Intent intent) {
         throw new UnsupportedOperationException("Not yet implemented");
@@ -34,13 +33,12 @@ public class DayResetService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         sessionManager = new SessionManager(this);
+
         /*
          이미 거리 저장된 아이디 전부 저장
          */
         for(String key: sessionManager.getPref().getAll().keySet()){
-            Toast.makeText(DayResetService.this, key + " " + sessionManager.getPref().getAll().get(key), Toast.LENGTH_SHORT).show();
             if (key.contains(AppConfig.DISTANCE_CHECK_DISTANCE)) {
-
                 addDistanceData(key.replace(AppConfig.DISTANCE_CHECK_DISTANCE, ""),
                          sessionManager.getPref().getAll().get(key));
             }
