@@ -35,12 +35,10 @@ public class PurchaseController {
 		return "purchaseList.jsp";
 	}
 	
-
 	@RequestMapping("list_order.do")
 	public @ResponseBody List<Purchase> selectPurchaseListWithUserId(String userId) {
 		Map<String, String> id=new HashMap<String, String>();
 		id.put("userId",(String) userId);
-		
 		return purchaseService.searchPurchaseListWithMultipleCondition(id);
 	}
 	
@@ -53,4 +51,10 @@ public class PurchaseController {
 		}
 		return "purchaseList.jsp";
 	}
+	
+	@RequestMapping("/insert_purchase.do")
+	public @ResponseBody boolean addPurchase(Purchase purchase) {
+		return purchaseService.addPurchase(purchase);
+	}
+	
 }

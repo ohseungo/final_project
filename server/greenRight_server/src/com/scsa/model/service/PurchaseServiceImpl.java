@@ -15,7 +15,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public void addPurchase(Purchase purchase) {
+	public boolean addPurchase(Purchase purchase) {
+		return purchaseDao.insertPurchase(purchase);
 	}
 
 	@Override

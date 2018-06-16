@@ -15,7 +15,12 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 	}
 
 	@Override
-	public void insertPurchase(Purchase purchase) {
+	public boolean insertPurchase(Purchase purchase) {
+		boolean result = false;
+		if(sqlSession.insert("purchase.insertPurchase", purchase) > 0) {
+			result = true;
+		}
+		return result;
 	}
 
 	@Override

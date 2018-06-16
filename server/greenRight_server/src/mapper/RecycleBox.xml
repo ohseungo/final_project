@@ -10,20 +10,29 @@
 	<insert id="insertRecycleBox" parameterType="RecycleBox">
 		insert into RECYCLEBOX(RECYCLEBOXID, RECYCLEBOXLAT, 
 		RECYCLEBOXLONG) 
-	VALUES (#{RECYCLEBOXID}, #{RECYCLEBOXLAT}, #{RECYCLEBOXLONG})
+		VALUES (#{RECYCLEBOXID}, #{RECYCLEBOXLAT}, #{RECYCLEBOXLONG})
 	</insert>
+	<delete id="deleteRecycleBox" parameterType="String">
+		delete from RECYCLEBOX
+		where RECYCLEBOXID=#{RECYCLEBOXID}
+	</delete>
 	<select id="selectRecycleBoxWithCurrLocation" resultType="RecycleBox">
 		select RECYCLEBOXID,RECYCLEBOXLAT,RECYCLEBOXLONG
 		from RECYCLEBOX
 		<where>
 		<if test="recycleBoxLat != null">
 		 RECYCLEBOXLAT 
-		between #{RECYCLEBOXLAT}-0.005 and #{RECYCLEBOXLAT}+0.005
+		between #{recycleBoxLat}-0.005 and #{recycleBoxLat}+0.005
 		</if>
 		<if test="recycleBoxLong != null">
 		and RECYCLEBOXLONG
-		between #{RECYCLEBOXLONG}-0.005 and #{RECYCLEBOXLONG}+0.005
+		between #{recycleBoxLong}-0.005 and #{recycleBoxLong}+0.005
 		</if>
 		</where>
 	</select>
+	<update id="updateRecycleBox" parameterType="RecycleBox">
+		update RECYCLEBOX 
+		set	   recycleBoxCount=#{recycleBoxCount}
+		where  recycleBoxId=#{recycleBoxId}
+	</update>
 </mapper>

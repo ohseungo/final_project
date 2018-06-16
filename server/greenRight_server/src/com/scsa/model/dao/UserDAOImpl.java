@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean updateUser(User user) {
-		return false;
+		return sqlSession.update("user.updateUser", user) != 0;
 	}
 
 }

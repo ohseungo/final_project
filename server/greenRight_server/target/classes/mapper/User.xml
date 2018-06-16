@@ -19,5 +19,10 @@
 	delete from USER
 		where USERID = #{id}
 	</delete>
-	
+	<update id="updateUser" parameterType="User">
+		update USER 
+		set	   password=#{password},userName=#{userName},userPhone=#{userPhone},
+			   userEmail=#{userEmail},userCar=#{userCar}
+		where  userId=#{userId}
+	</update>
 </mapper>

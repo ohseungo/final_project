@@ -120,6 +120,11 @@ body{font-family: NanumSquare}
 			<br />
 			<form action="./add_product.do" method="post"
 				enctype="multipart/form-data">
+				<label for="productId"
+					style="color: black">상품번호&nbsp;&nbsp;</label> <input
+					name="productId" type="text" id="productId"
+					placeholder="상품번호 입력하세요" style="width: 1000px;"> <br /> 
+					<br />
 				<label for="productFile" style="color: black">상품이미지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 				<input name="productFile" type="file" id="productFile"
 					placeholder="상품이미지를 추가하세요"> 
@@ -177,7 +182,7 @@ body{font-family: NanumSquare}
 								
 								<td width="159">${product.productId}</td>
 								<td width="159"><img
-									src="${pageContext.request.contextPath}/images/product/${product.productImage}" />
+									src="${pageContext.request.contextPath}/images/product/${product.productImage}" height="150px" width="150px"/>
 								</td>
 								<td width="300">${product.productName}</td>
 								<td width="300">${product.productContent}</td>
@@ -200,12 +205,6 @@ body{font-family: NanumSquare}
 				</tbody>
 			</table>
 			<br />
-			<!-- <div align="right">
-							<a href="insertProduct.jsp"
-								class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs"
-								data-wow-delay="0.8s">상품 등록</a>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</div> -->
 		</div>
 
 	</div>

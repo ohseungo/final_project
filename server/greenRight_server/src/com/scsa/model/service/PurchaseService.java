@@ -6,7 +6,7 @@ import java.util.Map;
 import com.scsa.model.vo.Purchase;
 
 public interface PurchaseService {
-	void addPurchase(Purchase purchase);
+	boolean addPurchase(Purchase purchase);
 	List<Purchase> searchPurchaseListWithMultipleCondition(Map<String, String> id);
 	Purchase searchPurchase(String purchaseId);
 	void changePurchase(Purchase purchase);

@@ -6,8 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>GreenRight</title>
 <meta name="description" content="">
 <meta name="author" content="">
@@ -42,61 +41,19 @@ body{font-family: NanumSquare}
 
 
 
- <script src="https://api2.sktelecom.com/tmap/js?version=1&format=javascript&appKey=db476347-088f-49e1-bc96-2853a2a54b00"></script>
-        <script type="text/javascript">
-        var map, marker, markerLayer;
-			function initTmap(){
-				map = new Tmap.Map({
-					div:'map_div',
-					width : "80%",
-					height : "600px",
-				});
-				map.setCenter(new Tmap.LonLat("127.0396597", "37.5013068").transform("EPSG:4326", "EPSG:3857"), 15);
-				markerLayer = new Tmap.Layer.Markers();//마커 레이어 생성
-				map.addLayer(markerLayer);//map에 마커 레이어 추가
-				map.events.register("click", map, onClickMap);//map 클릭 이벤트를 등록합니다.
-				
-				var lonlat = new Tmap.LonLat(126.984895, 37.566369).transform("EPSG:4326", "EPSG:3857");//좌표 지정
-				marker = new Tmap.Marker(lonlat, icon);//마커 생성
-				markerLayer.addMarker(marker);//레이어에 마커 추가 
-				
-				var size = new Tmap.Size(24, 38);//아이콘 크기
-				var offset = new Tmap.Pixel(-(size.w / 2), -(size.h));//아이콘 중심점
-				var positions = [];
-				 <c:forEach items="${requestScope.recycleBoxList}" var="box">
-				 	positions.push({
-				 		"lonlat": new Tmap.LonLat(${box.recycleBoxLong},${box.recycleBoxLat}).transform("EPSG:4326", "EPSG:3857")
-				 	});
-				 </c:forEach>				
-				 
-				for (var i = 0; i< positions.length; i++){//for문을 통하여 배열 안에 있는 값을 마커 생성
-					var icon = new Tmap.Icon('http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_a.png',size, offset);//아이콘 설정
-					var lonlat = positions[i].lonlat;//좌표값
-					marker = new Tmap.Marker(lonlat, icon);//마커 생성
-					markerLayer.addMarker(marker); //마커 레이어에 마커 추가
-				}
-			} 
-			
-			var count = 0;
-			function onClickMap(e){
-				if(count != 0){
-				markerLayer.removeMarker(marker); // 기존 마커 삭제
-				}
-				var lonlat = map.getLonLatFromViewPortPx(e.xy).transform("EPSG:3857", "EPSG:4326");//클릭 부분의 ViewPortPx를 LonLat 좌표로 변환합니다.
-				var result ='클릭한 위치의 좌표는'+lonlat+'입니다.'; 
-				var resultDiv = document.getElementById("result");
-				resultDiv.innerHTML = result;
-				
-				var size = new Tmap.Size(24, 38);//아이콘 사이즈 설정
-				var offset = new Tmap.Pixel(-(size.w/2), -(size.h));//아이콘 중심점 설정
-				var icon = new Tmap.Icon('http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_a.png',size, offset);//마커 아이콘 설정
-				marker = new Tmap.Marker(lonlat.transform("EPSG:4326", "EPSG:3857"), icon);//마커 생성
-				markerLayer.addMarker(marker);//마커 레이어에 마커 추가
-				count++;
-				}
-			
-			initTmap();
-		</script>
+ <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
 
 
 
@@ -115,7 +72,7 @@ body{font-family: NanumSquare}
 <script src="js/modernizr-2.6.2.min.js"></script>
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" onload="initTmap()">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
 	<!-- Navigation
     ==========================================-->
@@ -144,8 +101,7 @@ body{font-family: NanumSquare}
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#" class="navbar-brand page-scroll"
-					href="#page-top" style="color: white; font-family: Open Sans"><strong>상품관리</strong></a></li>
-				<li><a href="./orderList.do" class="page-scroll" style="color: white; font-family: Open Sans"><strong>주문관리</strong></a></li>
+					href="#page-top" style="color: white; font-family: Open Sans"><strong>수거함관리</strong></a></li>
 				<li><a href="./logout.do" class="page-scroll" style="color: white; font-family: Open Sans"><strong>로그아웃</strong></a></li>
 			</ul>
 		</div>
@@ -174,10 +130,76 @@ body{font-family: NanumSquare}
 	
 	
 	
-<div id="map_div"></div>      
+ <div id="map"></div>
+    <script>
+      var map;
+      
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: new google.maps.LatLng(37.501469, 127.039617),
+          mapTypeId: 'roadmap'
+        });
 
-<p id="result"></p>
-  
+        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+
+        var features = [];
+        <c:forEach items="${requestScope.recycleBoxList}" var="box">
+	 	features.push({
+	 		recycleBoxId : ${box.recycleBoxId},
+	 		position: new google.maps.LatLng(${box.recycleBoxLat},${box.recycleBoxLong})
+	 	});
+		</c:forEach> 
+
+        // Create markers.
+        features.forEach(function(feature) {
+          var marker = new google.maps.Marker({
+            position: feature.position,
+            map: map
+          });
+          
+          marker.addListener('click', function() {
+        	  var delConfirm = confirm("정말로 삭제하시겠습니까?");
+        	  if(delConfirm == true){
+        		  document.location.href = "./delete_recycle.do?recycleBoxId=" + feature.recycleBoxId;
+        		  alert("삭제되었습니다");
+        	  }else{
+        	  }
+        	  });
+        });
+        var count = 0;
+        map.addListener('click', function(e) {
+        	//추가하는 기능 구현!!
+         	if(count != 0){
+        	marker.setMap(null);
+        	} 
+            placeMarkerAndPanTo(e.latLng, map);
+            var addConfirm = confirm("해당위치에 수거함을 설치 하시겠습니까?");
+            if(addConfirm == true){
+      		  document.location.href = "./add_recycle.do?recycleBoxId=" + (features.length+1)
+     				  +"&recycleBoxLat=" + e.latLng.lat() + "&recycleBoxLong=" + e.latLng.lng();
+      		  alert("등록되었습니다");
+      	 	 }else{
+      	  	}
+            count++;
+          });
+        
+      }//end initMap()
+	
+      
+      function placeMarkerAndPanTo(latLng, map) {
+    	  var marker = new google.maps.Marker({
+    	    position: latLng,
+    	    map: map
+    	  });
+    	  map.panTo(latLng);
+      }
+      
+      
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA60f1K6JotdytU-PXtI7YBFTKU-A-adSQ&callback=initMap">
+    </script>
 	<br/><br/><br/>
 	
 	
@@ -186,9 +208,9 @@ body{font-family: NanumSquare}
 	
 	<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/SmoothScroll.js"></script>
+	<!-- <script type="text/javascript" src="js/SmoothScroll.js"></script> -->
 	<script type="text/javascript" src="js/jquery.counterup.js"></script>
-	<script type="text/javascript" src="js/waypoints.js"></script>
+	<!-- <script type="text/javascript" src="js/waypoints.js"></script> -->
 	<script type="text/javascript" src="js/nivo-lightbox.js"></script>
 	<script type="text/javascript" src="js/jquery.isotope.js"></script>
 	<script type="text/javascript" src="js/jqBootstrapValidation.js"></script>

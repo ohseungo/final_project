@@ -1,6 +1,7 @@
 package com.scsa.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -14,7 +15,6 @@ public class RecycleBoxDAOImpl implements RecycleBoxDAO {
 		this.sqlSession = sqlSession;
 	}
 	
-
 	@Override
 	public List<RecycleBox> selectRecycleBoxList() {
 		return sqlSession.selectList("recycleBox.selectRecycleBox");
@@ -25,10 +25,36 @@ public class RecycleBoxDAOImpl implements RecycleBoxDAO {
 		return sqlSession.selectList("recycleBox.selectRecycleBoxWithCurrLocation");
 	}
 
-
 	@Override
 	public boolean insertRecycleBox(RecycleBox recycleBox) {
+		System.out.println(recycleBox);
 		return sqlSession.insert("recycleBox.insertRecycleBox", recycleBox)!=0;
 	}
 
+	/*@Override
+	public boolean deleteRecycleBox(String recycleBoxId) {
+		boolean result = false;
+		if(sqlSession.delete("recycleBox.deleteRecycleBox", recycleBoxId)>0) {
+			result = true;
+		}
+		return result;
+	}*/
+
+	@Override
+	public boolean deleteRecycleBox(String recycleBoxId) {
+		boolean result = false;
+		if(sqlSession.delete("recycleBox.deleteRecycleBox", recycleBoxId) > 0) {
+			result = true;
+		}
+		return result;
+	}
+
+	@Override
+	public boolean updateRecycleBox(RecycleBox recycleBox) {
+		boolean result = false;
+		if(sqlSession.update("recycleBox.updateRecycleBox", recycleBox) > 0) {
+			result = true;
+		}
+		return result;
+	}
 }

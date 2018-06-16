@@ -6,4 +6,5 @@ public interface UserService {
 	boolean addUser(User user);
 	User searchUser(String userId);
 	User loginUser(String userId, String password);
+	boolean updateUser(User user);
 }
