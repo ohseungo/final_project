@@ -180,20 +180,20 @@ body{font-family: NanumSquare}
 							<tr id="proId" style="color: black; text-align: center;"
 								height="150">
 								
-								<td width="159">${product.productId}</td>
-								<td width="159"><img
+								<td width="159" style="vertical-align: middle">${product.productId}</td>
+								<td width="159" style="vertical-align: middle"><img
 									src="${pageContext.request.contextPath}/images/product/${product.productImage}" height="150px" width="150px"/>
 								</td>
-								<td width="300">${product.productName}</td>
-								<td width="300">${product.productContent}</td>
-								<td width="92">${product.productValue}</td>
-								<td width="80" align="center">
+								<td width="300" style="vertical-align: middle">${product.productName}</td>
+								<td width="300" style="vertical-align: middle">${product.productContent}</td>
+								<td width="92" style="vertical-align: middle">${product.productValue}</td>
+								<td width="80" align="center" style="vertical-align: middle">
 								<input type="button" value="삭제"
 									onclick="deleteBtn('${product.productId}');"
 									style="width: 163px;"
 									class="form-control">
 								</td>
-								<td width="80">
+								<td width="80" style="vertical-align: middle">
 								<input type="button"
 									product_no="${product.productId}" name="update" id="update"
 									class="form-control"
