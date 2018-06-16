@@ -9,8 +9,8 @@
 	</select>
 	<insert id="insertRecycleBox" parameterType="RecycleBox">
 		insert into RECYCLEBOX(RECYCLEBOXID, RECYCLEBOXLAT, 
-		RECYCLEBOXLONG) 
-		VALUES (#{RECYCLEBOXID}, #{RECYCLEBOXLAT}, #{RECYCLEBOXLONG})
+		RECYCLEBOXLONG, RECYCLEBOXCOUNT) 
+		VALUES (#{recycleBoxId}, #{recycleBoxLat}, #{recycleBoxLong}, #{recycleBoxCount})
 	</insert>
 	<delete id="deleteRecycleBox" parameterType="String">
 		delete from RECYCLEBOX
