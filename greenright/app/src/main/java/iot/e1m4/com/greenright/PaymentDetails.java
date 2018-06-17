@@ -31,7 +31,7 @@ import info.app.AppConfig;
 import info.app.AppController;
 
 
-public class PaymentDetails extends AppCompatActivity{
+public class PaymentDetails extends BaseActivity{
     TextView txtId;
     TextView txtAmount;
     TextView txtStatus;

@@ -27,7 +27,7 @@ import info.app.AppController;
 
 import static com.android.volley.Request.*;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseEngActivity {
     private SessionManager session;
 
     private EditText idTv;

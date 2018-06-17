@@ -38,7 +38,7 @@ public class CardFragment extends Fragment {
 
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
-                    "fonts/yoon350.ttf");
+                    "fonts/nanumsquareB.otf");
         }
         setGlobalFont(layout);
 

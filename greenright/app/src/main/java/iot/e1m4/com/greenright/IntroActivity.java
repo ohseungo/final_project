@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import info.addon.SessionManager;
 
-public class IntroActivity extends AppCompatActivity {
+public class IntroActivity extends BaseActivity {
 
     private static final int TOTAL_PAGES = 3;
     private ViewPager mPager;

@@ -35,7 +35,6 @@ import info.app.AppController;
 
 public class CurrentOrderFragment extends Fragment implements MainActivity.onKeyBackPressedListener{
 
-
     ListView mListView=null;
     ListViewAdapter mAdapter=null;
     private static Typeface typeface;
@@ -43,10 +42,18 @@ public class CurrentOrderFragment extends Fragment implements MainActivity.onKey
 
     private final String TAG = getClass().getSimpleName();
     private String[] purchaseStatus = {"배송완료", "주문확인", "입금확인", "배송중"};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout=inflater.inflate(R.layout.fragment_current_order, container, false);
+
+        if(typeface == null) {
+            typeface = Typeface.createFromAsset(getActivity().getAssets(),
+                    "fonts/nanumsquareB.otf");
+        }
+        setGlobalFont(layout);
+
         mListView=layout.findViewById(R.id.orderList);
         mAdapter=new ListViewAdapter(getActivity());
         mListView.setAdapter(mAdapter);
@@ -213,4 +220,19 @@ public class CurrentOrderFragment extends Fragment implements MainActivity.onKey
         return;
     }
 
+    private void setGlobalFont(View view) {
+        if(view != null) {
+            if(view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup)view;
+                int vgCnt = viewGroup.getChildCount();
+                for(int i = 0; i<vgCnt; i++) {
+                    View v = viewGroup.getChildAt(i);
+                    if(v instanceof TextView) {
+                        ((TextView) v).setTypeface(typeface);
+                    }
+                    setGlobalFont(v);
+                }
+            }
+        }
+    }
 }

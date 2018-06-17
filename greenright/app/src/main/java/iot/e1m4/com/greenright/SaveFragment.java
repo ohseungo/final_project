@@ -68,7 +68,7 @@ public class SaveFragment extends Fragment implements  MainActivity.onKeyBackPre
         View layout=inflater.inflate(R.layout.fragment_save, container, false);
         if(typeface == null) {
             typeface = Typeface.createFromAsset(getActivity().getAssets(),
-                    "fonts/yoon350.ttf");
+                    "fonts/nanumsquareB.otf");
         }
         setGlobalFont(layout);
 
