@@ -36,21 +36,13 @@ public class PostCodeFragment extends Fragment {
     }
 
     public void init_webView() {
-        // WebView 설정
         webView = (WebView) view.findViewById(R.id.postweb);
-        // JavaScript 허용
         webView.getSettings().setJavaScriptEnabled(true);
-        // JavaScript의 window.open 허용
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        // JavaScript이벤트에 대응할 함수를 정의 한 클래스를 붙여줌
-        // 두 번째 파라미터는 사용될 php에도 동일하게 사용해야함
         webView.addJavascriptInterface(new AndroidBridge(), "Android");
-        // web client 를 chrome 으로 설정
         webView.setWebChromeClient(new WebChromeClient());
-        // webview url load
         webView.loadUrl("http://192.168.10.38:9090/greenRight_server/postcode.jsp");
     }
-
     private class AndroidBridge {
         @JavascriptInterface
         public void setAddress(final String arg1, final String arg2, final String arg3) {
@@ -60,7 +52,6 @@ public class PostCodeFragment extends Fragment {
                    TextView tv= getFragmentManager().findFragmentByTag("ORDER_PAGE").getView().findViewById(R.id.deliveryAddress);
                     tv.setText(String.format("(%s) %s %s", arg1, arg2, arg3));
                     getFragmentManager().beginTransaction().remove(PostCodeFragment.this).commit();
-
 
                 }
             });

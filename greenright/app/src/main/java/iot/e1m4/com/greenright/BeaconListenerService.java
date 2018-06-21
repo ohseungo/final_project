@@ -108,9 +108,7 @@ public class BeaconListenerService extends Service {
                             if(AppController.isActivityVisible()) {
                                 ///대중교통 / 앱 켜져있음
                                 Log.e(TAG, "비콘감지1");
-
                             }else{
-
                                 Log.e(TAG, "비콘감지 꺼져있을떄1");
                             }
                             notificationManager.notify(1, inNotification);

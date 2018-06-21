@@ -299,9 +299,7 @@ public class PayFragment extends Fragment implements MainActivity.onKeyBackPress
                 addToRequestQueue(stringRequest);
     }
 
-
     private void processPayment() {
-        //샀다에 구매 아이템 정보가 들어간다
         PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf( (double) (totalPrice/110) /10.0 )), "USD"
                                     ,mPaymentInfo.getProductName() + " 구매", PayPalPayment.PAYMENT_INTENT_SALE);
         Intent intent = new Intent(getActivity(), PaymentActivity.class);
@@ -309,6 +307,7 @@ public class PayFragment extends Fragment implements MainActivity.onKeyBackPress
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
         startActivityForResult(intent, PAYPAL_REQUEST_CODE);
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

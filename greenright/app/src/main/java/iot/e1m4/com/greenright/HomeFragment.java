@@ -82,6 +82,7 @@ public class HomeFragment extends Fragment {
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
         sessionManager = new SessionManager(getActivity());
+        //sessionManager.setDistanceDayChecked(sessionManager.getUserId(), 2320);
         mTotalPoint = layout.findViewById(R.id.pointTv);
         getTotalPoint(sessionManager.getUserId());
         userHead = layout.findViewById(R.id.mainUser);
@@ -102,13 +103,14 @@ public class HomeFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        //Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             JSONObject object;
                             int count = 0;
                             for (int i =0; i<jsonArray.length(); i++) {
                                 object = jsonArray.getJSONObject(i);
-                                if (object.getString("greenPointType").equals(1)) count++;
+                                if (object.getString("greenPointType").equals("1")) count++;
                             }
                             totalCup.setText(String.valueOf(count));
                         } catch (JSONException e) {

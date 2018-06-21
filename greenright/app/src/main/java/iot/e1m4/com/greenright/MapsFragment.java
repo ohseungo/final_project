@@ -76,7 +76,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
     private static final int UPDATE_INTERVAL_MS = 15000;
     private static final int FASTEST_UPDATE_INTERVAL_MS = 15000;
-
     private static final int DEFAULT_ZOOM = 17;
     private final LatLng DEFAULT_LOCATION = new LatLng(37.500763, 127.036842);
 
@@ -95,7 +94,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     private LatLng[] LikelyLatLngs = null;
 
     private static Typeface typeface;
-
 
     private void updateLocationUI() {
         if (mMap == null) {
@@ -119,9 +117,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
             mLastKnownLocation = null;
         }
     }
-
-
-
 
     private CameraPosition mCameraPosition;
     private void getDeviceLocation(float cameraZoom) {
@@ -198,7 +193,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
                     @Override
                     public void onResponse(String response) {
                         mMap.clear();
-
                         try {
                             JSONArray jArray = new JSONArray(response);
                             JSONObject jObject;
@@ -352,12 +346,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         this.mMap = googleMap;
-
         googleMap.getUiSettings().setCompassEnabled(true);
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int hasFineLocationPermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
 
@@ -396,7 +387,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
     public boolean onMarkerClick(Marker marker) {
         return false;
     }
-
 
     private void buildGoogleApiClient() {
         googleApiClient = new GoogleApiClient.Builder(getActivity())

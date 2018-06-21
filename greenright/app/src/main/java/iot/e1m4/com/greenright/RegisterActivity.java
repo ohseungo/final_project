@@ -195,16 +195,14 @@ public class RegisterActivity extends BaseEngActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> user = new HashMap<>();
-                try {
+
                 user.put("userId", userId);
                 user.put("password", password);
                 user.put("userEmail", userEmail);
-                user.put("userName", URLEncoder.encode(userName,"UTF-8"));
+                user.put("userName", userName);
                 user.put("userPhone", userPhone);
                 user.put("userCar", userCar);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
+
                 return user;
             }
         };
